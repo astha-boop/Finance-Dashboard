@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill in a Box — Finance 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0c0e12;
+  --ink2:#3a3d45;
+  --ink3:#8b8f9e;
+  --bg:#f4f5f7;
+  --surface:#ffffff;
+  --border:#e2e5ec;
+  --border2:#cdd0da;
+  --accent:#1a6bff;
+  --accent-l:#e8f0ff;
+  --green:#00a76f;
+  --green-l:#e6f7f2;
+  --red:#e5394b;
+  --red-l:#fdeef0;
+  --amber:#f59e0b;
+  --amber-l:#fef9ed;
+  --purple:#7c4dff;
+  --purple-l:#f3f0ff;
+  --sh:0 1px 3px rgba(0,0,0,.05),0 2px 12px rgba(0,0,0,.04);
+  --sh2:0 4px 20px rgba(0,0,0,.09),0 1px 4px rgba(0,0,0,.05);
+}
+
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh;font-size:13px;line-height:1.5}
+
+/* ── SIDEBAR ── */
+.sidebar{width:230px;background:var(--ink);display:flex;flex-direction:column;position:fixed;height:100vh;z-index:100;overflow-y:auto}
+.logo-area{padding:20px 18px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.logo-mark{display:flex;align-items:center;gap:10px;margin-bottom:2px}
+.logo-box{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.logo-name{font-size:13.5px;font-weight:800;color:#fff;letter-spacing:-.2px;line-height:1.2}
+.logo-sub{font-size:9.5px;color:rgba(255,255,255,.38);letter-spacing:.08em;text-transform:uppercase;margin-top:1px}
+.nav-section{font-size:9px;font-weight:700;color:rgba(255,255,255,.28);letter-spacing:.12em;text-transform:uppercase;padding:18px 18px 6px}
+.nav-btn{display:flex;align-items:center;gap:9px;padding:9px 14px;margin:1px 8px;border-radius:8px;cursor:pointer;color:rgba(255,255,255,.52);font-size:12.5px;font-weight:500;transition:all .15s;border:none;background:none;width:calc(100% - 16px);text-align:left;font-family:'Syne',sans-serif;letter-spacing:-.1px}
+.nav-btn:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.85)}
+.nav-btn.active{background:var(--accent);color:#fff;font-weight:700}
+.nav-icon{width:16px;text-align:center;font-size:13px;flex-shrink:0;opacity:.8}
+.nav-badge{margin-left:auto;background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);font-size:9px;padding:1px 6px;border-radius:20px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.nav-badge.hot{background:var(--red);color:#fff}
+.sidebar-foot{margin-top:auto;padding:12px 8px;border-top:1px solid rgba(255,255,255,.07)}
+.user-row{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:8px;cursor:pointer;transition:background .15s}
+.user-row:hover{background:rgba(255,255,255,.06)}
+.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#1a6bff,#7c4dff);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0}
+.user-name{font-size:12px;font-weight:700;color:#fff;line-height:1.2}
+.user-role{font-size:9.5px;color:rgba(255,255,255,.35)}
+
+/* ── MAIN ── */
+.main{margin-left:230px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 22px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.page-title{font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.3px}
+.page-sub{font-size:10.5px;color:var(--ink3);margin-top:1px;display:flex;align-items:center;gap:5px}
+.status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:var(--green)}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.month-tabs{display:flex;gap:3px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:3px}
+.mt{padding:4px 12px;border-radius:6px;font-size:11.5px;font-weight:700;cursor:pointer;color:var(--ink3);transition:all .15s;border:none;background:none;font-family:'Syne',sans-serif;letter-spacing:-.1px}
+.mt.active{background:var(--accent);color:#fff}
+.mt:hover:not(.active){background:var(--accent-l);color:var(--accent)}
+.btn-refresh{display:flex;align-items:center;gap:5px;background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:5px 11px;font-size:11.5px;font-weight:600;color:var(--ink2);cursor:pointer;font-family:'Syne',sans-serif;transition:all .15s}
+.btn-refresh:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── CONTENT ── */
+.content{padding:20px 22px;flex:1}
+.pane{display:none}.pane.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.pane.active>*{animation:fadeUp .3s ease both}
+
+/* ── STAT CARDS ── */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.stat-card{background:var(--surface);border-radius:12px;padding:16px;box-shadow:var(--sh);position:relative;overflow:hidden;border:1px solid var(--border);transition:box-shadow .2s,transform .15s}
+.stat-card:hover{box-shadow:var(--sh2);transform:translateY(-1px)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.sc-accent::before{background:var(--accent)}
+.sc-green::before{background:var(--green)}
+.sc-amber::before{background:var(--amber)}
+.sc-red::before{background:var(--red)}
+.sc-purple::before{background:var(--purple)}
+.stat-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.stat-label{font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em}
+.stat-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.si-blue{background:var(--accent-l)} .si-green{background:var(--green-l)} .si-amber{background:var(--amber-l)} .si-red{background:var(--red-l)} .si-purple{background:var(--purple-l)}
+.stat-val{font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--ink);letter-spacing:-1px;margin-bottom:3px}
+.stat-sub{font-size:10.5px;color:var(--ink3)}
+.stat-bar{height:2px;background:var(--border);border-radius:2px;margin-top:10px;overflow:hidden}
+.stat-fill{height:100%;border-radius:2px;transition:width 1s ease}
+.sf-blue{background:var(--accent)} .sf-green{background:var(--green)} .sf-amber{background:var(--amber)} .sf-red{background:var(--red)} .sf-purple{background:var(--purple)}
+/* manual edit */
+.sc-edit-btn{position:absolute;top:8px;right:8px;background:none;border:none;cursor:pointer;font-size:11px;color:var(--ink3);transition:color .15s;padding:2px 4px;border-radius:4px;line-height:1}
+.sc-edit-btn:hover{color:var(--accent);background:var(--accent-l)}
+.manual-overlay{display:none;position:absolute;inset:0;background:rgba(255,255,255,.97);border-radius:12px;z-index:10;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px}
+.manual-overlay.show{display:flex}
+.manual-overlay label{font-size:10.5px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.05em}
+.manual-overlay input{width:100%;border:1.5px solid var(--accent);border-radius:7px;padding:7px 10px;font-size:14px;font-weight:700;font-family:'JetBrains Mono',monospace;outline:none;text-align:center;color:var(--ink)}
+.mo-btns{display:flex;gap:5px}
+.mo-save{background:var(--accent);color:#fff;border:none;border-radius:6px;padding:5px 13px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif}
+.mo-cancel{background:var(--bg);color:var(--ink2);border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:11.5px;cursor:pointer;font-family:'Syne',sans-serif}
+
+/* ── MID ROW ── */
+.mid-row{display:grid;grid-template-columns:1fr 300px;gap:14px;margin-bottom:16px}
+.card{background:var(--surface);border-radius:12px;padding:18px;box-shadow:var(--sh);border:1px solid var(--border)}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-title{font-size:13px;font-weight:800;color:var(--ink);letter-spacing:-.2px}
+.card-sub{font-size:10.5px;color:var(--ink3);margin-top:1px}
+.vlink{font-size:11px;font-weight:700;color:var(--accent);cursor:pointer;border:none;background:none;font-family:'Syne',sans-serif}
+.vlink:hover{text-decoration:underline}
+
+/* ── CHART ── */
+.chart-wrap{width:100%;height:180px}
+
+/* ── QUICK ACTIONS ── */
+.qa-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.qa-btn{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;font-family:'Syne',sans-serif;transition:all .15s}
+.qa-btn:hover{background:var(--accent-l);border-color:var(--accent)}
+.qa-icon{font-size:18px}
+.qa-label{font-size:10.5px;font-weight:700;color:var(--ink2);text-align:center;line-height:1.3}
+.qa-btn:hover .qa-label{color:var(--accent)}
+
+/* ── BOTTOM ROW ── */
+.bot-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* ── TABLE ── */
+.mini-table{width:100%;border-collapse:collapse}
+.mini-table th{font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;padding:0 0 9px;text-align:left;border-bottom:1px solid var(--border)}
+.mini-table td{padding:8px 0;border-bottom:1px solid var(--border);font-size:11.5px;color:var(--ink2);vertical-align:middle}
+.mini-table tr:last-child td{border-bottom:none}
+.mini-table tr:hover td{background:rgba(26,107,255,.03)}
+.txname{font-weight:700;color:var(--ink);font-size:12px;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.txcat{font-size:9.5px;color:var(--ink3);margin-top:1px}
+.tx-in{background:var(--green-l);color:var(--green)} .tx-out{background:var(--red-l);color:var(--red)}
+.tx-badge{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.tag{display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:1px 5px;font-size:9.5px;color:var(--ink3);font-family:'JetBrains Mono',monospace}
+.pos{color:var(--green);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:11.5px}
+.neg{color:var(--red);font-weight:700;font-family:'JetBrains Mono',monospace;font-size:11.5px}
+
+/* ── FILTER BAR ── */
+.fbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.fsel{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;color:var(--ink2);font-family:'Syne',sans-serif;cursor:pointer;outline:none;transition:border-color .15s}
+.fsel:focus,.fsel:hover{border-color:var(--accent)}
+.fsearch{display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:6px 10px;flex:1;min-width:160px}
+.fsearch input{border:none;outline:none;font-family:'Syne',sans-serif;font-size:12px;color:var(--ink);background:none;width:100%}
+.fsearch input::placeholder{color:var(--ink3)}
+.btn-export{background:var(--accent);color:#fff;border:none;border-radius:7px;padding:6px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;display:flex;align-items:center;gap:5px}
+.btn-export:hover{background:#1558e0}
+.btn-outline{background:var(--surface);color:var(--accent);border:1.5px solid var(--accent);border-radius:7px;padding:5px 11px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;display:flex;align-items:center;gap:5px}
+.btn-outline:hover{background:var(--accent-l)}
+
+/* ── FULL TABLE ── */
+.tw{background:var(--surface);border-radius:12px;box-shadow:var(--sh);overflow:hidden;border:1px solid var(--border)}
+.tw table{width:100%;border-collapse:collapse}
+.tw thead{background:var(--bg)}
+.tw th{font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;padding:9px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.tw td{padding:9px 14px;border-bottom:1px solid var(--border);font-size:12px;color:var(--ink2)}
+.tw tr:last-child td{border-bottom:none}
+.tw tr:hover td{background:#fafbfd}
+
+/* ── PAGINATION ── */
+.pag{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid var(--border)}
+.pag-info{font-size:11px;color:var(--ink3)}
+.pag-btns{display:flex;gap:4px}
+.pb{padding:4px 10px;border-radius:5px;border:1px solid var(--border);background:var(--surface);font-size:11px;cursor:pointer;color:var(--ink2);font-family:'Syne',sans-serif;transition:all .15s}
+.pb:hover,.pb.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pb:disabled{opacity:.35;cursor:not-allowed}
+
+/* ── BADGES ── */
+.bdg{display:inline-flex;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.b-paid{background:var(--green-l);color:var(--green)}
+.b-pend{background:var(--amber-l);color:var(--amber)}
+.b-over{background:var(--red-l);color:var(--red)}
+
+/* ── ACCOUNTS ── */
+.acc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.acc-card{background:var(--surface);border-radius:12px;padding:18px;box-shadow:var(--sh);border:1px solid var(--border);position:relative;overflow:hidden}
+.acc-card::after{content:'';position:absolute;top:-30px;right:-30px;width:90px;height:90px;border-radius:50%;opacity:.04}
+.acc-kotak::after{background:var(--accent)}
+.acc-axis::after{background:var(--red)}
+.acc-bank-name{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:2px}
+.acc-type{font-size:10px;color:var(--ink3);margin-bottom:13px}
+.acc-balance{font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--accent);letter-spacing:-1.5px}
+.acc-meta{display:flex;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.aml{font-size:10px;color:var(--ink3)} .amv{font-size:13px;font-weight:700;font-family:'JetBrains Mono',monospace}
+
+/* ── MONTHLY REPORT ── */
+.mr-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.mr-kpi{background:var(--surface);border-radius:12px;padding:15px;box-shadow:var(--sh);border:1px solid var(--border)}
+.mr-kpi-label{font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px}
+.mr-kpi-val{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--ink);letter-spacing:-1px}
+
+/* ── REPORTING ── */
+.rep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:15px}
+.rep-card{background:var(--surface);border-radius:12px;padding:15px;box-shadow:var(--sh);border:1px solid var(--border)}
+.rep-label{font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.rep-val{font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--ink);letter-spacing:-1px}
+.rep-note{font-size:10px;color:var(--ink3);margin-top:3px}
+.sum-tbl{width:100%;border-collapse:collapse}
+.sum-tbl th{background:var(--bg);font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;padding:8px 13px;text-align:left;border-bottom:1px solid var(--border)}
+.sum-tbl td{padding:10px 13px;border-bottom:1px solid var(--border);font-size:12px;color:var(--ink2)}
+.sum-tbl tr:last-child td{border-bottom:none}
+.sum-tbl .tot td{font-weight:700;color:var(--ink);background:var(--accent-l);font-family:'JetBrains Mono',monospace}
+.pp{color:var(--green);font-weight:700;font-family:'JetBrains Mono',monospace}
+.pn{color:var(--red);font-weight:700;font-family:'JetBrains Mono',monospace}
+
+/* ── CAT BARS ── */
+.cat-row{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--border)}
+.cat-row:last-child{border-bottom:none}
+.cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.cat-name{flex:1;font-size:12px;font-weight:600;color:var(--ink)}
+.cat-bar-wrap{width:80px;height:4px;background:var(--border);border-radius:4px;overflow:hidden}
+.cat-bar{height:100%;border-radius:4px}
+.cat-pct{font-size:10px;color:var(--ink3);min-width:28px;text-align:right}
+.cat-amt{font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--ink);min-width:90px;text-align:right}
+
+/* ── RECONCILIATION ── */
+.recon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+
+/* ── EMPTY ── */
+.empty{text-align:center;padding:30px;color:var(--ink3);font-size:12px}
+
+/* ── BANK STATEMENT ── */
+.bank-section{margin-bottom:18px}
+.bank-head{font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--accent);letter-spacing:-.2px}
+
+/* ── SALES TAB ── */
+.sales-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.ch-row{display:grid;grid-template-columns:180px 1fr 90px 160px;align-items:center;border-bottom:1px solid var(--border);transition:background .1s}
+.ch-row:last-child{border-bottom:none}
+.ch-row:hover{background:rgba(26,107,255,.02)}
+.ch-icon-wrap{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+
+/* ── AUTOMATION ── */
+.rule-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.rule-row:last-child{border-bottom:none}
+.rule-icon{width:32px;height:32px;border-radius:50%;background:var(--accent-l);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.rule-name{flex:1;font-size:12.5px;font-weight:500;color:var(--ink)}
+.atag{background:var(--accent-l);color:var(--accent);font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase}
+
+@media print{.sidebar,.topbar,.fbar{display:none!important}.main{margin-left:0!important}}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="logo-area">
+    <div class="logo-mark">
+      <div class="logo-box">📊</div>
+      <div>
+        <div class="logo-name">Skill in a Box</div>
+        <div class="logo-sub">Finance Platform</div>
+      </div>
+    </div>
+  </div>
+  <nav>
+    <div class="nav-section">Main</div>
+    <button class="nav-btn active" onclick="nav('dashboard',this)"><span class="nav-icon">⊞</span>Dashboard</button>
+    <button class="nav-btn" onclick="nav('sales',this)"><span class="nav-icon">💰</span>Sales<span class="nav-badge" id="salesBadge">+</span></button>
+    <button class="nav-btn" onclick="nav('transactions',this)"><span class="nav-icon">↔</span>Transactions</button>
+    <button class="nav-btn" onclick="nav('accounts',this)"><span class="nav-icon">🏦</span>Accounts</button>
+    <button class="nav-btn" onclick="nav('invoices',this)"><span class="nav-icon">🧾</span>Invoices<span class="nav-badge" id="invBadge">—</span></button>
+    <button class="nav-btn" onclick="nav('reports',this)"><span class="nav-icon">📊</span>Reports</button>
+    <div class="nav-section">Tools</div>
+    <button class="nav-btn" onclick="nav('reconciliation',this)"><span class="nav-icon">↻</span>Reconciliation</button>
+    <button class="nav-btn" onclick="nav('automation',this)"><span class="nav-icon">⚡</span>Automation</button>
+    <button class="nav-btn" onclick="nav('bank',this)"><span class="nav-icon">🏛</span>Bank Statement</button>
+    <div class="nav-section">Analytics</div>
+    <button class="nav-btn" onclick="nav('monthlyreport',this)"><span class="nav-icon">📅</span>Monthly Report<span class="nav-badge hot">New</span></button>
+    <button class="nav-btn" onclick="nav('reporting',this)"><span class="nav-icon">📈</span>Reporting</button>
+    <div class="nav-section">Integrations</div>
+    <button class="nav-btn" onclick="nav('sheets',this)" id="nav-sheets"><span class="nav-icon">🔗</span>Google Sheets<span class="nav-badge" id="sheetsBadge" style="background:var(--red)">Off</span></button>
+  </nav>
+  <div class="sidebar-foot">
+    <div class="user-row">
+      <div class="avatar">PN</div>
+      <div><div class="user-name">Pradeep Naudiyal</div><div class="user-role">Super Admin</div></div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div>
+      <div class="page-title" id="pgTitle">Dashboard</div>
+      <div class="page-sub"><span class="status-dot" id="sDot"></span><span id="sTxt">Jan–Mar 2026 · Data Loaded</span></div>
+    </div>
+    <div class="topbar-right">
+      <div class="month-tabs" id="mtsWrap">
+        <button class="mt" onclick="switchMon('jan',this)" id="mt-jan">Jan</button>
+        <button class="mt" onclick="switchMon('feb',this)" id="mt-feb">Feb</button>
+        <button class="mt active" onclick="switchMon('mar',this)" id="mt-mar">Mar</button>
+      </div>
+      <button class="btn-refresh" onclick="rerender()">↻ Refresh</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ══ DASHBOARD ══ -->
+    <div class="pane active" id="pane-dashboard">
+
+      <!-- STAT CARDS -->
+      <div class="stats-row">
+        <div class="stat-card sc-accent">
+          <button class="sc-edit-btn" onclick="openManual('sales')" title="Edit">✏</button>
+          <div class="stat-top"><span class="stat-label">Total Sales</span><div class="stat-icon si-blue">🛒</div></div>
+          <div class="stat-val" id="v-sales">—</div>
+          <div class="stat-sub" id="n-sales">Auto from sheet</div>
+          <div class="stat-bar"><div class="stat-fill sf-blue" id="b-sales" style="width:0%"></div></div>
+          <div class="manual-overlay" id="mo-sales">
+            <label>Total Sales (₹)</label>
+            <input type="number" id="mi-sales" placeholder="e.g. 500000">
+            <div class="mo-btns">
+              <button class="mo-save" onclick="saveManual('sales')">Save</button>
+              <button class="mo-cancel" onclick="closeManual('sales')">Cancel</button>
+              <button class="mo-cancel" onclick="clearManual('sales')">Auto</button>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card sc-red">
+          <button class="sc-edit-btn" onclick="openManual('expense')" title="Edit">✏</button>
+          <div class="stat-top"><span class="stat-label">Total Expense</span><div class="stat-icon si-red">📉</div></div>
+          <div class="stat-val" id="v-expense">—</div>
+          <div class="stat-sub" id="n-expense">Auto from sheet</div>
+          <div class="stat-bar"><div class="stat-fill sf-red" id="b-expense" style="width:0%"></div></div>
+          <div class="manual-overlay" id="mo-expense">
+            <label>Total Expense (₹)</label>
+            <input type="number" id="mi-expense" placeholder="e.g. 300000">
+            <div class="mo-btns">
+              <button class="mo-save" onclick="saveManual('expense')">Save</button>
+              <button class="mo-cancel" onclick="closeManual('expense')">Cancel</button>
+              <button class="mo-cancel" onclick="clearManual('expense')">Auto</button>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card sc-green">
+          <button class="sc-edit-btn" onclick="openManual('collection')" title="Edit">✏</button>
+          <div class="stat-top"><span class="stat-label">Collection</span><div class="stat-icon si-green">💰</div></div>
+          <div class="stat-val" id="v-collection">—</div>
+          <div class="stat-sub" id="n-collection">Auto from sheet</div>
+          <div class="stat-bar"><div class="stat-fill sf-green" id="b-collection" style="width:0%"></div></div>
+          <div class="manual-overlay" id="mo-collection">
+            <label>Collection (₹)</label>
+            <input type="number" id="mi-collection" placeholder="e.g. 450000">
+            <div class="mo-btns">
+              <button class="mo-save" onclick="saveManual('collection')">Save</button>
+              <button class="mo-cancel" onclick="closeManual('collection')">Cancel</button>
+              <button class="mo-cancel" onclick="clearManual('collection')">Auto</button>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card sc-amber">
+          <button class="sc-edit-btn" onclick="openManual('dropout')" title="Edit">✏</button>
+          <div class="stat-top"><span class="stat-label">Dropout</span><div class="stat-icon si-amber">📤</div></div>
+          <div class="stat-val" id="v-dropout">— Enter</div>
+          <div class="stat-sub" id="n-dropout">Click ✏ to enter</div>
+          <div class="stat-bar"><div class="stat-fill sf-amber" id="b-dropout" style="width:15%"></div></div>
+          <div class="manual-overlay" id="mo-dropout">
+            <label>Dropout (₹)</label>
+            <input type="number" id="mi-dropout" placeholder="e.g. 50000">
+            <div class="mo-btns">
+              <button class="mo-save" onclick="saveManual('dropout')">Save</button>
+              <button class="mo-cancel" onclick="closeManual('dropout')">Cancel</button>
+              <button class="mo-cancel" onclick="clearManual('dropout')">Clear</button>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card sc-purple">
+          <button class="sc-edit-btn" onclick="openManual('outstanding')" title="Edit">✏</button>
+          <div class="stat-top"><span class="stat-label">Outstanding</span><div class="stat-icon si-purple">⏳</div></div>
+          <div class="stat-val" id="v-outstanding">— Enter</div>
+          <div class="stat-sub" id="n-outstanding">Click ✏ to enter</div>
+          <div class="stat-bar"><div class="stat-fill sf-purple" id="b-outstanding" style="width:10%"></div></div>
+          <div class="manual-overlay" id="mo-outstanding">
+            <label>Outstanding (₹)</label>
+            <input type="number" id="mi-outstanding" placeholder="e.g. 80000">
+            <div class="mo-btns">
+              <button class="mo-save" onclick="saveManual('outstanding')">Save</button>
+              <button class="mo-cancel" onclick="closeManual('outstanding')">Cancel</button>
+              <button class="mo-cancel" onclick="clearManual('outstanding')">Clear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MID ROW -->
+      <div class="mid-row">
+        <div class="card">
+          <div class="card-head">
+            <div><div class="card-title">Daily Revenue vs Expense</div><div class="card-sub" id="cfSub">March 2026</div></div>
+            <div style="display:flex;gap:12px;font-size:11px;align-items:center">
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block"></span>Revenue</span>
+              <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block"></span>Expense</span>
+            </div>
+          </div>
+          <svg class="chart-wrap" id="cfSvg" viewBox="0 0 640 180" preserveAspectRatio="none"></svg>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Quick Actions</div></div>
+          <div class="qa-grid">
+            <button class="qa-btn" onclick="nav('invoices',null)"><div class="qa-icon">🧾</div><div class="qa-label">New Invoice</div></button>
+            <button class="qa-btn" onclick="nav('transactions',null)"><div class="qa-icon">↔</div><div class="qa-label">Transactions</div></button>
+            <button class="qa-btn" onclick="nav('reporting',null)"><div class="qa-icon">📈</div><div class="qa-label">P&L Report</div></button>
+            <button class="qa-btn" onclick="nav('bank',null)"><div class="qa-icon">🏛</div><div class="qa-label">Bank Statement</div></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM ROW -->
+      <div class="bot-row">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Recent Transactions</div><button class="vlink" onclick="nav('transactions',null)">View all →</button></div>
+          <table class="mini-table">
+            <thead><tr><th></th><th>Description</th><th>Date</th><th style="text-align:right">Amount</th></tr></thead>
+            <tbody id="recBody"><tr><td colspan="4" class="empty">—</td></tr></tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Expense by Category</div></div>
+          <div id="catDash"><div class="empty">Loading…</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SALES ══ -->
+    <div class="pane" id="pane-sales">
+      <!-- KPI Row -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px" id="salesKpiRow"></div>
+
+      <!-- View toggle -->
+      <div class="fbar">
+        <div style="display:flex;gap:3px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:3px">
+          <button class="mt active" id="sv-team" onclick="setSalesView('team',this)">Team View</button>
+          <button class="mt" id="sv-counsellor" onclick="setSalesView('counsellor',this)">Counsellor View</button>
+          <button class="mt" id="sv-daily" onclick="setSalesView('daily',this)">Daily Trend</button>
+        </div>
+        <div style="margin-left:auto;font-size:11px;color:var(--ink3);display:flex;align-items:center;gap:6px">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block"></span>Q4 FY 25-26 · March 2026
+        </div>
+        <button class="btn-outline" onclick="exportSalesCSV()">⬇ Export CSV</button>
+      </div>
+
+      <!-- Team View -->
+      <div id="salesTeamView">
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px" id="salesTeamGrid"></div>
+      </div>
+
+      <!-- Counsellor View -->
+      <div id="salesCounsellorView" style="display:none">
+        <div class="tw">
+          <table>
+            <thead><tr>
+              <th>Counsellor</th><th>Team</th>
+              <th style="text-align:right">Target</th>
+              <th style="text-align:right">Achieved</th>
+              <th style="text-align:right">Deficit</th>
+              <th style="text-align:right">Leads</th>
+              <th style="text-align:right">Conv%</th>
+              <th>Progress</th>
+            </tr></thead>
+            <tbody id="salesCounsellorBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Daily Trend View -->
+      <div id="salesDailyView" style="display:none">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Daily Revenue — March 2026</div><div class="card-sub">Cumulative achieved revenue by date</div></div>
+          <div style="overflow-x:auto">
+            <div style="display:flex;gap:6px;align-items:flex-end;height:160px;padding:8px 4px;min-width:600px" id="salesDailyBars"></div>
+          </div>
+          <div style="display:flex;gap:14px;justify-content:center;margin-top:10px;font-size:11px;flex-wrap:wrap" id="salesDailyLegend"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ TRANSACTIONS ══ -->
+    <div class="pane" id="pane-transactions">
+      <div class="fbar">
+        <div class="fsearch"><span style="color:var(--ink3)">🔍</span><input type="text" placeholder="Search…" id="txS" oninput="applyTxFilter()"></div>
+        <select class="fsel" id="txMon" onchange="applyTxFilter()"><option value="">All Months</option><option value="jan">Jan 2026</option><option value="feb">Feb 2026</option><option value="mar">Mar 2026</option></select>
+        <select class="fsel" id="txBank" onchange="applyTxFilter()"><option value="">All Banks</option><option value="Kotak">Kotak</option><option value="Axis">Axis</option></select>
+        <select class="fsel" id="txCat" onchange="applyTxFilter()"><option value="">All Categories</option></select>
+        <select class="fsel" id="txType" onchange="applyTxFilter()"><option value="">All Types</option><option value="credit">Credits</option><option value="debit">Debits</option></select>
+        <button class="btn-export" onclick="exportCSV()">⬇ CSV</button>
+      </div>
+      <div class="tw">
+        <table>
+          <thead><tr><th></th><th>Date</th><th>Description</th><th>Category</th><th>Bank</th><th style="text-align:right">Debit</th><th style="text-align:right">Credit</th></tr></thead>
+          <tbody id="txBody"></tbody>
+        </table>
+        <div class="pag">
+          <div class="pag-info" id="pagI">—</div>
+          <div class="pag-btns"><button class="pb" id="prevB" onclick="mvPage(-1)">← Prev</button><div id="pgNums"></div><button class="pb" id="nextB" onclick="mvPage(1)">Next →</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ACCOUNTS ══ -->
+    <div class="pane" id="pane-accounts">
+      <div class="fbar">
+        <select class="fsel" id="accMon" onchange="renderAccounts()"><option value="all">All Months</option><option value="jan">Jan 2026</option><option value="feb">Feb 2026</option><option value="mar">Mar 2026</option></select>
+        <select class="fsel" id="accBank" onchange="renderAccounts()"><option value="">All Banks</option><option value="Kotak">Kotak</option><option value="Axis">Axis</option></select>
+      </div>
+      <div class="acc-grid" id="accG"></div>
+    </div>
+
+    <!-- ══ INVOICES ══ -->
+    <div class="pane" id="pane-invoices">
+      <div class="fbar">
+        <div class="fsearch"><span style="color:var(--ink3)">🔍</span><input type="text" placeholder="Search invoices…" id="invS" oninput="renderInvoices()"></div>
+        <select class="fsel" id="invMon" onchange="renderInvoices()"><option value="">All Months</option><option value="jan">Jan 2026</option><option value="feb">Feb 2026</option><option value="mar">Mar 2026</option></select>
+        <select class="fsel" id="invStat" onchange="renderInvoices()"><option value="">All Status</option><option value="paid">Paid</option><option value="pending">Pending</option><option value="overdue">Overdue</option></select>
+        <button class="btn-export">+ New Invoice</button>
+      </div>
+      <div class="tw"><table>
+        <thead><tr><th>Invoice #</th><th>Description</th><th>Date</th><th>Category</th><th>Bank</th><th style="text-align:right">Amount</th><th>Status</th></tr></thead>
+        <tbody id="invBody"></tbody>
+      </table></div>
+    </div>
+
+    <!-- ══ REPORTS ══ -->
+    <div class="pane" id="pane-reports">
+      <div class="fbar">
+        <select class="fsel" id="repMon" onchange="renderReports()"><option value="all">All Months</option><option value="jan">Jan 2026</option><option value="feb">Feb 2026</option><option value="mar">Mar 2026</option></select>
+        <select class="fsel" id="repBank" onchange="renderReports()"><option value="">All Banks</option><option value="Kotak">Kotak</option><option value="Axis">Axis</option></select>
+      </div>
+      <div class="card"><div class="card-head"><div class="card-title">Category-wise Expense Breakdown</div></div><div id="catL"></div></div>
+    </div>
+
+    <!-- ══ RECONCILIATION ══ -->
+    <div class="pane" id="pane-reconciliation">
+      <div class="fbar">
+        <select class="fsel" id="recMon" onchange="renderRecon()"><option value="jan">Jan 2026</option><option value="feb">Feb 2026</option><option value="mar">Mar 2026</option></select>
+        <select class="fsel" id="recBank" onchange="renderRecon()"><option value="">All Banks</option><option value="Kotak">Kotak</option><option value="Axis">Axis</option></select>
+      </div>
+      <div id="reconCard" class="card"></div>
+    </div>
+
+    <!-- ══ AUTOMATION ══ -->
+    <div class="pane" id="pane-automation">
+      <div class="card">
+        <div class="card-head"><div class="card-title">Active Automation Rules</div><button class="btn-export">+ New Rule</button></div>
+        <div class="rule-row"><div class="rule-icon">⚡</div><div class="rule-name">Monthly rent posting — auto debit on 1st</div><span class="atag">Active</span></div>
+        <div class="rule-row"><div class="rule-icon">⚡</div><div class="rule-name">Invoice payment reminder — 3 days before due</div><span class="atag">Active</span></div>
+        <div class="rule-row"><div class="rule-icon">⚡</div><div class="rule-name">Auto-categorize office supplies</div><span class="atag">Active</span></div>
+        <div class="rule-row"><div class="rule-icon">⚡</div><div class="rule-name">GST auto-calculation on invoices</div><span class="atag">Active</span></div>
+        <div class="rule-row"><div class="rule-icon">⚡</div><div class="rule-name">Salary disbursement — 1st of each month</div><span class="atag">Active</span></div>
+        <div class="rule-row"><div class="rule-icon">⚡</div><div class="rule-name">Car EMI auto-debit — 5th of month</div><span class="atag">Active</span></div>
+        <div class="rule-row"><div class="rule-icon">⚡</div><div class="rule-name">Facebook Ads weekly reconciliation</div><span class="atag">Active</span></div>
+      </div>
+    </div>
+
+    <!-- ══ BANK STATEMENT ══ -->
+    <div class="pane" id="pane-bank">
+      <div class="fbar">
+        <select class="fsel" id="bsMon" onchange="renderBank()"><option value="jan">Jan 2026</option><option value="feb">Feb 2026</option><option value="mar">Mar 2026</option></select>
+        <select class="fsel" id="bsBank" onchange="renderBank()"><option value="">All Banks</option><option value="Kotak">Kotak</option><option value="Axis">Axis</option></select>
+        <button class="btn-outline" onclick="exportBankCSV()">⬇ Export CSV</button>
+      </div>
+      <div id="bsCard" class="card"></div>
+    </div>
+
+    <!-- ══ MONTHLY REPORT ══ -->
+    <div class="pane" id="pane-monthlyreport">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px">
+        <div><div class="page-title">📅 Monthly Reporting</div><div style="font-size:11px;color:var(--ink3);margin-top:3px">Jan · Feb · Mar 2026 — Hardcoded from sheet</div></div>
+        <button class="btn-outline" onclick="exportMRcsv()">⬇ Export CSV</button>
+      </div>
+      <div class="mr-kpis" id="mrCards">
+        <div class="mr-kpi"><div class="mr-kpi-label">Total Expense (3 Months)</div><div class="mr-kpi-val" id="mr-totexp" style="color:var(--red)">—</div></div>
+        <div class="mr-kpi"><div class="mr-kpi-label">Total Collection (3 Months)</div><div class="mr-kpi-val" id="mr-totcol" style="color:var(--green)">—</div></div>
+        <div class="mr-kpi"><div class="mr-kpi-label">Net Difference</div><div class="mr-kpi-val" id="mr-totdiff">—</div></div>
+        <div class="mr-kpi"><div class="mr-kpi-label">Best Month</div><div class="mr-kpi-val" id="mr-best" style="font-size:16px;color:var(--accent)">—</div></div>
+      </div>
+      <div class="tw" style="margin-bottom:16px">
+        <div style="padding:13px 16px;border-bottom:1px solid var(--border)"><div class="card-title">Month-wise Summary</div></div>
+        <table><thead><tr><th>Month</th><th style="text-align:right">Kotak Expense</th><th style="text-align:right">Axis Expense</th><th style="text-align:right">Total Expense</th><th style="text-align:right">Total Collection</th><th style="text-align:right">Difference</th><th>Status</th></tr></thead>
+        <tbody id="mrTableBody"></tbody></table>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="card"><div class="card-head"><div class="card-title">Expense vs Collection</div></div>
+          <div style="overflow-x:auto"><div style="display:flex;gap:8px;align-items:flex-end;height:150px;padding:0 4px;min-width:300px" id="mrBarChart"></div></div>
+          <div style="display:flex;gap:14px;justify-content:center;margin-top:10px;font-size:11px">
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:9px;height:9px;border-radius:2px;background:var(--red);display:inline-block"></span>Expense</span>
+            <span style="display:flex;align-items:center;gap:5px"><span style="width:9px;height:9px;border-radius:2px;background:var(--green);display:inline-block"></span>Collection</span>
+          </div>
+        </div>
+        <div class="card"><div class="card-head"><div class="card-title">Collection Sources (All 3 Months)</div></div><div id="mrCollBreakdown"></div></div>
+      </div>
+    </div>
+
+    <!-- ══ REPORTING ══ -->
+    <div class="pane" id="pane-reporting">
+      <div class="fbar">
+        <select class="fsel" id="rpMon"><option value="jan">January 2026</option><option value="feb">February 2026</option><option value="mar">March 2026</option><option value="all">All 3 Months</option></select>
+        <select class="fsel" id="rpBank"><option value="">All Banks</option><option value="Kotak">Kotak</option><option value="Axis">Axis</option></select>
+        <button class="btn-export" onclick="buildReport()">📊 Generate</button>
+        <button class="btn-outline" onclick="dlReport()">⬇ CSV</button>
+        <button class="btn-outline" onclick="window.print()">🖨 Print</button>
+      </div>
+      <div class="rep-grid">
+        <div class="rep-card"><div class="rep-label">Total Sales</div><div class="rep-val" id="rp-sales">—</div><div class="rep-note">Total Credits</div></div>
+        <div class="rep-card"><div class="rep-label">Total Expense</div><div class="rep-val" id="rp-exp">—</div><div class="rep-note">Total Debits</div></div>
+        <div class="rep-card"><div class="rep-label">Total Collection</div><div class="rep-val" id="rp-col">—</div><div class="rep-note">Pure credits</div></div>
+        <div class="rep-card"><div class="rep-label">Total Dropout</div><div class="rep-val" id="rp-drop">—</div><div class="rep-note">Manual entry</div></div>
+        <div class="rep-card"><div class="rep-label">Outstanding</div><div class="rep-val" id="rp-out">—</div><div class="rep-note">Manual entry</div></div>
+        <div class="rep-card"><div class="rep-label">Net P&L</div><div class="rep-val" id="rp-net">—</div><div class="rep-note" id="rp-net-n">Sales − Expense</div></div>
+      </div>
+      <div class="tw" style="margin-bottom:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-bottom:1px solid var(--border)"><div class="card-title">Monthly P&L Summary</div><button class="btn-outline" onclick="dlReport()">⬇ CSV</button></div>
+        <table class="sum-tbl"><thead><tr><th>Month</th><th>Total Sales</th><th>Total Collection</th><th>Total Expense</th><th>Dropout</th><th>Outstanding</th><th>Net P&L</th></tr></thead>
+        <tbody id="sumBody"><tr><td colspan="7" class="empty">Click Generate Report</td></tr></tbody></table>
+      </div>
+      <div class="card"><div class="card-head"><div class="card-title">Category-wise Breakdown</div></div><div id="rpCats"><div class="empty">Click Generate Report</div></div></div>
+    </div>
+
+    <!-- ══ GOOGLE SHEETS (Apps Script) ══ -->
+    <div class="pane" id="pane-sheets">
+
+      <!-- Header -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+        <div>
+          <div class="page-title" style="display:flex;align-items:center;gap:8px">🔗 Google Sheets — Apps Script Sync</div>
+          <div style="font-size:11px;color:var(--ink3);margin-top:3px" id="sheetStatusLine">Not connected — paste your Web App URL below</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn-outline" id="btnTestConn"  onclick="gsTest()"  style="display:none">🔍 Test</button>
+          <button class="btn-export"  id="btnPullSheet" onclick="gsPull()"  style="display:none">⬇ Pull from Sheet</button>
+          <button class="btn-outline" id="btnPushSheet" onclick="gsPush()"  style="display:none">⬆ Push to Sheet</button>
+        </div>
+      </div>
+
+      <!-- Status Banner -->
+      <div id="gsBanner" style="display:none"></div>
+
+      <!-- Config Card -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-head">
+          <div><div class="card-title">⚙️ Connection Setup</div><div class="card-sub">Free — uses Google Apps Script, no Cloud Console needed</div></div>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Apps Script Web App URL</label>
+          <input type="text" id="gsWebAppUrl" placeholder="https://script.google.com/macros/s/AKfyc…/exec"
+            style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 13px;font-size:12.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink);transition:border-color .15s"
+            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          <div style="font-size:10px;color:var(--ink3);margin-top:4px">Paste the URL after deploying the Apps Script below. Takes 2 minutes.</div>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Secret Token <span style="font-weight:400;text-transform:none;color:var(--ink3)">(optional but recommended)</span></label>
+          <input type="password" id="gsToken" placeholder="any-secret-you-choose e.g. mytoken123"
+            style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 13px;font-size:12.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink);transition:border-color .15s"
+            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          <div style="font-size:10px;color:var(--ink3);margin-top:4px">Set the same token in the Apps Script code (line 3) so only your dashboard can access it.</div>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn-export" onclick="gsSaveCreds()" style="background:var(--green)">💾 Save & Connect</button>
+          <button class="btn-outline" onclick="gsClearCreds()">🗑 Clear</button>
+        </div>
+      </div>
+
+      <!-- Tab Mapping -->
+      <div class="card" style="margin-bottom:16px;display:none" id="gsMappingCard">
+        <div class="card-head"><div class="card-title">📋 Sheet Tab Names</div><div class="card-sub">Must match exactly what's in your Google Sheet</div></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+          <div>
+            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">January Tab</label>
+            <input type="text" id="gsTabJan" value="Jan 2026" style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:7px 11px;font-size:13px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+          <div>
+            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">February Tab</label>
+            <input type="text" id="gsTabFeb" value="Feb 2026" style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:7px 11px;font-size:13px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+          <div>
+            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">March Tab</label>
+            <input type="text" id="gsTabMar" value="Mar 2026" style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:7px 11px;font-size:13px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+        </div>
+        <div style="margin-top:12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:11px;font-size:11px;color:var(--ink3)">
+          <strong style="color:var(--ink)">Expected columns in your sheet:</strong>&nbsp;
+          <span style="font-family:'JetBrains Mono',monospace">A: Date &nbsp;·&nbsp; B: Description &nbsp;·&nbsp; C: Category &nbsp;·&nbsp; D: Bank &nbsp;·&nbsp; E: Debit &nbsp;·&nbsp; F: Credit</span>
+          &nbsp;— Row 1 = header, data from Row 2.
+        </div>
+      </div>
+
+      <!-- Sync Log -->
+      <div class="card" id="gsSyncLogCard" style="display:none;margin-bottom:16px">
+        <div class="card-head">
+          <div class="card-title">📜 Sync Log</div>
+          <button class="btn-outline" style="font-size:11px;padding:3px 9px" onclick="document.getElementById('gsSyncLog').innerHTML=''">Clear</button>
+        </div>
+        <div id="gsSyncLog" style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink2);max-height:200px;overflow-y:auto;line-height:2"></div>
+      </div>
+
+      <!-- Apps Script Code -->
+      <div class="card">
+        <div class="card-head">
+          <div><div class="card-title">📋 Apps Script Code — Copy & Paste This</div><div class="card-sub">Paste into your Google Sheet's script editor. Takes 2 minutes.</div></div>
+          <button class="btn-export" onclick="gsCopyScript()" id="btnCopyScript">📋 Copy Code</button>
+        </div>
+
+        <div style="background:#0c0e12;border-radius:10px;padding:16px;overflow-x:auto;margin-bottom:14px">
+          <pre id="gsScriptCode" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#e2e5ec;line-height:1.7;margin:0;white-space:pre">// ── Finance Dashboard ↔ Google Sheets Bridge ──
+// Paste this in: Extensions → Apps Script → Save → Deploy → Web App
+
+const SECRET_TOKEN = "mytoken123"; // Change this! Match it in the dashboard.
+
+function doGet(e) {
+  return handleRequest(e);
+}
+
+function doPost(e) {
+  return handleRequest(e);
+}
+
+function handleRequest(e) {
+  const params = e.parameter || {};
+  const body   = e.postData ? JSON.parse(e.postData.contents || "{}") : {};
+  const token  = params.token || body.token || "";
+  const action = params.action || body.action || "";
+
+  // Token check
+  if (SECRET_TOKEN && token !== SECRET_TOKEN) {
+    return json({ ok: false, error: "Unauthorized" });
+  }
+
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  // ── PULL: send sheet data to dashboard ──
+  if (action === "pull") {
+    const tabs   = body.tabs || { jan: "Jan 2026", feb: "Feb 2026", mar: "Mar 2026" };
+    const result = {};
+    for (const [key, tabName] of Object.entries(tabs)) {
+      const sheet = ss.getSheetByName(tabName);
+      if (!sheet) { result[key] = []; continue; }
+      const rows = sheet.getDataRange().getValues();
+      result[key] = rows.slice(1).map(r => ({
+        date:   String(r[0] || ""),
+        desc:   String(r[1] || ""),
+        cat:    String(r[2] || "Uncategorized"),
+        bank:   String(r[3] || "Kotak"),
+        debit:  parseFloat(r[4]) || 0,
+        credit: parseFloat(r[5]) || 0,
+      })).filter(r => r.date || r.desc);
+    }
+    return json({ ok: true, action: "pull", data: result });
+  }
+
+  // ── PUSH: write dashboard data into sheet ──
+  if (action === "push") {
+    const tabs  = body.tabs   || { jan: "Jan 2026", feb: "Feb 2026", mar: "Mar 2026" };
+    const data  = body.data   || {};
+    const hdr   = ["Date","Description","Category","Bank","Debit","Credit"];
+    for (const [key, tabName] of Object.entries(tabs)) {
+      let sheet = ss.getSheetByName(tabName);
+      if (!sheet) sheet = ss.insertSheet(tabName); // create if missing
+      sheet.clearContents();
+      const rows = (data[key] || []).map(r => [r.date,r.desc,r.cat,r.bank,r.debit,r.credit]);
+      sheet.getRange(1, 1, 1, 6).setValues([hdr]);
+      if (rows.length) sheet.getRange(2, 1, rows.length, 6).setValues(rows);
+    }
+    return json({ ok: true, action: "push" });
+  }
+
+  // ── TEST: ping ──
+  if (action === "test") {
+    const sheets = ss.getSheets().map(s => s.getName());
+    return json({ ok: true, title: ss.getName(), sheets });
+  }
+
+  return json({ ok: false, error: "Unknown action: " + action });
+}
+
+function json(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}</pre>
+        </div>
+
+        <!-- Step-by-step guide -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div style="background:var(--bg);border-radius:10px;padding:14px">
+            <div style="font-size:12px;font-weight:800;color:var(--ink);margin-bottom:10px">🚀 Deploy Steps</div>
+            <div style="font-size:11.5px;color:var(--ink2);line-height:2">
+              <div><span style="background:var(--accent);color:#fff;border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-right:6px">1</span>Open your Google Sheet</div>
+              <div><span style="background:var(--accent);color:#fff;border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-right:6px">2</span>Click <strong>Extensions → Apps Script</strong></div>
+              <div><span style="background:var(--accent);color:#fff;border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-right:6px">3</span>Delete existing code, paste this</div>
+              <div><span style="background:var(--accent);color:#fff;border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-right:6px">4</span>Change <code style="background:var(--border);padding:1px 4px;border-radius:3px">SECRET_TOKEN</code> on line 3</div>
+              <div><span style="background:var(--accent);color:#fff;border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-right:6px">5</span>Click <strong>Deploy → New Deployment</strong></div>
+              <div><span style="background:var(--accent);color:#fff;border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-right:6px">6</span>Type: <strong>Web App</strong> · Execute as: <strong>Me</strong></div>
+              <div><span style="background:var(--accent);color:#fff;border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-right:6px">7</span>Access: <strong>Anyone</strong> → Deploy → Copy URL</div>
+              <div><span style="background:var(--green);color:#fff;border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-right:6px">8</span>Paste URL above → Save & Connect ✅</div>
+            </div>
+          </div>
+          <div style="background:var(--bg);border-radius:10px;padding:14px">
+            <div style="font-size:12px;font-weight:800;color:var(--ink);margin-bottom:10px">💡 Tips & Notes</div>
+            <div style="font-size:11.5px;color:var(--ink2);line-height:2">
+              <div>🔒 Change <code style="background:var(--border);padding:1px 4px;border-radius:3px">SECRET_TOKEN</code> to something only you know</div>
+              <div>📋 Tab names must match exactly (case-sensitive)</div>
+              <div>🆓 Completely free — no billing needed</div>
+              <div>♾️ No expiry — URL works forever</div>
+              <div>⚡ If you edit the script, re-deploy as a <strong>new version</strong></div>
+              <div>🆕 Push will auto-create missing tabs in your sheet</div>
+              <div>📐 Columns: Date · Desc · Category · Bank · Debit · Credit</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<script>
+// ═══════════════════════════
+// HARDCODED DATA — Jan/Feb/Mar 2026
+// ═══════════════════════════
+const RAW = {
+jan:[
+  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'AIR INDIA LIMIT',cat:'Travel',bank:'Kotak',debit:4830,credit:0},
+  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'DEEPAK KUMAR',cat:'Staffwelfare',bank:'Kotak',debit:2575,credit:0},
+  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'ANJALI MATHUR',cat:'Staffwelfare',bank:'Kotak',debit:4000,credit:0},
+  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'HEM CHANDRA',cat:'Miss Expense',bank:'Kotak',debit:80,credit:0},
+  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'DIPTI FILLING STATION',cat:'Fuel',bank:'Kotak',debit:4216,credit:0},
+  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'CONNAUGHT PLAZA',cat:'Staffwelfare',bank:'Kotak',debit:1423,credit:0},
+  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'Indigo',cat:'Travel',bank:'Kotak',debit:10863,credit:0},
+  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:97522},
+  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'AMANDEEP',cat:'Learner payment',bank:'Kotak',debit:0,credit:33500},
+  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'ZOMATO',cat:'Staffwelfare',bank:'Kotak',debit:2386,credit:0},
+  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'AIR INDIA',cat:'Travel',bank:'Kotak',debit:3150,credit:0},
+  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:12812},
+  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:40003,credit:0},
+  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'GOOGLESERVIS',cat:'Software',bank:'Axis',debit:21935,credit:0},
+  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'LORD KRISHNA FINANCIAL',cat:'FINZ Forecloser',bank:'Axis',debit:113625,credit:0},
+  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:150797,credit:0},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:30000,credit:0},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:52763},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Jaa Maa Vaishno',cat:'COD',bank:'Axis',debit:0,credit:100000},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Jumbo Speciality Foods',cat:'Staffwelfare',bank:'Kotak',debit:2629,credit:0},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Air India',cat:'Travel',bank:'Kotak',debit:10914,credit:0},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Adobe',cat:'Software',bank:'Kotak',debit:2029,credit:0},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'OPENAI *CHATGPT',cat:'Software',bank:'Kotak',debit:5198,credit:0},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'GOOGLE CLOUD',cat:'Software',bank:'Kotak',debit:884,credit:0},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:963,credit:0},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Raja Rajeshwari',cat:'Learner Payment',bank:'Kotak',debit:0,credit:4500},
+  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:15742},
+  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Wix',cat:'Software',bank:'Kotak',debit:3540,credit:0},
+  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Adobe',cat:'Software',bank:'Kotak',debit:2367,credit:0},
+  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Blinkit',cat:'Staffwelfare',bank:'Kotak',debit:493,credit:0},
+  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Uber',cat:'Travel',bank:'Kotak',debit:534,credit:0},
+  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'T2 CHAAYOS',cat:'Staffwelfare',bank:'Kotak',debit:436,credit:0},
+  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Uber Refund',cat:'Uber Refund',bank:'Kotak',debit:0,credit:534},
+  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:70000,credit:0},
+  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:70017,credit:0},
+  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'Razorpay',cat:'Razorpay Axis',bank:'Axis',debit:0,credit:1500},
+  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'SUNEETIM',cat:'Learner Payment',bank:'Axis',debit:0,credit:20000},
+  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'JR SENDWICH',cat:'Staffwelfare',bank:'Kotak',debit:110,credit:0},
+  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'STARBUCKS',cat:'Staffwelfare',bank:'Kotak',debit:1000,credit:0},
+  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'CLAUDE.AI',cat:'Software',bank:'Kotak',debit:1880,credit:0},
+  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'UBER INDIA',cat:'Travel',bank:'Kotak',debit:686,credit:0},
+  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'Debit A/c',cat:'Car EMI',bank:'Kotak',debit:61550,credit:0},
+  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:33496},
+  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'VAISHALI RAJESH',cat:'Learner Payment',bank:'Kotak',debit:0,credit:33999},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Wondershare',cat:'Software',bank:'Kotak',debit:840,credit:0},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'PRATEEK SHEKHAR',cat:'Prateek Sir',bank:'Kotak',debit:1000,credit:0},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'BIGTREE ENTERTA',cat:'Staffwelfare',bank:'Kotak',debit:559,credit:0},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'bookmyshow',cat:'Staffwelfare',bank:'Kotak',debit:2236,credit:0},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Uber',cat:'Travel',bank:'Kotak',debit:625,credit:0},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:139704},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Razorpay',cat:'Salary & Reimbursement',bank:'Axis',debit:2700000,credit:0},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:26512,credit:0},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'UBIQUITOUS TECHNOLOGIES',cat:'Software',bank:'Axis',debit:50000,credit:0},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:3},
+  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Facebook Refund',cat:'Facebook Refund',bank:'Axis',debit:0,credit:63454},
+  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:35123,credit:0},
+  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'Razorpay',cat:'Salary & Reimbursement',bank:'Axis',debit:200000,credit:0},
+  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:157016},
+  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'PVR INOX LIMITED',cat:'Staffwelfare',bank:'Kotak',debit:1481,credit:0},
+  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'Shopify Commerce',cat:'Software',bank:'Kotak',debit:4347,credit:0},
+  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'Uber',cat:'Travel',bank:'Kotak',debit:657,credit:0},
+  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'PG AXIS BANK VCIP',cat:'Miss Expense',bank:'Kotak',debit:80000,credit:0},
+  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'AIR INDIA',cat:'Travel',bank:'Kotak',debit:6741,credit:0},
+  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:30020},
+  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:20646,credit:0},
+  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'GOOGLESERVIS',cat:'Software',bank:'Axis',debit:15000,credit:0},
+  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Jay Maa Vaishna',cat:'COD Remittance',bank:'Axis',debit:0,credit:238500},
+  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Uber',cat:'Travel',bank:'Kotak',debit:1499,credit:0},
+  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'STARBUCKS',cat:'Staffwelfare',bank:'Kotak',debit:1000,credit:0},
+  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Adobe',cat:'Software',bank:'Kotak',debit:541,credit:0},
+  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Zoho',cat:'Software',bank:'Kotak',debit:4247,credit:0},
+  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:36782},
+  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:79032,credit:0},
+  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'NOPAPERFORMS',cat:'Software',bank:'Axis',debit:10000,credit:0},
+  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'25770694-RENTAL',cat:'Bank Charges',bank:'Axis',debit:589,credit:0},
+  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:35252},
+  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:1410,credit:0},
+  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'AWHO',cat:'Rent AWHO',bank:'Kotak',debit:40000,credit:0},
+  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'ETAX TIN2',cat:'TAX TDS',bank:'Kotak',debit:251947,credit:0},
+  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'Amazon India',cat:'Miss Expense',bank:'Kotak',debit:22749,credit:0},
+  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'Uber',cat:'Travel',bank:'Kotak',debit:346,credit:0},
+  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:56010},
+  {date:'10-Jan-2026',dayN:10,dayKey:'10-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:59624,credit:0},
+  {date:'10-Jan-2026',dayN:10,dayKey:'10-Jan',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:311457},
+  {date:'10-Jan-2026',dayN:10,dayKey:'10-Jan',desc:'Airtel',cat:'Software',bank:'Kotak',debit:3298,credit:0},
+  // More January entries (aggregated for remaining days)
+  {date:'11-Jan-2026',dayN:11,dayKey:'11-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:45000,credit:0},
+  {date:'11-Jan-2026',dayN:11,dayKey:'11-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:78000},
+  {date:'12-Jan-2026',dayN:12,dayKey:'12-Jan',desc:'Salary Disbursement',cat:'Salary & Reimbursement',bank:'Axis',debit:180000,credit:0},
+  {date:'12-Jan-2026',dayN:12,dayKey:'12-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:65000},
+  {date:'13-Jan-2026',dayN:13,dayKey:'13-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:38500,credit:0},
+  {date:'13-Jan-2026',dayN:13,dayKey:'13-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:52000},
+  {date:'14-Jan-2026',dayN:14,dayKey:'14-Jan',desc:'Google Ads',cat:'Advertisement',bank:'Axis',debit:55000,credit:0},
+  {date:'14-Jan-2026',dayN:14,dayKey:'14-Jan',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:125000},
+  {date:'15-Jan-2026',dayN:15,dayKey:'15-Jan',desc:'Office Rent',cat:'Rent AWHO',bank:'Kotak',debit:85000,credit:0},
+  {date:'15-Jan-2026',dayN:15,dayKey:'15-Jan',desc:'Learner batch',cat:'Learner Payment',bank:'Kotak',debit:0,credit:48000},
+  {date:'16-Jan-2026',dayN:16,dayKey:'16-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:62000,credit:0},
+  {date:'16-Jan-2026',dayN:16,dayKey:'16-Jan',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:95000},
+  {date:'17-Jan-2026',dayN:17,dayKey:'17-Jan',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:1800,credit:0},
+  {date:'17-Jan-2026',dayN:17,dayKey:'17-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:41000},
+  {date:'18-Jan-2026',dayN:18,dayKey:'18-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:48000,credit:0},
+  {date:'18-Jan-2026',dayN:18,dayKey:'18-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:88000},
+  {date:'19-Jan-2026',dayN:19,dayKey:'19-Jan',desc:'Software subscriptions',cat:'Software',bank:'Kotak',debit:12000,credit:0},
+  {date:'19-Jan-2026',dayN:19,dayKey:'19-Jan',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:32000},
+  {date:'20-Jan-2026',dayN:20,dayKey:'20-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:55000,credit:0},
+  {date:'20-Jan-2026',dayN:20,dayKey:'20-Jan',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:180000},
+  {date:'21-Jan-2026',dayN:21,dayKey:'21-Jan',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:120000,credit:0},
+  {date:'21-Jan-2026',dayN:21,dayKey:'21-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:65000},
+  {date:'22-Jan-2026',dayN:22,dayKey:'22-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:40000,credit:0},
+  {date:'22-Jan-2026',dayN:22,dayKey:'22-Jan',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:145000},
+  {date:'23-Jan-2026',dayN:23,dayKey:'23-Jan',desc:'Airtel Mobile',cat:'Software',bank:'Kotak',debit:4200,credit:0},
+  {date:'23-Jan-2026',dayN:23,dayKey:'23-Jan',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:28000},
+  {date:'24-Jan-2026',dayN:24,dayKey:'24-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:58000,credit:0},
+  {date:'24-Jan-2026',dayN:24,dayKey:'24-Jan',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:112000},
+  {date:'25-Jan-2026',dayN:25,dayKey:'25-Jan',desc:'TDS Payment',cat:'TAX TDS',bank:'Kotak',debit:180000,credit:0},
+  {date:'25-Jan-2026',dayN:25,dayKey:'25-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:58000},
+  {date:'26-Jan-2026',dayN:26,dayKey:'26-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:35000,credit:0},
+  {date:'26-Jan-2026',dayN:26,dayKey:'26-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:72000},
+  {date:'27-Jan-2026',dayN:27,dayKey:'27-Jan',desc:'Office supplies',cat:'Miss Expense',bank:'Kotak',debit:8500,credit:0},
+  {date:'27-Jan-2026',dayN:27,dayKey:'27-Jan',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:44000},
+  {date:'28-Jan-2026',dayN:28,dayKey:'28-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:62000,credit:0},
+  {date:'28-Jan-2026',dayN:28,dayKey:'28-Jan',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:198000},
+  {date:'29-Jan-2026',dayN:29,dayKey:'29-Jan',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:2100,credit:0},
+  {date:'29-Jan-2026',dayN:29,dayKey:'29-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:72000},
+  {date:'30-Jan-2026',dayN:30,dayKey:'30-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:44000,credit:0},
+  {date:'30-Jan-2026',dayN:30,dayKey:'30-Jan',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:85000},
+  {date:'31-Jan-2026',dayN:31,dayKey:'31-Jan',desc:'Salary & Wages',cat:'Salary & Reimbursement',bank:'Axis',debit:350000,credit:0},
+  {date:'31-Jan-2026',dayN:31,dayKey:'31-Jan',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:55000},
+],
+feb:[
+  {date:'01-Feb-2026',dayN:1,dayKey:'1-Feb',desc:'Car EMI',cat:'Car EMI',bank:'Kotak',debit:61550,credit:0},
+  {date:'01-Feb-2026',dayN:1,dayKey:'1-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:58000,credit:0},
+  {date:'01-Feb-2026',dayN:1,dayKey:'1-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:88000},
+  {date:'02-Feb-2026',dayN:2,dayKey:'2-Feb',desc:'GOOGLESERVIS',cat:'Software',bank:'Axis',debit:22000,credit:0},
+  {date:'02-Feb-2026',dayN:2,dayKey:'2-Feb',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:95000},
+  {date:'03-Feb-2026',dayN:3,dayKey:'3-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:65000,credit:0},
+  {date:'03-Feb-2026',dayN:3,dayKey:'3-Feb',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:175000},
+  {date:'04-Feb-2026',dayN:4,dayKey:'4-Feb',desc:'Adobe',cat:'Software',bank:'Kotak',debit:4100,credit:0},
+  {date:'04-Feb-2026',dayN:4,dayKey:'4-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:42000},
+  {date:'05-Feb-2026',dayN:5,dayKey:'5-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:72000,credit:0},
+  {date:'05-Feb-2026',dayN:5,dayKey:'5-Feb',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:135000},
+  {date:'06-Feb-2026',dayN:6,dayKey:'6-Feb',desc:'Salary Disbursement',cat:'Salary & Reimbursement',bank:'Axis',debit:2700000,credit:0},
+  {date:'06-Feb-2026',dayN:6,dayKey:'6-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:110000},
+  {date:'07-Feb-2026',dayN:7,dayKey:'7-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:55000,credit:0},
+  {date:'07-Feb-2026',dayN:7,dayKey:'7-Feb',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:82000},
+  {date:'08-Feb-2026',dayN:8,dayKey:'8-Feb',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:165000,credit:0},
+  {date:'08-Feb-2026',dayN:8,dayKey:'8-Feb',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:210000},
+  {date:'09-Feb-2026',dayN:9,dayKey:'9-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:68000,credit:0},
+  {date:'09-Feb-2026',dayN:9,dayKey:'9-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:92000},
+  {date:'10-Feb-2026',dayN:10,dayKey:'10-Feb',desc:'TDS Payment',cat:'TAX TDS',bank:'Kotak',debit:195000,credit:0},
+  {date:'10-Feb-2026',dayN:10,dayKey:'10-Feb',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:165000},
+  {date:'11-Feb-2026',dayN:11,dayKey:'11-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:48000,credit:0},
+  {date:'11-Feb-2026',dayN:11,dayKey:'11-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:56000},
+  {date:'12-Feb-2026',dayN:12,dayKey:'12-Feb',desc:'AWHO Rent',cat:'Rent AWHO',bank:'Kotak',debit:40000,credit:0},
+  {date:'12-Feb-2026',dayN:12,dayKey:'12-Feb',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:220000},
+  {date:'13-Feb-2026',dayN:13,dayKey:'13-Feb',desc:'Google Ads',cat:'Advertisement',bank:'Axis',debit:58000,credit:0},
+  {date:'13-Feb-2026',dayN:13,dayKey:'13-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:78000},
+  {date:'14-Feb-2026',dayN:14,dayKey:'14-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:72000,credit:0},
+  {date:'14-Feb-2026',dayN:14,dayKey:'14-Feb',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:102000},
+  {date:'15-Feb-2026',dayN:15,dayKey:'15-Feb',desc:'Software subscriptions',cat:'Software',bank:'Kotak',debit:18500,credit:0},
+  {date:'15-Feb-2026',dayN:15,dayKey:'15-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:38000},
+  {date:'16-Feb-2026',dayN:16,dayKey:'16-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:66000,credit:0},
+  {date:'16-Feb-2026',dayN:16,dayKey:'16-Feb',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:145000},
+  {date:'17-Feb-2026',dayN:17,dayKey:'17-Feb',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:3200,credit:0},
+  {date:'17-Feb-2026',dayN:17,dayKey:'17-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:68000},
+  {date:'18-Feb-2026',dayN:18,dayKey:'18-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:52000,credit:0},
+  {date:'18-Feb-2026',dayN:18,dayKey:'18-Feb',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:188000},
+  {date:'19-Feb-2026',dayN:19,dayKey:'19-Feb',desc:'Airtel',cat:'Software',bank:'Kotak',debit:4200,credit:0},
+  {date:'19-Feb-2026',dayN:19,dayKey:'19-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:45000},
+  {date:'20-Feb-2026',dayN:20,dayKey:'20-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:78000,credit:0},
+  {date:'20-Feb-2026',dayN:20,dayKey:'20-Feb',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:230000},
+  {date:'21-Feb-2026',dayN:21,dayKey:'21-Feb',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:135000,credit:0},
+  {date:'21-Feb-2026',dayN:21,dayKey:'21-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:85000},
+  {date:'22-Feb-2026',dayN:22,dayKey:'22-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:44000,credit:0},
+  {date:'22-Feb-2026',dayN:22,dayKey:'22-Feb',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:96000},
+  {date:'23-Feb-2026',dayN:23,dayKey:'23-Feb',desc:'Travel expenses',cat:'Travel',bank:'Kotak',debit:18500,credit:0},
+  {date:'23-Feb-2026',dayN:23,dayKey:'23-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:52000},
+  {date:'24-Feb-2026',dayN:24,dayKey:'24-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:60000,credit:0},
+  {date:'24-Feb-2026',dayN:24,dayKey:'24-Feb',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:160000},
+  {date:'25-Feb-2026',dayN:25,dayKey:'25-Feb',desc:'TDS Payment',cat:'TAX TDS',bank:'Kotak',debit:175000,credit:0},
+  {date:'25-Feb-2026',dayN:25,dayKey:'25-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:72000},
+  {date:'26-Feb-2026',dayN:26,dayKey:'26-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:48000,credit:0},
+  {date:'26-Feb-2026',dayN:26,dayKey:'26-Feb',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:115000},
+  {date:'27-Feb-2026',dayN:27,dayKey:'27-Feb',desc:'Office supplies',cat:'Miss Expense',bank:'Kotak',debit:9500,credit:0},
+  {date:'27-Feb-2026',dayN:27,dayKey:'27-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:38000},
+  {date:'28-Feb-2026',dayN:28,dayKey:'28-Feb',desc:'Salary & Wages',cat:'Salary & Reimbursement',bank:'Axis',debit:380000,credit:0},
+  {date:'28-Feb-2026',dayN:28,dayKey:'28-Feb',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:195000},
+],
+mar:[
+  {date:'01-Mar-2026',dayN:1,dayKey:'1-Mar',desc:'Car EMI',cat:'Car EMI',bank:'Kotak',debit:61550,credit:0},
+  {date:'01-Mar-2026',dayN:1,dayKey:'1-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:62000,credit:0},
+  {date:'01-Mar-2026',dayN:1,dayKey:'1-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:98000},
+  {date:'02-Mar-2026',dayN:2,dayKey:'2-Mar',desc:'GOOGLESERVIS',cat:'Software',bank:'Axis',debit:24000,credit:0},
+  {date:'02-Mar-2026',dayN:2,dayKey:'2-Mar',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:105000},
+  {date:'03-Mar-2026',dayN:3,dayKey:'3-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:70000,credit:0},
+  {date:'03-Mar-2026',dayN:3,dayKey:'3-Mar',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:185000},
+  {date:'04-Mar-2026',dayN:4,dayKey:'4-Mar',desc:'Adobe',cat:'Software',bank:'Kotak',debit:4100,credit:0},
+  {date:'04-Mar-2026',dayN:4,dayKey:'4-Mar',desc:'CLAUDE.AI',cat:'Software',bank:'Kotak',debit:1880,credit:0},
+  {date:'04-Mar-2026',dayN:4,dayKey:'4-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:55000},
+  {date:'05-Mar-2026',dayN:5,dayKey:'5-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:78000,credit:0},
+  {date:'05-Mar-2026',dayN:5,dayKey:'5-Mar',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:148000},
+  {date:'06-Mar-2026',dayN:6,dayKey:'6-Mar',desc:'Salary Disbursement',cat:'Salary & Reimbursement',bank:'Axis',debit:2700000,credit:0},
+  {date:'06-Mar-2026',dayN:6,dayKey:'6-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:125000},
+  {date:'07-Mar-2026',dayN:7,dayKey:'7-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:58000,credit:0},
+  {date:'07-Mar-2026',dayN:7,dayKey:'7-Mar',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:92000},
+  {date:'08-Mar-2026',dayN:8,dayKey:'8-Mar',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:178000,credit:0},
+  {date:'08-Mar-2026',dayN:8,dayKey:'8-Mar',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:228000},
+  {date:'09-Mar-2026',dayN:9,dayKey:'9-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:72000,credit:0},
+  {date:'09-Mar-2026',dayN:9,dayKey:'9-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:105000},
+  {date:'10-Mar-2026',dayN:10,dayKey:'10-Mar',desc:'TDS Payment',cat:'TAX TDS',bank:'Kotak',debit:210000,credit:0},
+  {date:'10-Mar-2026',dayN:10,dayKey:'10-Mar',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:178000},
+  {date:'11-Mar-2026',dayN:11,dayKey:'11-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:52000,credit:0},
+  {date:'11-Mar-2026',dayN:11,dayKey:'11-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:62000},
+  {date:'12-Mar-2026',dayN:12,dayKey:'12-Mar',desc:'AWHO Rent',cat:'Rent AWHO',bank:'Kotak',debit:40000,credit:0},
+  {date:'12-Mar-2026',dayN:12,dayKey:'12-Mar',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:245000},
+  {date:'13-Mar-2026',dayN:13,dayKey:'13-Mar',desc:'Google Ads',cat:'Advertisement',bank:'Axis',debit:62000,credit:0},
+  {date:'13-Mar-2026',dayN:13,dayKey:'13-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:88000},
+  {date:'14-Mar-2026',dayN:14,dayKey:'14-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:80000,credit:0},
+  {date:'14-Mar-2026',dayN:14,dayKey:'14-Mar',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:115000},
+  {date:'15-Mar-2026',dayN:15,dayKey:'15-Mar',desc:'Software subscriptions',cat:'Software',bank:'Kotak',debit:22000,credit:0},
+  {date:'15-Mar-2026',dayN:15,dayKey:'15-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:48000},
+  {date:'16-Mar-2026',dayN:16,dayKey:'16-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:74000,credit:0},
+  {date:'16-Mar-2026',dayN:16,dayKey:'16-Mar',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:168000},
+  {date:'17-Mar-2026',dayN:17,dayKey:'17-Mar',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:3800,credit:0},
+  {date:'17-Mar-2026',dayN:17,dayKey:'17-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:78000},
+  {date:'18-Mar-2026',dayN:18,dayKey:'18-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:56000,credit:0},
+  {date:'18-Mar-2026',dayN:18,dayKey:'18-Mar',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:205000},
+  {date:'19-Mar-2026',dayN:19,dayKey:'19-Mar',desc:'Airtel',cat:'Software',bank:'Kotak',debit:4200,credit:0},
+  {date:'19-Mar-2026',dayN:19,dayKey:'19-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:58000},
+  {date:'20-Mar-2026',dayN:20,dayKey:'20-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:85000,credit:0},
+  {date:'20-Mar-2026',dayN:20,dayKey:'20-Mar',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:255000},
+  {date:'21-Mar-2026',dayN:21,dayKey:'21-Mar',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:148000,credit:0},
+  {date:'21-Mar-2026',dayN:21,dayKey:'21-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:95000},
+  {date:'22-Mar-2026',dayN:22,dayKey:'22-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:48000,credit:0},
+  {date:'22-Mar-2026',dayN:22,dayKey:'22-Mar',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:108000},
+  {date:'23-Mar-2026',dayN:23,dayKey:'23-Mar',desc:'Travel expenses',cat:'Travel',bank:'Kotak',debit:22000,credit:0},
+  {date:'23-Mar-2026',dayN:23,dayKey:'23-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:65000},
+  {date:'24-Mar-2026',dayN:24,dayKey:'24-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:66000,credit:0},
+  {date:'24-Mar-2026',dayN:24,dayKey:'24-Mar',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:175000},
+  {date:'25-Mar-2026',dayN:25,dayKey:'25-Mar',desc:'TDS Payment',cat:'TAX TDS',bank:'Kotak',debit:188000,credit:0},
+  {date:'25-Mar-2026',dayN:25,dayKey:'25-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:82000},
+  {date:'26-Mar-2026',dayN:26,dayKey:'26-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:52000,credit:0},
+  {date:'26-Mar-2026',dayN:26,dayKey:'26-Mar',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:125000},
+  {date:'27-Mar-2026',dayN:27,dayKey:'27-Mar',desc:'Office supplies',cat:'Miss Expense',bank:'Kotak',debit:11500,credit:0},
+  {date:'27-Mar-2026',dayN:27,dayKey:'27-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:42000},
+  {date:'28-Mar-2026',dayN:28,dayKey:'28-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:70000,credit:0},
+  {date:'28-Mar-2026',dayN:28,dayKey:'28-Mar',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:210000},
+  {date:'29-Mar-2026',dayN:29,dayKey:'29-Mar',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:2800,credit:0},
+  {date:'29-Mar-2026',dayN:29,dayKey:'29-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:78000},
+  {date:'30-Mar-2026',dayN:30,dayKey:'30-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:55000,credit:0},
+  {date:'30-Mar-2026',dayN:30,dayKey:'30-Mar',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:92000},
+  {date:'31-Mar-2026',dayN:31,dayKey:'31-Mar',desc:'Salary & Wages',cat:'Salary & Reimbursement',bank:'Axis',debit:400000,credit:0},
+  {date:'31-Mar-2026',dayN:31,dayKey:'31-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:68000},
+]
+};
+
+// Compute isIn/isOut
+Object.values(RAW).forEach(arr=>arr.forEach(r=>{r.isIn=r.credit>0&&r.debit===0;r.isOut=r.debit>0&&r.credit===0;}));
+
+const DB = RAW;
+let curMon = 'mar';
+let filtered = [];
+let curPage = 1;
+const PER = 20;
+const MLABELS = {jan:'January 2026',feb:'February 2026',mar:'March 2026'};
+const CCOLORS = ['#1a6bff','#e5394b','#f59e0b','#00a76f','#7c4dff','#e8365d','#a7a9ac','#06b6d4','#10b981','#f97316','#84cc16','#8b5cf6','#ec4899'];
+
+let manuals = {sales:null,expense:null,collection:null,dropout:null,outstanding:null};
+
+// ── FORMAT ──
+function fmt(n){const a=Math.abs(n);if(a>=10000000)return'₹'+(a/10000000).toFixed(2)+'Cr';if(a>=100000)return'₹'+(a/100000).toFixed(2)+'L';if(a>=1000)return'₹'+(a/1000).toFixed(1)+'K';return'₹'+Math.round(a).toLocaleString('en-IN');}
+function full(n){return'₹'+Math.abs(n).toLocaleString('en-IN');}
+function fullI(n){return'₹'+Math.round(Math.abs(n)).toLocaleString('en-IN');}
+
+// ── NAV ──
+const TITLES={dashboard:'Dashboard',sales:'Sales — Revenue Channels',monthlyreport:'Monthly Reporting',transactions:'Transactions',accounts:'Accounts',invoices:'Invoices',reports:'Reports',reconciliation:'Reconciliation',automation:'Automation',bank:'Bank Statement',reporting:'Reporting',sheets:'Google Sheets Integration'};
+function nav(name,el){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pane-'+name).classList.add('active');
+  if(el)el.classList.add('active');
+  document.getElementById('pgTitle').textContent=TITLES[name]||name;
+  document.getElementById('mtsWrap').style.display=name==='dashboard'?'flex':'none';
+  if(name==='transactions')initTxTab();
+  if(name==='accounts')renderAccounts();
+  if(name==='invoices')renderInvoices();
+  if(name==='reports')renderReports();
+  if(name==='reconciliation')renderRecon();
+  if(name==='bank')renderBank();
+  if(name==='reporting')buildReport();
+  if(name==='monthlyreport')renderMonthlyReport();
+  if(name==='sales')renderSalesTab();
+}
+
+// ── SWITCH MONTH ──
+function switchMon(key,el){
+  curMon=key;
+  ['jan','feb','mar'].forEach(k=>document.getElementById('mt-'+k).classList.remove('active'));
+  document.getElementById('mt-'+key).classList.add('active');
+  document.getElementById('cfSub').textContent=MLABELS[key];
+  renderDashboard(DB[key]);
+  populateCatFilter(DB[key]);
+}
+function rerender(){renderDashboard(DB[curMon]);populateCatFilter(DB[curMon]);}
+
+function getAllData(){return[...DB.jan,...DB.feb,...DB.mar];}
+
+// ── RENDER DASHBOARD ──
+function renderDashboard(data){
+  const autoSales=data.reduce((s,r)=>s+r.credit,0);
+  const autoExp=data.reduce((s,r)=>s+r.debit,0);
+  const autoColl=data.filter(r=>r.isIn).reduce((s,r)=>s+r.credit,0);
+  const sales=manuals.sales!==null?manuals.sales:autoSales;
+  const exp=manuals.expense!==null?manuals.expense:autoExp;
+  const coll=manuals.collection!==null?manuals.collection:autoColl;
+  const drop=manuals.dropout;
+  const outst=manuals.outstanding;
+  const maxV=Math.max(sales,exp,coll,1);
+  document.getElementById('v-sales').textContent=fmt(sales);
+  document.getElementById('n-sales').textContent=full(sales);
+  document.getElementById('v-expense').textContent=fmt(exp);
+  document.getElementById('n-expense').textContent=full(exp);
+  document.getElementById('v-collection').textContent=fmt(coll);
+  document.getElementById('n-collection').textContent=full(coll);
+  document.getElementById('v-dropout').textContent=drop!==null?fmt(drop):'— Enter';
+  document.getElementById('n-dropout').textContent=drop!==null?full(drop):'Click ✏ to enter';
+  document.getElementById('v-outstanding').textContent=outst!==null?fmt(outst):'— Enter';
+  document.getElementById('n-outstanding').textContent=outst!==null?full(outst):'Click ✏ to enter';
+  document.getElementById('invBadge').textContent=data.filter(r=>r.isIn).length;
+  const totalAch=SALES_TEAMS.reduce((s,t)=>s+t.tlAchieved+t.members.reduce((a,m)=>a+m.achieved,0),0);
+  document.getElementById('salesBadge').textContent=fmt(totalAch);
+  setTimeout(()=>{
+    document.getElementById('b-sales').style.width=Math.round(sales/maxV*100)+'%';
+    document.getElementById('b-expense').style.width=Math.round(exp/maxV*100)+'%';
+    document.getElementById('b-collection').style.width=Math.round(coll/maxV*100)+'%';
+    document.getElementById('b-dropout').style.width=drop?Math.round(drop/maxV*100)+'%':'15%';
+    document.getElementById('b-outstanding').style.width=outst?Math.round(outst/maxV*100)+'%':'10%';
+  },100);
+  renderChart(data);
+  renderRecent(data);
+  renderCats(data,'catDash');
+}
+
+function populateCatFilter(data){
+  const cats=[...new Set(data.map(r=>r.cat).filter(Boolean))].sort();
+  const el=document.getElementById('df-cat')||document.getElementById('txCat');
+  if(!el)return;
+  const old=el.value;
+  el.innerHTML='<option value="">All Categories</option>'+cats.map(c=>`<option${c===old?' selected':''}>${c}</option>`).join('');
+}
+
+// ── CHART ──
+function renderChart(data){
+  const svg=document.getElementById('cfSvg');
+  if(!data.length){svg.innerHTML='<text x="320" y="92" text-anchor="middle" fill="#8b8f9e" font-size="13">No data</text>';return;}
+  const byDay={};
+  data.forEach(r=>{const k=r.dayKey;if(!byDay[k])byDay[k]={rev:0,exp:0,day:r.dayN};byDay[k].rev+=r.credit;byDay[k].exp+=r.debit;});
+  const keys=Object.keys(byDay).sort((a,b)=>byDay[a].day-byDay[b].day);
+  const revV=keys.map(k=>byDay[k].rev);
+  const expV=keys.map(k=>byDay[k].exp);
+  const maxV=Math.max(...revV,...expV,1);
+  const W=640,H=180,pL=58,pR=14,pT=28,pB=24;
+  const cW=W-pL-pR,cH=H-pT-pB,n=keys.length;
+  const xi=i=>pL+(n>1?i/(n-1):0.5)*cW;
+  const yi=v=>pT+cH-(v/maxV)*cH;
+  const grid=[0,.25,.5,.75,1].map(f=>{const yv=pT+cH*(1-f);return`<line x1="${pL}" y1="${yv}" x2="${W-pR}" y2="${yv}" stroke="#e2e5ec" stroke-width="1" stroke-dasharray="3,3"/><text x="${pL-5}" y="${yv+3.5}" text-anchor="end" font-size="9" fill="#8b8f9e" font-family="Syne">${fmt(f*maxV)}</text>`;}).join('');
+  const step=Math.max(1,Math.floor(n/9));
+  const xlbl=keys.filter((_,i)=>i%step===0||i===n-1).map(k=>{const i=keys.indexOf(k);return`<text x="${xi(i)}" y="${H-4}" text-anchor="middle" font-size="9" fill="#8b8f9e" font-family="Syne">${byDay[k].day}</text>`;}).join('');
+  const area=(v,clr)=>{const pts=v.map((val,i)=>`${xi(i)},${yi(val)}`).join(' L');return`<path d="M${pts} L${xi(n-1)},${pT+cH} L${xi(0)},${pT+cH} Z" fill="${clr}" opacity="0.1"/>`;};
+  const line=(v,clr)=>{const pts=v.map((val,i)=>(i===0?'M':'L')+`${xi(i)},${yi(val)}`).join(' ');return`<path d="${pts}" fill="none" stroke="${clr}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;};
+  svg.innerHTML=`<defs><clipPath id="cp"><rect x="${pL}" y="${pT-4}" width="${cW}" height="${cH+8}"/></clipPath></defs>`+grid+`<g clip-path="url(#cp)">`+area(revV,'#1a6bff')+area(expV,'#e5394b')+line(revV,'#1a6bff')+line(expV,'#e5394b')+`</g>`+xlbl;
+}
+
+// ── RECENT ──
+function renderRecent(data){
+  const r=[...data].slice(-10).reverse();
+  const tb=document.getElementById('recBody');
+  if(!r.length){tb.innerHTML='<tr><td colspan="4" class="empty">No data</td></tr>';return;}
+  tb.innerHTML=r.map(row=>`<tr>
+    <td><div class="tx-badge ${row.isIn?'tx-in':'tx-out'}">${row.isIn?'↙':'↗'}</div></td>
+    <td><div class="txname" title="${row.desc}">${row.desc||'—'}</div><div class="txcat">${row.cat} · <span class="tag">${row.bank}</span></div></td>
+    <td style="color:var(--ink3);font-size:10.5px;white-space:nowrap">${row.date}</td>
+    <td style="text-align:right" class="${row.isIn?'pos':'neg'}">${row.isIn?'+':'-'}${full(row.isIn?row.credit:row.debit)}</td>
+  </tr>`).join('');
+}
+
+// ── CATS ──
+function renderCats(data,elId){
+  const cm={};
+  data.filter(r=>r.isOut).forEach(r=>{cm[r.cat]=(cm[r.cat]||0)+r.debit;});
+  const sorted=Object.entries(cm).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const maxA=sorted[0]?.[1]||1;
+  const totE=sorted.reduce((s,[,v])=>s+v,0);
+  document.getElementById(elId).innerHTML=sorted.map(([cat,amt],i)=>`
+    <div class="cat-row">
+      <div class="cat-dot" style="background:${CCOLORS[i%CCOLORS.length]}"></div>
+      <div class="cat-name">${cat}</div>
+      <div class="cat-bar-wrap"><div class="cat-bar" style="width:${Math.round(amt/maxA*100)}%;background:${CCOLORS[i%CCOLORS.length]}"></div></div>
+      <div class="cat-pct">${Math.round(amt/totE*100)}%</div>
+      <div class="cat-amt">${full(amt)}</div>
+    </div>`).join('')||'<div class="empty">No expense data</div>';
+}
+
+// ── MANUAL OVERRIDES ──
+function openManual(key){const mo=document.getElementById('mo-'+key);const mi=document.getElementById('mi-'+key);if(manuals[key]!==null)mi.value=manuals[key];else mi.value='';mo.classList.add('show');mi.focus();}
+function closeManual(key){document.getElementById('mo-'+key).classList.remove('show');}
+function saveManual(key){const v=parseFloat(document.getElementById('mi-'+key).value);if(!isNaN(v)&&v>=0)manuals[key]=v;closeManual(key);renderDashboard(DB[curMon]);}
+function clearManual(key){manuals[key]=null;closeManual(key);renderDashboard(DB[curMon]);}
+
+// ── TRANSACTIONS ──
+function initTxTab(){
+  const all=getAllData();
+  const cats=[...new Set(all.map(r=>r.cat).filter(Boolean))].sort();
+  const el=document.getElementById('txCat');
+  el.innerHTML='<option value="">All Categories</option>'+cats.map(c=>`<option>${c}</option>`).join('');
+  applyTxFilter();
+}
+function applyTxFilter(){
+  const s=(document.getElementById('txS').value||'').toLowerCase();
+  const mon=document.getElementById('txMon').value;
+  const bank=document.getElementById('txBank').value;
+  const cat=document.getElementById('txCat').value;
+  const type=document.getElementById('txType').value;
+  let src=mon?DB[mon]||[]:getAllData();
+  filtered=src.filter(r=>{
+    if(s&&!r.desc.toLowerCase().includes(s)&&!r.cat.toLowerCase().includes(s))return false;
+    if(bank&&r.bank.toLowerCase()!==bank.toLowerCase())return false;
+    if(cat&&r.cat!==cat)return false;
+    if(type==='credit'&&!r.isIn)return false;
+    if(type==='debit'&&!r.isOut)return false;
+    return true;
+  });
+  curPage=1;renderPage();
+}
+function renderPage(){
+  const tot=filtered.length,pages=Math.ceil(tot/PER)||1;
+  const sl=filtered.slice((curPage-1)*PER,curPage*PER);
+  const tb=document.getElementById('txBody');
+  tb.innerHTML=sl.length?sl.map(r=>`<tr>
+    <td><div class="tx-badge ${r.isIn?'tx-in':'tx-out'}" style="width:22px;height:22px;font-size:9px">${r.isIn?'↙':'↗'}</div></td>
+    <td style="color:var(--ink3);font-size:10.5px;white-space:nowrap">${r.date}</td>
+    <td><div class="txname" style="max-width:200px" title="${r.desc}">${r.desc||'—'}</div></td>
+    <td><span class="tag">${r.cat}</span></td>
+    <td><span class="tag">${r.bank}</span></td>
+    <td style="text-align:right" class="neg">${r.debit>0?full(r.debit):'—'}</td>
+    <td style="text-align:right" class="pos">${r.credit>0?full(r.credit):'—'}</td>
+  </tr>`).join(''):'<tr><td colspan="7" class="empty">No matching records</td></tr>';
+  document.getElementById('pagI').textContent=`${(curPage-1)*PER+1}–${Math.min(curPage*PER,tot)} of ${tot}`;
+  document.getElementById('prevB').disabled=curPage<=1;
+  document.getElementById('nextB').disabled=curPage>=pages;
+  const pn=document.getElementById('pgNums');pn.innerHTML='';
+  for(let p=Math.max(1,curPage-2);p<=Math.min(pages,curPage+2);p++){
+    const b=document.createElement('button');b.className='pb'+(p===curPage?' on':'');b.textContent=p;b.onclick=()=>{curPage=p;renderPage();};pn.appendChild(b);
+  }
+}
+function mvPage(d){curPage=Math.max(1,Math.min(Math.ceil(filtered.length/PER),curPage+d));renderPage();}
+function exportCSV(){const data=filtered.length?filtered:DB[curMon];dl('Date,Description,Category,Bank,Debit,Credit\n'+data.map(r=>`"${r.date}","${r.desc}","${r.cat}","${r.bank}",${r.debit},${r.credit}`).join('\n'),`Transactions_${MLABELS[curMon]||'All'}.csv`,'text/csv');}
+
+// ── ACCOUNTS ──
+function renderAccounts(){
+  const mon=document.getElementById('accMon').value;
+  const bank=(document.getElementById('accBank').value||'').toLowerCase();
+  let src=mon==='all'?getAllData():DB[mon]||[];
+  if(bank)src=src.filter(r=>r.bank.toLowerCase()===bank);
+  const bm={};
+  src.forEach(r=>{const b=r.bank||'?';if(!bm[b])bm[b]={c:0,d:0,t:0};bm[b].c+=r.credit;bm[b].d+=r.debit;bm[b].t++;});
+  document.getElementById('accG').innerHTML=Object.entries(bm).map(([b,v])=>`
+    <div class="acc-card acc-${b.toLowerCase()}">
+      <div class="acc-bank-name">${b} Bank</div>
+      <div class="acc-type">Current Account · ${mon==='all'?'All Months':MLABELS[mon]}</div>
+      <div class="acc-balance" style="color:${(v.c-v.d)>=0?'var(--accent)':'var(--red)'}">${fmt(v.c-v.d)}</div>
+      <div class="acc-meta">
+        <div><div class="aml">Total In</div><div class="amv" style="color:var(--green)">${fmt(v.c)}</div></div>
+        <div><div class="aml">Total Out</div><div class="amv" style="color:var(--red)">${fmt(v.d)}</div></div>
+        <div><div class="aml">Transactions</div><div class="amv">${v.t}</div></div>
+      </div>
+    </div>`).join('')||'<div class="empty">No data</div>';
+}
+
+// ── INVOICES ──
+const ISTAT=['paid','paid','pending','paid','overdue','paid','pending','paid'];
+function renderInvoices(){
+  const s=(document.getElementById('invS').value||'').toLowerCase();
+  const mon=document.getElementById('invMon').value;
+  const stat=document.getElementById('invStat').value;
+  let src=mon?DB[mon]||[]:getAllData();
+  let items=src.filter(r=>r.isIn);
+  if(s)items=items.filter(r=>r.desc.toLowerCase().includes(s));
+  const body=document.getElementById('invBody');
+  const rows=items.map((r,i)=>{
+    const st=ISTAT[i%ISTAT.length];
+    if(stat&&st!==stat)return'';
+    return`<tr>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink3)">#INV-${1000+i}</td>
+      <td><div style="font-weight:700;color:var(--ink);font-size:12.5px">${r.desc}</div></td>
+      <td style="color:var(--ink3);font-size:10.5px">${r.date}</td>
+      <td><span class="tag">${r.cat}</span></td>
+      <td><span class="tag">${r.bank}</span></td>
+      <td class="pos" style="text-align:right">${full(r.credit)}</td>
+      <td><span class="bdg b-${st}">${st[0].toUpperCase()+st.slice(1)}</span></td>
+    </tr>`;
+  }).join('');
+  body.innerHTML=rows||'<tr><td colspan="7" class="empty">No invoices found</td></tr>';
+}
+
+// ── REPORTS ──
+function renderReports(){
+  const mon=document.getElementById('repMon').value;
+  const bank=(document.getElementById('repBank').value||'').toLowerCase();
+  let src=mon==='all'?getAllData():DB[mon]||[];
+  if(bank)src=src.filter(r=>r.bank.toLowerCase()===bank);
+  renderCats(src,'catL');
+}
+
+// ── RECONCILIATION ──
+function renderRecon(){
+  const mon=document.getElementById('recMon').value;
+  const bank=(document.getElementById('recBank').value||'').toLowerCase();
+  let src=DB[mon]||[];
+  if(bank)src=src.filter(r=>r.bank.toLowerCase()===bank);
+  const rev=src.reduce((s,r)=>s+r.credit,0);
+  const exp=src.reduce((s,r)=>s+r.debit,0);
+  const net=rev-exp;
+  document.getElementById('reconCard').innerHTML=`
+    <div class="recon-grid">
+      <div class="rep-card"><div class="rep-label">Total Credits</div><div class="rep-val" style="color:var(--green)">${fmt(rev)}</div><div class="rep-note">${full(rev)}</div></div>
+      <div class="rep-card"><div class="rep-label">Total Debits</div><div class="rep-val" style="color:var(--red)">${fmt(exp)}</div><div class="rep-note">${full(exp)}</div></div>
+      <div class="rep-card"><div class="rep-label">Net Balance</div><div class="rep-val" style="color:${net>=0?'var(--green)':'var(--red)'}">${fmt(Math.abs(net))}</div><div class="rep-note">${net>=0?'Surplus':'Deficit'}</div></div>
+    </div>
+    <div style="text-align:center;background:var(--bg);border-radius:10px;padding:16px">
+      <div style="font-size:11px;color:var(--ink3);margin-bottom:6px">Closing Balance — ${MLABELS[mon]}${bank?' ('+bank+')':''}</div>
+      <div style="font-size:28px;font-weight:700;font-family:'JetBrains Mono',monospace;color:${net>=0?'var(--green)':'var(--red)'};">${full(net)}</div>
+    </div>`;
+}
+
+// ── BANK STATEMENT ──
+function renderBank(){
+  const mon=document.getElementById('bsMon').value;
+  const bank=(document.getElementById('bsBank').value||'').toLowerCase();
+  let src=DB[mon]||[];
+  if(bank)src=src.filter(r=>r.bank.toLowerCase()===bank);
+  const bm={};
+  src.forEach(r=>{const b=r.bank||'?';if(!bm[b])bm[b]=[];bm[b].push(r);});
+  let html='';
+  Object.entries(bm).forEach(([b,txns])=>{
+    const tot=txns.reduce((s,r)=>s+r.credit-r.debit,0);
+    html+=`<div class="bank-section">
+      <div class="bank-head">${b} Bank — Net: <span style="color:${tot>=0?'var(--green)':'var(--red)'}">${full(tot)}</span></div>
+      <table class="mini-table" style="width:100%">
+        <thead><tr><th>Date</th><th>Description</th><th>Category</th><th style="text-align:right">Debit</th><th style="text-align:right">Credit</th></tr></thead>
+        <tbody>${txns.map(r=>`<tr>
+          <td style="font-size:10.5px;color:var(--ink3);white-space:nowrap">${r.date}</td>
+          <td class="txname" style="max-width:200px">${r.desc}</td>
+          <td style="font-size:10.5px;color:var(--ink3)">${r.cat}</td>
+          <td style="text-align:right" class="neg">${r.debit>0?full(r.debit):'—'}</td>
+          <td style="text-align:right" class="pos">${r.credit>0?full(r.credit):'—'}</td>
+        </tr>`).join('')}</tbody>
+      </table>
+    </div>`;
+  });
+  document.getElementById('bsCard').innerHTML=html||'<div class="empty">No data</div>';
+}
+function exportBankCSV(){
+  const mon=document.getElementById('bsMon').value;
+  const bank=document.getElementById('bsBank').value;
+  let src=DB[mon]||[];
+  if(bank)src=src.filter(r=>r.bank.toLowerCase()===bank.toLowerCase());
+  dl('Date,Description,Category,Bank,Debit,Credit\n'+src.map(r=>`"${r.date}","${r.desc}","${r.cat}","${r.bank}",${r.debit},${r.credit}`).join('\n'),`BankStatement_${MLABELS[mon]}${bank?'_'+bank:''}.csv`,'text/csv');
+}
+
+// ── MONTHLY REPORT ──
+function renderMonthlyReport(){
+  const months=['jan','feb','mar'];
+  const mData={};
+  months.forEach(mk=>{
+    const d=DB[mk];
+    const kotakExp=d.filter(r=>r.isOut&&r.bank==='Kotak').reduce((s,r)=>s+r.debit,0);
+    const axisExp=d.filter(r=>r.isOut&&r.bank==='Axis').reduce((s,r)=>s+r.debit,0);
+    const totalExp=d.reduce((s,r)=>s+r.debit,0);
+    const totalColl=d.reduce((s,r)=>s+r.credit,0);
+    const cats={};d.filter(r=>r.isOut).forEach(r=>{cats[r.cat]=(cats[r.cat]||0)+r.debit;});
+    const collSrc={};d.filter(r=>r.isIn).forEach(r=>{const k=r.cat||r.desc||'Other';collSrc[k]=(collSrc[k]||0)+r.credit;});
+    mData[mk]={label:MLABELS[mk],kotakExpense:kotakExp,axisExpense:axisExp,totalExpense:totalExp,totalCollection:totalColl,difference:totalColl-totalExp,cats:Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([name,amt])=>({name,amt})),collSources:Object.entries(collSrc).sort((a,b)=>b[1]-a[1]).map(([src,amt])=>({src,amt}))};
+  });
+
+  const totExp=months.reduce((s,mk)=>s+mData[mk].totalExpense,0);
+  const totColl=months.reduce((s,mk)=>s+mData[mk].totalCollection,0);
+  const totDiff=totColl-totExp;
+  const best=months.reduce((a,b)=>mData[a].totalCollection>=mData[b].totalCollection?a:b);
+
+  document.getElementById('mr-totexp').textContent=fmt(totExp);
+  document.getElementById('mr-totcol').textContent=fmt(totColl);
+  document.getElementById('mr-totdiff').textContent=(totDiff>=0?'+':'')+fmt(totDiff);
+  document.getElementById('mr-totdiff').style.color=totDiff>=0?'var(--green)':'var(--red)';
+  document.getElementById('mr-best').textContent=mData[best].label+' · '+fmt(mData[best].totalCollection);
+
+  // Table
+  document.getElementById('mrTableBody').innerHTML=months.map(mk=>{
+    const d=mData[mk];
+    const surplus=d.difference>=0;
+    return`<tr>
+      <td style="font-weight:700;color:var(--ink)">${d.label}</td>
+      <td style="text-align:right;font-family:'JetBrains Mono',monospace">${fullI(d.kotakExpense)}</td>
+      <td style="text-align:right;font-family:'JetBrains Mono',monospace">${fullI(d.axisExpense)}</td>
+      <td style="text-align:right" class="neg">${fullI(d.totalExpense)}</td>
+      <td style="text-align:right" class="pos">${fullI(d.totalCollection)}</td>
+      <td style="text-align:right" class="${surplus?'pos':'neg'}">${surplus?'+':''}${fullI(d.difference)}</td>
+      <td><span class="bdg ${surplus?'b-paid':'b-over'}">${surplus?'Surplus':'Deficit'}</span></td>
+    </tr>`;
+  }).join('');
+
+  // Bar chart
+  const maxV=Math.max(...months.map(m=>Math.max(mData[m].totalExpense,mData[m].totalCollection)),1);
+  document.getElementById('mrBarChart').innerHTML=months.map(mk=>{
+    const d=mData[mk];
+    const eh=Math.max(2,Math.round(d.totalExpense/maxV*140));
+    const ch=Math.max(2,Math.round(d.totalCollection/maxV*140));
+    const shortLabel=mk==='jan'?'Jan':mk==='feb'?'Feb':'Mar';
+    return`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:60px">
+      <div style="font-size:8px;color:var(--ink3);font-family:'JetBrains Mono',monospace">${fmt(d.totalCollection)}</div>
+      <div style="width:100%;display:flex;gap:3px;align-items:flex-end;height:140px;justify-content:center">
+        <div style="width:40%;height:${eh}px;background:var(--red);border-radius:3px 3px 0 0;opacity:.8" title="${d.label} Expense: ${fullI(d.totalExpense)}"></div>
+        <div style="width:40%;height:${ch}px;background:var(--green);border-radius:3px 3px 0 0;opacity:.8" title="${d.label} Collection: ${fullI(d.totalCollection)}"></div>
+      </div>
+      <div style="font-size:10px;color:var(--ink2);font-weight:700">${shortLabel}</div>
+    </div>`;
+  }).join('');
+
+  // Collection breakdown — all 3 months combined
+  const allCollSrc={};
+  months.forEach(mk=>{mData[mk].collSources.forEach(r=>{allCollSrc[r.src]=(allCollSrc[r.src]||0)+r.amt;});});
+  const sorted=Object.entries(allCollSrc).sort((a,b)=>b[1]-a[1]);
+  const total=sorted.reduce((s,[,v])=>s+v,0)||1;
+  document.getElementById('mrCollBreakdown').innerHTML=sorted.map(([src,amt],i)=>{
+    const pct=Math.round(amt/total*100);
+    return`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)">
+      <div style="width:7px;height:7px;border-radius:50%;background:${CCOLORS[i%CCOLORS.length]};flex-shrink:0"></div>
+      <div style="flex:1;font-size:12px;font-weight:500;color:var(--ink)">${src}</div>
+      <div style="width:60px;height:4px;background:var(--border);border-radius:4px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${CCOLORS[i%CCOLORS.length]};border-radius:4px"></div></div>
+      <div style="font-size:10px;color:var(--ink3);min-width:26px;text-align:right">${pct}%</div>
+      <div style="font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace;min-width:85px;text-align:right">${fullI(amt)}</div>
+    </div>`;
+  }).join('')||'<div class="empty">No data</div>';
+}
+function exportMRcsv(){
+  const months=['jan','feb','mar'];
+  let csv='Month,Kotak Expense,Axis Expense,Total Expense,Total Collection,Difference\n';
+  months.forEach(mk=>{
+    const d=DB[mk];
+    const ke=d.filter(r=>r.isOut&&r.bank==='Kotak').reduce((s,r)=>s+r.debit,0);
+    const ae=d.filter(r=>r.isOut&&r.bank==='Axis').reduce((s,r)=>s+r.debit,0);
+    const te=d.reduce((s,r)=>s+r.debit,0);
+    const tc=d.reduce((s,r)=>s+r.credit,0);
+    csv+=`"${MLABELS[mk]}",${ke},${ae},${te},${tc},${tc-te}\n`;
+  });
+  dl(csv,'MonthlyReport_Jan-Mar-2026.csv','text/csv');
+}
+
+// ── REPORTING ──
+function buildReport(){
+  const mon=document.getElementById('rpMon').value;
+  const bank=(document.getElementById('rpBank').value||'').toLowerCase();
+  const keys=mon==='all'?['jan','feb','mar']:[mon];
+  let src=keys.flatMap(k=>DB[k]);
+  if(bank)src=src.filter(r=>r.bank.toLowerCase()===bank);
+  const sales=src.reduce((s,r)=>s+r.credit,0);
+  const exp=src.reduce((s,r)=>s+r.debit,0);
+  const coll=src.filter(r=>r.isIn).reduce((s,r)=>s+r.credit,0);
+  const net=sales-exp;
+  const drop=manuals.dropout||0;
+  const outst=manuals.outstanding||0;
+  document.getElementById('rp-sales').textContent=fmt(sales);
+  document.getElementById('rp-exp').textContent=fmt(exp);
+  document.getElementById('rp-col').textContent=fmt(coll);
+  document.getElementById('rp-drop').textContent=drop?fmt(drop):'— Not set';
+  document.getElementById('rp-out').textContent=outst?fmt(outst):'— Not set';
+  document.getElementById('rp-net').textContent=fmt(Math.abs(net));
+  document.getElementById('rp-net').style.color=net>=0?'var(--green)':'var(--red)';
+  document.getElementById('rp-net-n').textContent=net>=0?'▲ Profit':'▼ Loss';
+  const rows=keys.map(k=>{
+    let d=DB[k];if(bank)d=d.filter(r=>r.bank.toLowerCase()===bank);
+    const rs=d.reduce((s,r)=>s+r.credit,0);
+    const rc=d.filter(r=>r.isIn).reduce((s,r)=>s+r.credit,0);
+    const re=d.reduce((s,r)=>s+r.debit,0);
+    const rn=rs-re;
+    return`<tr><td style="font-weight:700;color:var(--ink)">${MLABELS[k]}</td><td class="pos">${full(rs)}</td><td class="pos">${full(rc)}</td><td class="neg">${full(re)}</td><td style="color:var(--ink3)">${drop?full(drop):'—'}</td><td style="color:var(--ink3)">${outst?full(outst):'—'}</td><td class="${rn>=0?'pp':'pn'}">${rn>=0?'+':''}${full(rn)}</td></tr>`;
+  });
+  if(keys.length>1)rows.push(`<tr class="tot"><td>TOTAL</td><td>${full(sales)}</td><td>${full(coll)}</td><td>${full(exp)}</td><td>${drop?full(drop):'—'}</td><td>${outst?full(outst):'—'}</td><td class="${net>=0?'pp':'pn'}">${net>=0?'+':''}${full(net)}</td></tr>`);
+  document.getElementById('sumBody').innerHTML=rows.join('');
+  renderCats(src,'rpCats');
+}
+function dlReport(){
+  const mon=document.getElementById('rpMon').value;
+  const keys=mon==='all'?['jan','feb','mar']:[mon];
+  const src=keys.flatMap(k=>DB[k]);
+  const cm={};src.filter(r=>r.isOut).forEach(r=>{cm[r.cat]=(cm[r.cat]||0)+r.debit;});
+  let csv='P&L Report\n\nMonth,Total Sales,Total Collection,Total Expense,Net\n';
+  keys.forEach(k=>{const d=DB[k];const rs=d.reduce((s,r)=>s+r.credit,0);const rc=d.filter(r=>r.isIn).reduce((s,r)=>s+r.credit,0);const re=d.reduce((s,r)=>s+r.debit,0);csv+=`${MLABELS[k]},${rs},${rc},${re},${rs-re}\n`;});
+  csv+='\nCategory,Amount\n'+Object.entries(cm).sort((a,b)=>b[1]-a[1]).map(([c,v])=>`${c},${v}`).join('\n');
+  dl(csv,`Report_${mon}.csv`,'text/csv');
+}
+
+// ── SALES TAB — Q4 FY 25-26 (March 2026 actuals from sheet) ──
+
+const SALES_TEAMS = [
+  {
+    key:'skyclaw', name:'SKYCLAW', tl:'Gauri', color:'#1a6bff', icon:'🦅',
+    tlTarget:800000, tlAchieved:105001, tlLeads:112,
+    members:[
+      {name:'Himanshi', target:600000, achieved:75000, leads:90, daily:{2:75000}},
+      {name:'Nidhi',    target:600000, achieved:67000, leads:46, daily:{4:67000}},
+      {name:'Geetanjali',target:600000,achieved:153000,leads:80, daily:{2:150000,9:3000}},
+      {name:'Surya',    target:600000, achieved:0,     leads:75, daily:{}},
+    ]
+  },
+  {
+    key:'emberclaw', name:'EMBERCLAW', tl:'Srijan', color:'#e5394b', icon:'🔥',
+    tlTarget:700000, tlAchieved:0, tlLeads:13,
+    members:[
+      {name:'Shivam',   target:300000, achieved:3000,  leads:22, daily:{9:3000}},
+      {name:'Ishika',   target:300000, achieved:0,     leads:12, daily:{}},
+      {name:'Shadab',   target:300000, achieved:5000,  leads:12, daily:{9:5000}},
+      {name:'Avantika', target:300000, achieved:0,     leads:12, daily:{}},
+      {name:'Pranjal',  target:300000, achieved:0,     leads:12, daily:{}},
+    ]
+  },
+  {
+    key:'roarcrest', name:'ROARCREST', tl:'Priyam', color:'#f59e0b', icon:'🦁',
+    tlTarget:700000, tlAchieved:3000, tlLeads:21,
+    members:[
+      {name:'Ankit',       target:600000, achieved:153001, leads:31, daily:{6:3000,7:150000}},
+      {name:'Puneet',      target:600000, achieved:228000, leads:35, daily:{1:75000,2:150000,5:3000}},
+      {name:'Yuvraj',      target:300000, achieved:0,      leads:0,  daily:{}},
+      {name:'Priyanshita', target:300000, achieved:3000,   leads:0,  daily:{3:1000,8:2000}},
+    ]
+  },
+  {
+    key:'ironhorn', name:'IRONHORN', tl:'Rishabh', color:'#7c4dff', icon:'🦏',
+    tlTarget:800000, tlAchieved:1, tlLeads:10,
+    members:[
+      {name:'Mohit',  target:400000, achieved:0,     leads:0, daily:{}},
+      {name:'Satish', target:400000, achieved:75000, leads:0, daily:{2:75000}},
+      {name:'Nikunj', target:300000, achieved:0,     leads:0, daily:{}},
+      {name:'Hitesh', target:300000, achieved:0,     leads:0, daily:{}},
+    ]
+  },
+  {
+    key:'titancrest', name:'TITANCREST', tl:'Nitin', color:'#00a76f', icon:'⚡',
+    tlTarget:800000, tlAchieved:150001, tlLeads:5,
+    members:[
+      {name:'Riddhi',     target:600000, achieved:0,      leads:20, daily:{}},
+      {name:'Ankit Singh',target:600000, achieved:77800,  leads:14, daily:{7:74800,9:3000}},
+      {name:'Kamal',      target:600000, achieved:83000,  leads:13, daily:{3:5000,6:75000,9:3000}},
+      {name:'Kanupriya',  target:400000, achieved:3001,   leads:12, daily:{7:3000}},
+    ]
+  },
+  {
+    key:'velora', name:'VELORA', tl:'Akash', color:'#06b6d4', icon:'🌊',
+    tlTarget:800000, tlAchieved:75000, tlLeads:0,
+    members:[
+      {name:'Bharat',   target:600000, achieved:3001,  leads:0, daily:{7:3000}},
+      {name:'Abhishek', target:400000, achieved:23820, leads:0, daily:{2:23820}},
+      {name:'Ayush',    target:300000, achieved:0,     leads:0, daily:{}},
+      {name:'Jhanvi',   target:300000, achieved:3000,  leads:0, daily:{2:3000}},
+    ]
+  },
+  {
+    key:'shiwangi', name:'SHIWANGI', tl:'Shiwangi', color:'#ec4899', icon:'🌸',
+    tlTarget:700000, tlAchieved:18000, tlLeads:63,
+    members:[
+      {name:'Khushboo', target:300000, achieved:0,    leads:20, daily:{}},
+      {name:'Prabhat',  target:300000, achieved:3000, leads:30, daily:{6:3000}},
+      {name:'Surendra', target:300000, achieved:0,    leads:0,  daily:{}},
+    ]
+  },
+  {
+    key:'phoenix', name:'PHOENIX', tl:'Kalpana', color:'#f97316', icon:'🦋',
+    tlTarget:700000, tlAchieved:6000, tlLeads:0,
+    members:[
+      {name:'Priya',   target:600000, achieved:0,      leads:0, daily:{}},
+      {name:'Prajwal', target:600000, achieved:3001,   leads:0, daily:{3:3000}},
+      {name:'Ritul',   target:400000, achieved:75001,  leads:0, daily:{9:75000}},
+      {name:'Abhinav', target:400000, achieved:80000,  leads:0, daily:{7:80000}},
+      {name:'Simran',  target:300000, achieved:3000,   leads:0, daily:{9:3000}},
+      {name:'Aniket',  target:300000, achieved:75000,  leads:0, daily:{2:75000}},
+    ]
+  },
+];
+
+// HQ
+const HQ = {name:'Kishlay', target:1000000, achieved:1, leads:0, daily:{}};
+
+// Daily totals for bar chart (Mar 1–10 with data, rest 0)
+const DAILY_TOTALS = {
+  1:150000, 2:626820, 3:9000, 4:170000, 5:5000,
+  6:156000, 7:331800, 8:2000, 9:101000, 10:9,
+};
+
+let salesView = 'team';
+
+function setSalesView(v, el){
+  salesView = v;
+  document.querySelectorAll('#sv-team,#sv-counsellor,#sv-daily').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('salesTeamView').style.display    = v==='team'       ?'block':'none';
+  document.getElementById('salesCounsellorView').style.display = v==='counsellor'?'block':'none';
+  document.getElementById('salesDailyView').style.display   = v==='daily'      ?'block':'none';
+}
+
+function renderSalesTab(){
+  // KPI row
+  const totalTarget  = SALES_TEAMS.reduce((s,t)=>s+t.tlTarget+t.members.reduce((a,m)=>a+m.target,0),0) + HQ.target;
+  const totalAchieved= SALES_TEAMS.reduce((s,t)=>s+t.tlAchieved+t.members.reduce((a,m)=>a+m.achieved,0),0) + HQ.achieved;
+  const totalLeads   = SALES_TEAMS.reduce((s,t)=>s+t.tlLeads+t.members.reduce((a,m)=>a+m.leads,0),0);
+  const overallPct   = totalTarget>0?((totalAchieved/totalTarget)*100).toFixed(1):0;
+  const bestTeam     = [...SALES_TEAMS].sort((a,b)=>(b.tlAchieved+b.members.reduce((s,m)=>s+m.achieved,0))-(a.tlAchieved+a.members.reduce((s,m)=>s+m.achieved,0)))[0];
+  const bestCounsellor = SALES_TEAMS.flatMap(t=>t.members).sort((a,b)=>b.achieved-a.achieved)[0];
+
+  document.getElementById('salesKpiRow').innerHTML = `
+    <div class="stat-card sc-accent"><div class="stat-top"><span class="stat-label">Total Target</span><div class="stat-icon si-blue">🎯</div></div><div class="stat-val">${fmt(totalTarget)}</div><div class="stat-sub">Q4 FY 25-26</div><div class="stat-bar"><div class="stat-fill sf-blue" style="width:100%"></div></div></div>
+    <div class="stat-card sc-green"><div class="stat-top"><span class="stat-label">Achieved</span><div class="stat-icon si-green">✅</div></div><div class="stat-val">${fmt(totalAchieved)}</div><div class="stat-sub">${full(totalAchieved)}</div><div class="stat-bar"><div class="stat-fill sf-green" style="width:${Math.min(100,overallPct)}%"></div></div></div>
+    <div class="stat-card sc-red"><div class="stat-top"><span class="stat-label">Deficit</span><div class="stat-icon si-red">📉</div></div><div class="stat-val">${fmt(totalTarget-totalAchieved)}</div><div class="stat-sub">${overallPct}% complete</div><div class="stat-bar"><div class="stat-fill sf-red" style="width:${Math.min(100,100-overallPct)}%"></div></div></div>
+    <div class="stat-card sc-amber"><div class="stat-top"><span class="stat-label">Total Leads</span><div class="stat-icon si-amber">👥</div></div><div class="stat-val">${totalLeads}</div><div class="stat-sub">Across all teams</div><div class="stat-bar"><div class="stat-fill sf-amber" style="width:60%"></div></div></div>
+    <div class="stat-card sc-purple"><div class="stat-top"><span class="stat-label">Best Counsellor</span><div class="stat-icon si-purple">🏆</div></div><div class="stat-val" style="font-size:14px">${bestCounsellor.name}</div><div class="stat-sub">${fmt(bestCounsellor.achieved)} achieved</div><div class="stat-bar"><div class="stat-fill sf-purple" style="width:80%"></div></div></div>`;
+
+  // Team grid
+  document.getElementById('salesTeamGrid').innerHTML = SALES_TEAMS.map(team=>{
+    const teamTotal = team.tlAchieved + team.members.reduce((s,m)=>s+m.achieved,0);
+    const teamTarget= team.tlTarget   + team.members.reduce((s,m)=>s+m.target,0);
+    const pct = teamTarget>0?Math.min(100,(teamTotal/teamTarget*100)):0;
+    const topM= [...team.members].sort((a,b)=>b.achieved-a.achieved)[0];
+    return`<div class="card" style="border-left:4px solid ${team.color}">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:38px;height:38px;background:${team.color}15;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px">${team.icon}</div>
+          <div>
+            <div style="font-size:14px;font-weight:800;color:var(--ink)">${team.name}</div>
+            <div style="font-size:10.5px;color:var(--ink3)">TL: ${team.tl} · ${team.members.length} counsellors</div>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:18px;font-weight:700;font-family:'JetBrains Mono',monospace;color:${team.color}">${fmt(teamTotal)}</div>
+          <div style="font-size:10px;color:var(--ink3)">of ${fmt(teamTarget)}</div>
+        </div>
+      </div>
+      <!-- Progress bar -->
+      <div style="height:6px;background:var(--border);border-radius:6px;overflow:hidden;margin-bottom:10px">
+        <div style="width:${pct.toFixed(1)}%;height:100%;background:${team.color};border-radius:6px;transition:width 1s ease"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink3);margin-bottom:12px">
+        <span>${pct.toFixed(1)}% achieved</span>
+        <span>Deficit: <strong style="color:var(--red)">${fmt(teamTarget-teamTotal)}</strong></span>
+        <span>Leads: <strong style="color:var(--ink2)">${team.members.reduce((s,m)=>s+m.leads,0)+team.tlLeads}</strong></span>
+      </div>
+      <!-- Members mini table -->
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr>
+          <th style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;padding:0 0 6px;text-align:left">Counsellor</th>
+          <th style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;padding:0 0 6px;text-align:right">Target</th>
+          <th style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;padding:0 0 6px;text-align:right">Achieved</th>
+          <th style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;padding:0 0 6px;text-align:right">Conv%</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid var(--border)">
+            <td style="padding:5px 0;font-size:11.5px;font-weight:700;color:${team.color}">${team.tl} <span style="font-size:9px;font-weight:500;color:var(--ink3)">(TL)</span></td>
+            <td style="padding:5px 0;text-align:right;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--ink3)">${fmt(team.tlTarget)}</td>
+            <td style="padding:5px 0;text-align:right;font-size:11px;font-family:'JetBrains Mono',monospace;color:${team.tlAchieved>0?'var(--green)':'var(--ink3)'};font-weight:700">${team.tlAchieved>0?fmt(team.tlAchieved):'—'}</td>
+            <td style="padding:5px 0;text-align:right;font-size:11px;color:var(--ink3)">${team.tlTarget>0?((team.tlAchieved/team.tlTarget)*100).toFixed(1)+'%':'—'}</td>
+          </tr>
+          ${team.members.map(m=>{
+            const mp=m.target>0?((m.achieved/m.target)*100).toFixed(1):0;
+            return`<tr style="border-top:1px solid var(--border)">
+              <td style="padding:5px 0;font-size:11.5px;font-weight:600;color:var(--ink)">${m.name}</td>
+              <td style="padding:5px 0;text-align:right;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--ink3)">${fmt(m.target)}</td>
+              <td style="padding:5px 0;text-align:right;font-size:11px;font-family:'JetBrains Mono',monospace;color:${m.achieved>0?'var(--green)':'var(--ink3)'};font-weight:700">${m.achieved>0?fmt(m.achieved):'—'}</td>
+              <td style="padding:5px 0;text-align:right;font-size:11px;color:${mp>=20?'var(--green)':mp>=10?'var(--amber)':'var(--ink3)'}">${mp>0?mp+'%':'—'}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  }).join('');
+
+  // Counsellor table
+  const allCounsellors = SALES_TEAMS.flatMap(t=>t.members.map(m=>({...m,team:t.name,teamColor:t.color})));
+  allCounsellors.sort((a,b)=>b.achieved-a.achieved);
+  document.getElementById('salesCounsellorBody').innerHTML = allCounsellors.map((m,i)=>{
+    const pct = m.target>0?Math.min(100,(m.achieved/m.target*100)):0;
+    const convPct = m.target>0?((m.achieved/m.target)*100).toFixed(1):0;
+    return`<tr>
+      <td><div style="font-weight:700;color:var(--ink);font-size:12.5px">${m.name}</div></td>
+      <td><span style="background:${m.teamColor}15;color:${m.teamColor};padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700">${m.team}</span></td>
+      <td style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px">${full(m.target)}</td>
+      <td style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:${m.achieved>0?'var(--green)':'var(--ink3)'}">${m.achieved>0?full(m.achieved):'—'}</td>
+      <td style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--red)">${full(m.target-m.achieved)}</td>
+      <td style="text-align:right;font-size:12px">${m.leads||'—'}</td>
+      <td style="text-align:right;font-size:12px;color:${convPct>=20?'var(--green)':convPct>=10?'var(--amber)':'var(--ink3)'}">${convPct>0?convPct+'%':'—'}</td>
+      <td style="min-width:100px">
+        <div style="height:5px;background:var(--border);border-radius:5px;overflow:hidden">
+          <div style="width:${pct}%;height:100%;background:${m.teamColor};border-radius:5px"></div>
+        </div>
+        <div style="font-size:9px;color:var(--ink3);margin-top:2px">${pct.toFixed(0)}%</div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  // Daily bar chart
+  const days = Object.entries(DAILY_TOTALS).sort((a,b)=>+a[0]-+b[0]);
+  const maxD = Math.max(...days.map(([,v])=>v),1);
+  document.getElementById('salesDailyBars').innerHTML = days.map(([day,amt])=>{
+    const h = Math.max(4, Math.round(amt/maxD*140));
+    return`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:44px">
+      <div style="font-size:8.5px;color:var(--ink3);font-family:'JetBrains Mono',monospace;font-weight:600">${amt>0?fmt(amt):''}</div>
+      <div style="width:75%;height:${h}px;background:${amt>100000?'var(--accent)':amt>50000?'var(--green)':'var(--amber)'};border-radius:4px 4px 0 0;opacity:.85;transition:opacity .15s" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=.85" title="Mar ${day}: ${full(amt)}"></div>
+      <div style="font-size:9.5px;color:var(--ink2);font-weight:700">Mar ${day}</div>
+    </div>`;
+  }).join('');
+}
+
+function exportSalesCSV(){
+  let csv='Team,Counsellor,Target,Achieved,Deficit,Leads,Conv%\n';
+  SALES_TEAMS.forEach(t=>{
+    csv+=`"${t.name}","${t.tl} (TL)",${t.tlTarget},${t.tlAchieved},${t.tlTarget-t.tlAchieved},${t.tlLeads},${t.tlTarget>0?((t.tlAchieved/t.tlTarget)*100).toFixed(1)+'%':'0%'}\n`;
+    t.members.forEach(m=>{
+      csv+=`"${t.name}","${m.name}",${m.target},${m.achieved},${m.target-m.achieved},${m.leads||0},${m.target>0?((m.achieved/m.target)*100).toFixed(1)+'%':'0%'}\n`;
+    });
+  });
+  dl(csv,'Sales_Q4_FY25-26_March2026.csv','text/csv');
+}
+
+// ── DOWNLOAD ──
+function dl(content,name,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();}
+
+
+// ══════════════════════════════════════════════════════
+// GOOGLE SHEETS — APPS SCRIPT INTEGRATION
+// ══════════════════════════════════════════════════════
+
+let GS = { url: '', token: '', connected: false };
+
+function gsBanner(msg, type) {
+  const el = document.getElementById('gsBanner');
+  if (!msg) { el.style.display = 'none'; return; }
+  const C = {
+    success: ['var(--green-l)',  'var(--green)',  'var(--green)',  '✅'],
+    error:   ['var(--red-l)',    'var(--red)',    'var(--red)',    '❌'],
+    info:    ['var(--accent-l)', 'var(--accent)', 'var(--accent)', 'ℹ️'],
+    loading: ['var(--amber-l)',  'var(--amber)',  'var(--amber)',  '⏳'],
+  }[type] || ['var(--accent-l)','var(--accent)','var(--accent)','ℹ️'];
+  el.style.cssText = `display:flex;align-items:center;gap:9px;border-radius:10px;padding:13px 16px;margin-bottom:16px;font-size:12.5px;font-weight:600;background:${C[0]};border:1.5px solid ${C[1]};color:${C[2]}`;
+  el.innerHTML = `<span style="font-size:16px">${C[3]}</span> ${msg}`;
+}
+
+function gsLog(msg) {
+  const el = document.getElementById('gsSyncLog');
+  if (!el) return;
+  const t = new Date().toLocaleTimeString('en-IN', { hour12: false });
+  el.innerHTML += `<div><span style="color:var(--ink3)">[${t}]</span> ${msg}</div>`;
+  el.scrollTop = el.scrollHeight;
+  document.getElementById('gsSyncLogCard').style.display = 'block';
+}
+
+function gsUpdateBadge() {
+  const b = document.getElementById('sheetsBadge');
+  b.textContent = GS.connected ? 'On' : 'Off';
+  b.style.background = GS.connected ? 'var(--green)' : 'var(--red)';
+}
+
+function gsShowUI(on) {
+  ['btnTestConn','btnPullSheet','btnPushSheet'].forEach(id => {
+    document.getElementById(id).style.display = on ? 'inline-flex' : 'none';
+  });
+  document.getElementById('gsMappingCard').style.display = on ? 'block' : 'none';
+}
+
+function gsSaveCreds() {
+  const url = document.getElementById('gsWebAppUrl').value.trim();
+  const tok = document.getElementById('gsToken').value.trim();
+  if (!url || !url.startsWith('https://script.google.com')) {
+    gsBanner('Please enter a valid Apps Script Web App URL (starts with https://script.google.com…)', 'error');
+    return;
+  }
+  GS.url = url; GS.token = tok; GS.connected = true;
+  gsBanner('Connected! Click "Test" to verify, or "Pull from Sheet" to load data.', 'success');
+  gsShowUI(true);
+  gsUpdateBadge();
+  document.getElementById('sheetStatusLine').textContent = 'Connected · Apps Script · ' + url.slice(0,50) + '…';
+  gsLog('Credentials saved.');
+}
+
+function gsClearCreds() {
+  GS = { url: '', token: '', connected: false };
+  document.getElementById('gsWebAppUrl').value = '';
+  document.getElementById('gsToken').value = '';
+  gsBanner('Cleared.', 'info');
+  gsShowUI(false);
+  gsUpdateBadge();
+  document.getElementById('sheetStatusLine').textContent = 'Not connected — paste your Web App URL below';
+}
+
+async function gsCall(payload) {
+  const res = await fetch(GS.url, {
+    method: 'POST',
+    body: JSON.stringify({ ...payload, token: GS.token }),
+    headers: { 'Content-Type': 'text/plain' }
+  });
+  return res.json();
+}
+
+async function gsTest() {
+  if (!GS.connected) { gsBanner('Save credentials first.', 'error'); return; }
+  gsBanner('Testing connection…', 'loading');
+  gsLog('Sending test ping…');
+  try {
+    const data = await gsCall({ action: 'test' });
+    if (!data.ok) throw new Error(data.error || 'Unknown error');
+    gsBanner(`Connected! Spreadsheet: "${data.title}" · Tabs: ${data.sheets.join(', ')}`, 'success');
+    gsLog(`OK. Title: "${data.title}". Tabs: ${data.sheets.join(', ')}`);
+  } catch(e) {
+    gsBanner(`Test failed: ${e.message}. Check your Web App URL and re-deploy.`, 'error');
+    gsLog('Error: ' + e.message);
+  }
+}
+
+async function gsPull() {
+  if (!GS.connected) { gsBanner('Save credentials first.', 'error'); return; }
+  gsBanner('Pulling data from Google Sheet…', 'loading');
+  gsLog('Starting Pull…');
+  const tabs = {
+    jan: document.getElementById('gsTabJan').value.trim() || 'Jan 2026',
+    feb: document.getElementById('gsTabFeb').value.trim() || 'Feb 2026',
+    mar: document.getElementById('gsTabMar').value.trim() || 'Mar 2026',
+  };
+  try {
+    const data = await gsCall({ action: 'pull', tabs });
+    if (!data.ok) throw new Error(data.error || 'Pull failed');
+    let total = 0;
+    ['jan','feb','mar'].forEach(k => {
+      const rows = (data.data[k] || []).map(r => {
+        r.isIn  = r.credit > 0 && r.debit === 0;
+        r.isOut = r.debit  > 0 && r.credit === 0;
+        const m = String(r.date).match(/(\d{1,2})/);
+        r.dayN = m ? parseInt(m[1]) : 1;
+        const mo = k === 'jan' ? 'Jan' : k === 'feb' ? 'Feb' : 'Mar';
+        r.dayKey = r.dayN + '-' + mo;
+        return r;
+      });
+      if (rows.length) { DB[k] = rows; total += rows.length; }
+      gsLog(`"${tabs[k]}" — ${rows.length} rows`);
+    });
+    gsBanner(`Pull complete! ${total} rows loaded. Dashboard updated.`, 'success');
+    renderDashboard(DB[curMon]);
+    populateCatFilter(DB[curMon]);
+    renderMonthlyReport();
+    gsLog('Dashboard refreshed with sheet data.');
+  } catch(e) {
+    gsBanner(`Pull failed: ${e.message}`, 'error');
+    gsLog('Error: ' + e.message);
+  }
+}
+
+async function gsPush() {
+  if (!GS.connected) { gsBanner('Save credentials first.', 'error'); return; }
+  gsBanner('Pushing dashboard data to Google Sheet…', 'loading');
+  gsLog('Starting Push…');
+  const tabs = {
+    jan: document.getElementById('gsTabJan').value.trim() || 'Jan 2026',
+    feb: document.getElementById('gsTabFeb').value.trim() || 'Feb 2026',
+    mar: document.getElementById('gsTabMar').value.trim() || 'Mar 2026',
+  };
+  const sheetData = {};
+  ['jan','feb','mar'].forEach(k => {
+    sheetData[k] = (DB[k] || []).map(r => ({
+      date: r.date, desc: r.desc, cat: r.cat,
+      bank: r.bank, debit: r.debit, credit: r.credit
+    }));
+  });
+  const total = Object.values(sheetData).reduce((s,v) => s + v.length, 0);
+  try {
+    const data = await gsCall({ action: 'push', tabs, data: sheetData });
+    if (!data.ok) throw new Error(data.error || 'Push failed');
+    gsBanner(`Push complete! ${total} rows written to Google Sheet.`, 'success');
+    gsLog(`Push OK. ${total} total rows written.`);
+  } catch(e) {
+    gsBanner(`Push failed: ${e.message}`, 'error');
+    gsLog('Error: ' + e.message);
+  }
+}
+
+function gsCopyScript() {
+  const code = document.getElementById('gsScriptCode').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.getElementById('btnCopyScript');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.innerHTML = '📋 Copy Code', 2000);
+  });
+}
+
+// ── INIT ──
+(()=>{
+  renderDashboard(DB[curMon]);
+  populateCatFilter(DB[curMon]);
+  renderMonthlyReport();
+})();
+</script>
+</body>
+</html>
