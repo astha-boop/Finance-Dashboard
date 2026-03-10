@@ -634,7 +634,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
           <div style="font-size:11px;color:var(--ink3);margin-top:3px" id="sheetStatusLine">Not connected — paste your Web App URL below</div>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn-outline" id="btnTestConn"  onclick="gsTest()"  style="display:none">🔍 Test</button>
+          <button class="btn-outline" id="btnTestConn"  onclick="gsTest()"  style="display:none;">🔍 Test</button>
           <button class="btn-export"  id="btnPullSheet" onclick="gsPull()"  style="display:none">⬇ Pull from Sheet</button>
           <button class="btn-outline" id="btnPushSheet" onclick="gsPush()"  style="display:none">⬆ Push to Sheet</button>
         </div>
@@ -643,57 +643,107 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
       <!-- Status Banner -->
       <div id="gsBanner" style="display:none"></div>
 
-      <!-- Config Card -->
-      <div class="card" style="margin-bottom:16px">
+      <!-- 3 Sheet Config Cards -->
+      <!-- EXPENSE SHEET -->
+      <div class="card" style="margin-bottom:14px;border-left:4px solid var(--accent)">
         <div class="card-head">
-          <div><div class="card-title">⚙️ Connection Setup</div><div class="card-sub">Free — uses Google Apps Script, no Cloud Console needed</div></div>
+          <div><div class="card-title">📊 Expense Sheet</div><div class="card-sub">Transactions — feeds Dashboard, Accounts, Bank Statement, Reports</div></div>
+          <span id="gs1Status" style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--red-l);color:var(--red)">Not Connected</span>
         </div>
-
-        <div style="margin-bottom:14px">
-          <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Apps Script Web App URL</label>
-          <input type="text" id="gsWebAppUrl" placeholder="https://script.google.com/macros/s/AKfyc…/exec"
-            style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 13px;font-size:12.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink);transition:border-color .15s"
-            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          <div style="font-size:10px;color:var(--ink3);margin-top:4px">Paste the URL after deploying the Apps Script below. Takes 2 minutes.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+          <div>
+            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Web App URL</label>
+            <input type="text" id="gs1Url" placeholder="https://script.google.com/macros/s/…/exec"
+              style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 11px;font-size:11.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+          <div>
+            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Secret Token</label>
+            <input type="password" id="gs1Token" placeholder="e.g. pradeep2026"
+              style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 11px;font-size:11.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
         </div>
-
-        <div style="margin-bottom:14px">
-          <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Secret Token <span style="font-weight:400;text-transform:none;color:var(--ink3)">(optional but recommended)</span></label>
-          <input type="password" id="gsToken" placeholder="any-secret-you-choose e.g. mytoken123"
-            style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 13px;font-size:12.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink);transition:border-color .15s"
-            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          <div style="font-size:10px;color:var(--ink3);margin-top:4px">Set the same token in the Apps Script code (line 3) so only your dashboard can access it.</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
+          <div>
+            <label style="font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;display:block;margin-bottom:4px">Jan Tab</label>
+            <input type="text" id="gsTabJan" value="Jan 2026" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+          <div>
+            <label style="font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;display:block;margin-bottom:4px">Feb Tab</label>
+            <input type="text" id="gsTabFeb" value="Feb 2026" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+          <div>
+            <label style="font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;display:block;margin-bottom:4px">Mar Tab</label>
+            <input type="text" id="gsTabMar" value="Mar 2026" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
         </div>
-
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn-export" onclick="gsSaveCreds()" style="background:var(--green)">💾 Save & Connect</button>
-          <button class="btn-outline" onclick="gsClearCreds()">🗑 Clear</button>
+        <div style="display:flex;gap:8px">
+          <button class="btn-export" onclick="gsConnect(1)" style="background:var(--green);font-size:11.5px;padding:5px 12px">💾 Save & Connect</button>
+          <button class="btn-outline" onclick="gsTestOne(1)" id="gs1TestBtn" style="display:none;font-size:11.5px;padding:5px 12px">🔍 Test</button>
+          <button class="btn-export" onclick="gsPullOne(1)" id="gs1PullBtn" style="display:none;font-size:11.5px;padding:5px 12px">⬇ Pull</button>
+          <button class="btn-outline" onclick="gsPushOne(1)" id="gs1PushBtn" style="display:none;font-size:11.5px;padding:5px 12px">⬆ Push</button>
         </div>
       </div>
 
-      <!-- Tab Mapping -->
-      <div class="card" style="margin-bottom:16px;display:none" id="gsMappingCard">
-        <div class="card-head"><div class="card-title">📋 Sheet Tab Names</div><div class="card-sub">Must match exactly what's in your Google Sheet</div></div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <!-- P&L SHEET -->
+      <div class="card" style="margin-bottom:14px;border-left:4px solid var(--green)">
+        <div class="card-head">
+          <div><div class="card-title">📈 P&L Sheet</div><div class="card-sub">Profit & Loss — feeds Monthly Report and Reporting sections</div></div>
+          <span id="gs2Status" style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--red-l);color:var(--red)">Not Connected</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
           <div>
-            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">January Tab</label>
-            <input type="text" id="gsTabJan" value="Jan 2026" style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:7px 11px;font-size:13px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Web App URL</label>
+            <input type="text" id="gs2Url" placeholder="https://script.google.com/macros/s/…/exec"
+              style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 11px;font-size:11.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
           </div>
           <div>
-            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">February Tab</label>
-            <input type="text" id="gsTabFeb" value="Feb 2026" style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:7px 11px;font-size:13px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          </div>
-          <div>
-            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">March Tab</label>
-            <input type="text" id="gsTabMar" value="Mar 2026" style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:7px 11px;font-size:13px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Secret Token</label>
+            <input type="password" id="gs2Token" placeholder="e.g. pradeep2026"
+              style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 11px;font-size:11.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
           </div>
         </div>
-        <div style="margin-top:12px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:11px;font-size:11px;color:var(--ink3)">
-          <strong style="color:var(--ink)">Expected columns in your sheet:</strong>&nbsp;
-          <span style="font-family:'JetBrains Mono',monospace">A: Date &nbsp;·&nbsp; B: Description &nbsp;·&nbsp; C: Category &nbsp;·&nbsp; D: Bank &nbsp;·&nbsp; E: Debit &nbsp;·&nbsp; F: Credit</span>
-          &nbsp;— Row 1 = header, data from Row 2.
+        <div style="display:flex;gap:8px">
+          <button class="btn-export" onclick="gsConnect(2)" style="background:var(--green);font-size:11.5px;padding:5px 12px">💾 Save & Connect</button>
+          <button class="btn-outline" onclick="gsTestOne(2)" id="gs2TestBtn" style="display:none;font-size:11.5px;padding:5px 12px">🔍 Test</button>
+          <button class="btn-export" onclick="gsPullOne(2)" id="gs2PullBtn" style="display:none;font-size:11.5px;padding:5px 12px">⬇ Pull</button>
+          <button class="btn-outline" onclick="gsPushOne(2)" id="gs2PushBtn" style="display:none;font-size:11.5px;padding:5px 12px">⬆ Push</button>
         </div>
       </div>
+
+      <!-- Q4 TARGET SHEET -->
+      <div class="card" style="margin-bottom:14px;border-left:4px solid var(--purple)">
+        <div class="card-head">
+          <div><div class="card-title">🎯 Q4 Target Sheet</div><div class="card-sub">Sales targets & projections — feeds the Sales tab</div></div>
+          <span id="gs3Status" style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--red-l);color:var(--red)">Not Connected</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+          <div>
+            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Web App URL</label>
+            <input type="text" id="gs3Url" placeholder="https://script.google.com/macros/s/…/exec"
+              style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 11px;font-size:11.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+          <div>
+            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Secret Token</label>
+            <input type="password" id="gs3Token" placeholder="e.g. pradeep2026"
+              style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 11px;font-size:11.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn-export" onclick="gsConnect(3)" style="background:var(--green);font-size:11.5px;padding:5px 12px">💾 Save & Connect</button>
+          <button class="btn-outline" onclick="gsTestOne(3)" id="gs3TestBtn" style="display:none;font-size:11.5px;padding:5px 12px">🔍 Test</button>
+          <button class="btn-export" onclick="gsPullOne(3)" id="gs3PullBtn" style="display:none;font-size:11.5px;padding:5px 12px">⬇ Pull</button>
+          <button class="btn-outline" onclick="gsPushOne(3)" id="gs3PushBtn" style="display:none;font-size:11.5px;padding:5px 12px">⬆ Push</button>
+        </div>
+      </div>
+
+      <!-- dummy for compat -->
+      <div id="gsMappingCard" style="display:none"></div>
 
       <!-- Sync Log -->
       <div class="card" id="gsSyncLogCard" style="display:none;margin-bottom:16px">
@@ -1766,166 +1816,168 @@ function dl(content,name,type){const a=document.createElement('a');a.href=URL.cr
 
 
 // ══════════════════════════════════════════════════════
-// GOOGLE SHEETS — APPS SCRIPT INTEGRATION
+// GOOGLE SHEETS — 3 SEPARATE SHEETS
 // ══════════════════════════════════════════════════════
 
-let GS = { url: '', token: '', connected: false };
+const GS_SHEETS = { 1: {url:'',token:'',connected:false}, 2: {url:'',token:'',connected:false}, 3: {url:'',token:'',connected:false} };
 
 function gsBanner(msg, type) {
   const el = document.getElementById('gsBanner');
-  if (!msg) { el.style.display = 'none'; return; }
+  if (!msg) { el.style.display='none'; return; }
   const C = {
-    success: ['var(--green-l)',  'var(--green)',  'var(--green)',  '✅'],
-    error:   ['var(--red-l)',    'var(--red)',    'var(--red)',    '❌'],
-    info:    ['var(--accent-l)', 'var(--accent)', 'var(--accent)', 'ℹ️'],
-    loading: ['var(--amber-l)',  'var(--amber)',  'var(--amber)',  '⏳'],
-  }[type] || ['var(--accent-l)','var(--accent)','var(--accent)','ℹ️'];
-  el.style.cssText = `display:flex;align-items:center;gap:9px;border-radius:10px;padding:13px 16px;margin-bottom:16px;font-size:12.5px;font-weight:600;background:${C[0]};border:1.5px solid ${C[1]};color:${C[2]}`;
-  el.innerHTML = `<span style="font-size:16px">${C[3]}</span> ${msg}`;
+    success:['var(--green-l)','var(--green)','var(--green)','✅'],
+    error:  ['var(--red-l)','var(--red)','var(--red)','❌'],
+    info:   ['var(--accent-l)','var(--accent)','var(--accent)','ℹ️'],
+    loading:['var(--amber-l)','var(--amber)','var(--amber)','⏳'],
+  }[type]||['var(--accent-l)','var(--accent)','var(--accent)','ℹ️'];
+  el.style.cssText=`display:flex;align-items:center;gap:9px;border-radius:10px;padding:13px 16px;margin-bottom:16px;font-size:12.5px;font-weight:600;background:${C[0]};border:1.5px solid ${C[1]};color:${C[2]}`;
+  el.innerHTML=`<span style="font-size:16px">${C[3]}</span> ${msg}`;
 }
 
 function gsLog(msg) {
-  const el = document.getElementById('gsSyncLog');
-  if (!el) return;
-  const t = new Date().toLocaleTimeString('en-IN', { hour12: false });
-  el.innerHTML += `<div><span style="color:var(--ink3)">[${t}]</span> ${msg}</div>`;
-  el.scrollTop = el.scrollHeight;
-  document.getElementById('gsSyncLogCard').style.display = 'block';
+  const el=document.getElementById('gsSyncLog'); if(!el)return;
+  const t=new Date().toLocaleTimeString('en-IN',{hour12:false});
+  el.innerHTML+=`<div><span style="color:var(--ink3)">[${t}]</span> ${msg}</div>`;
+  el.scrollTop=el.scrollHeight;
+  document.getElementById('gsSyncLogCard').style.display='block';
 }
 
-function gsUpdateBadge() {
-  const b = document.getElementById('sheetsBadge');
-  b.textContent = GS.connected ? 'On' : 'Off';
-  b.style.background = GS.connected ? 'var(--green)' : 'var(--red)';
-}
-
-function gsShowUI(on) {
-  ['btnTestConn','btnPullSheet','btnPushSheet'].forEach(id => {
-    document.getElementById(id).style.display = on ? 'inline-flex' : 'none';
+function gsSetStatus(n, connected) {
+  const el=document.getElementById('gs'+n+'Status');
+  el.textContent=connected?'✅ Connected':'Not Connected';
+  el.style.background=connected?'var(--green-l)':'var(--red-l)';
+  el.style.color=connected?'var(--green)':'var(--red)';
+  ['TestBtn','PullBtn','PushBtn'].forEach(s=>{
+    document.getElementById('gs'+n+s).style.display=connected?'inline-flex':'none';
   });
-  document.getElementById('gsMappingCard').style.display = on ? 'block' : 'none';
+  // Update sidebar badge — connected if at least sheet 1 is connected
+  const badge=document.getElementById('sheetsBadge');
+  const anyOn=Object.values(GS_SHEETS).some(s=>s.connected);
+  badge.textContent=anyOn?'On':'Off';
+  badge.style.background=anyOn?'var(--green)':'var(--red)';
 }
 
-function gsSaveCreds() {
-  const url = document.getElementById('gsWebAppUrl').value.trim();
-  const tok = document.getElementById('gsToken').value.trim();
-  if (!url || !url.startsWith('https://script.google.com')) {
-    gsBanner('Please enter a valid Apps Script Web App URL (starts with https://script.google.com…)', 'error');
-    return;
+function gsConnect(n) {
+  const url=document.getElementById('gs'+n+'Url').value.trim();
+  const tok=document.getElementById('gs'+n+'Token').value.trim();
+  if(!url||!url.startsWith('https://script.google.com')){
+    gsBanner('Please enter a valid Apps Script Web App URL for Sheet '+n, 'error'); return;
   }
-  GS.url = url; GS.token = tok; GS.connected = true;
-  gsBanner('Connected! Click "Test" to verify, or "Pull from Sheet" to load data.', 'success');
-  gsShowUI(true);
-  gsUpdateBadge();
-  document.getElementById('sheetStatusLine').textContent = 'Connected · Apps Script · ' + url.slice(0,50) + '…';
-  gsLog('Credentials saved.');
+  GS_SHEETS[n]={url,token:tok,connected:true};
+  gsSetStatus(n,true);
+  gsBanner('Sheet '+n+' connected! Click Test to verify.','success');
+  gsLog('Sheet '+n+' connected.');
 }
 
-function gsClearCreds() {
-  GS = { url: '', token: '', connected: false };
-  document.getElementById('gsWebAppUrl').value = '';
-  document.getElementById('gsToken').value = '';
-  gsBanner('Cleared.', 'info');
-  gsShowUI(false);
-  gsUpdateBadge();
-  document.getElementById('sheetStatusLine').textContent = 'Not connected — paste your Web App URL below';
-}
+// compat stubs for old single-sheet functions
+function gsSaveCreds(){}
+function gsClearCreds(){}
+function gsShowUI(){}
+function gsUpdateBadge(){}
 
-async function gsCall(payload) {
-  const res = await fetch(GS.url, {
-    method: 'POST',
-    body: JSON.stringify({ ...payload, token: GS.token }),
-    headers: { 'Content-Type': 'text/plain' }
+async function gsCall(n, payload) {
+  const gs=GS_SHEETS[n];
+  const res=await fetch(gs.url,{
+    method:'POST',
+    body:JSON.stringify({...payload,token:gs.token}),
+    headers:{'Content-Type':'text/plain'}
   });
   return res.json();
 }
 
-async function gsTest() {
-  if (!GS.connected) { gsBanner('Save credentials first.', 'error'); return; }
-  gsBanner('Testing connection…', 'loading');
-  gsLog('Sending test ping…');
+async function gsTestOne(n) {
+  if(!GS_SHEETS[n].connected){gsBanner('Save credentials for Sheet '+n+' first.','error');return;}
+  gsBanner('Testing Sheet '+n+'…','loading');
+  gsLog('Testing Sheet '+n+'…');
   try {
-    const data = await gsCall({ action: 'test' });
-    if (!data.ok) throw new Error(data.error || 'Unknown error');
-    gsBanner(`Connected! Spreadsheet: "${data.title}" · Tabs: ${data.sheets.join(', ')}`, 'success');
-    gsLog(`OK. Title: "${data.title}". Tabs: ${data.sheets.join(', ')}`);
-  } catch(e) {
-    gsBanner(`Test failed: ${e.message}. Check your Web App URL and re-deploy.`, 'error');
-    gsLog('Error: ' + e.message);
+    const data=await gsCall(n,{action:'test'});
+    if(!data.ok) throw new Error(data.error||'Unknown error');
+    gsBanner(`Sheet ${n} OK! Spreadsheet: "${data.title}" · Tabs: ${data.sheets.join(', ')}`,'success');
+    gsLog(`Sheet ${n} OK. Title: "${data.title}". Tabs: ${data.sheets.join(', ')}`);
+  } catch(e){
+    gsBanner(`Sheet ${n} test failed: ${e.message}`,'error');
+    gsLog('Error: '+e.message);
   }
 }
 
+async function gsPullOne(n) {
+  if(!GS_SHEETS[n].connected){gsBanner('Connect Sheet '+n+' first.','error');return;}
+  if(n===1) { await gsPull(); return; }
+  gsBanner('Pulling Sheet '+n+'…','loading');
+  gsLog('Pulling Sheet '+n+'…');
+  try {
+    const data=await gsCall(n,{action:'test'});
+    if(!data.ok) throw new Error(data.error);
+    gsBanner(`Sheet ${n} pull: ${data.title} has tabs: ${data.sheets.join(', ')}. Data pull coming soon.`,'info');
+    gsLog(`Sheet ${n} connected. Tabs: ${data.sheets.join(', ')}`);
+  } catch(e){gsBanner('Pull failed: '+e.message,'error');}
+}
+
+async function gsPushOne(n) {
+  if(!GS_SHEETS[n].connected){gsBanner('Connect Sheet '+n+' first.','error');return;}
+  if(n===1) { await gsPush(); return; }
+  gsBanner('Push for Sheet '+n+' — coming soon.','info');
+}
+
+async function gsTest() { await gsTestOne(1); }
+
 async function gsPull() {
-  if (!GS.connected) { gsBanner('Save credentials first.', 'error'); return; }
-  gsBanner('Pulling data from Google Sheet…', 'loading');
+  const gs=GS_SHEETS[1];
+  if(!gs.connected){gsBanner('Connect the Expense Sheet first.','error');return;}
+  gsBanner('Pulling from Expense Sheet…','loading');
   gsLog('Starting Pull…');
-  const tabs = {
-    jan: document.getElementById('gsTabJan').value.trim() || 'Jan 2026',
-    feb: document.getElementById('gsTabFeb').value.trim() || 'Feb 2026',
-    mar: document.getElementById('gsTabMar').value.trim() || 'Mar 2026',
+  const tabs={
+    jan:document.getElementById('gsTabJan').value.trim()||'Jan 2026',
+    feb:document.getElementById('gsTabFeb').value.trim()||'Feb 2026',
+    mar:document.getElementById('gsTabMar').value.trim()||'Mar 2026',
   };
   try {
-    const data = await gsCall({ action: 'pull', tabs });
-    if (!data.ok) throw new Error(data.error || 'Pull failed');
-    let total = 0;
-    ['jan','feb','mar'].forEach(k => {
-      const rows = (data.data[k] || []).map(r => {
-        r.isIn  = r.credit > 0 && r.debit === 0;
-        r.isOut = r.debit  > 0 && r.credit === 0;
-        const m = String(r.date).match(/(\d{1,2})/);
-        r.dayN = m ? parseInt(m[1]) : 1;
-        const mo = k === 'jan' ? 'Jan' : k === 'feb' ? 'Feb' : 'Mar';
-        r.dayKey = r.dayN + '-' + mo;
+    const data=await gsCall(1,{action:'pull',tabs});
+    if(!data.ok) throw new Error(data.error||'Pull failed');
+    let total=0;
+    ['jan','feb','mar'].forEach(k=>{
+      const rows=(data.data[k]||[]).map(r=>{
+        r.isIn=r.credit>0&&r.debit===0; r.isOut=r.debit>0&&r.credit===0;
+        const m=String(r.date).match(/(\d{1,2})/); r.dayN=m?parseInt(m[1]):1;
+        const mo=k==='jan'?'Jan':k==='feb'?'Feb':'Mar'; r.dayKey=r.dayN+'-'+mo;
         return r;
       });
-      if (rows.length) { DB[k] = rows; total += rows.length; }
+      if(rows.length){DB[k]=rows;total+=rows.length;}
       gsLog(`"${tabs[k]}" — ${rows.length} rows`);
     });
-    gsBanner(`Pull complete! ${total} rows loaded. Dashboard updated.`, 'success');
-    renderDashboard(DB[curMon]);
-    populateCatFilter(DB[curMon]);
-    renderMonthlyReport();
-    gsLog('Dashboard refreshed with sheet data.');
-  } catch(e) {
-    gsBanner(`Pull failed: ${e.message}`, 'error');
-    gsLog('Error: ' + e.message);
-  }
+    gsBanner(`Pull complete! ${total} rows loaded. Dashboard updated.`,'success');
+    renderDashboard(DB[curMon]); populateCatFilter(DB[curMon]); renderMonthlyReport();
+    gsLog('Dashboard refreshed.');
+  } catch(e){gsBanner('Pull failed: '+e.message,'error');gsLog('Error: '+e.message);}
 }
 
 async function gsPush() {
-  if (!GS.connected) { gsBanner('Save credentials first.', 'error'); return; }
-  gsBanner('Pushing dashboard data to Google Sheet…', 'loading');
+  const gs=GS_SHEETS[1];
+  if(!gs.connected){gsBanner('Connect the Expense Sheet first.','error');return;}
+  gsBanner('Pushing to Expense Sheet…','loading');
   gsLog('Starting Push…');
-  const tabs = {
-    jan: document.getElementById('gsTabJan').value.trim() || 'Jan 2026',
-    feb: document.getElementById('gsTabFeb').value.trim() || 'Feb 2026',
-    mar: document.getElementById('gsTabMar').value.trim() || 'Mar 2026',
+  const tabs={
+    jan:document.getElementById('gsTabJan').value.trim()||'Jan 2026',
+    feb:document.getElementById('gsTabFeb').value.trim()||'Feb 2026',
+    mar:document.getElementById('gsTabMar').value.trim()||'Mar 2026',
   };
-  const sheetData = {};
-  ['jan','feb','mar'].forEach(k => {
-    sheetData[k] = (DB[k] || []).map(r => ({
-      date: r.date, desc: r.desc, cat: r.cat,
-      bank: r.bank, debit: r.debit, credit: r.credit
-    }));
-  });
-  const total = Object.values(sheetData).reduce((s,v) => s + v.length, 0);
+  const sheetData={};
+  ['jan','feb','mar'].forEach(k=>{sheetData[k]=(DB[k]||[]).map(r=>({date:r.date,desc:r.desc,cat:r.cat,bank:r.bank,debit:r.debit,credit:r.credit}));});
+  const total=Object.values(sheetData).reduce((s,v)=>s+v.length,0);
   try {
-    const data = await gsCall({ action: 'push', tabs, data: sheetData });
-    if (!data.ok) throw new Error(data.error || 'Push failed');
-    gsBanner(`Push complete! ${total} rows written to Google Sheet.`, 'success');
-    gsLog(`Push OK. ${total} total rows written.`);
-  } catch(e) {
-    gsBanner(`Push failed: ${e.message}`, 'error');
-    gsLog('Error: ' + e.message);
-  }
+    const data=await gsCall(1,{action:'push',tabs,data:sheetData});
+    if(!data.ok) throw new Error(data.error||'Push failed');
+    gsBanner(`Push complete! ${total} rows written.`,'success');
+    gsLog(`Push OK. ${total} rows written.`);
+  } catch(e){gsBanner('Push failed: '+e.message,'error');gsLog('Error: '+e.message);}
 }
 
 function gsCopyScript() {
-  const code = document.getElementById('gsScriptCode').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    const btn = document.getElementById('btnCopyScript');
-    btn.textContent = '✅ Copied!';
-    setTimeout(() => btn.innerHTML = '📋 Copy Code', 2000);
+  const code=document.getElementById('gsScriptCode').textContent;
+  navigator.clipboard.writeText(code).then(()=>{
+    const btn=document.getElementById('btnCopyScript');
+    btn.textContent='✅ Copied!';
+    setTimeout(()=>btn.innerHTML='📋 Copy Code',2000);
   });
 }
 
