@@ -765,9 +765,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
           <pre id="gsScriptCode" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#e2e5ec;line-height:1.7;margin:0;white-space:pre">// ── Finance Dashboard ↔ Google Sheets Bridge ──
 // Paste this in: Extensions → Apps Script → Save → Deploy → Web App
 
-const SECRET_TOKEN = "mytoken123"; // Change this! Match it in the dashboard.
-
-const SECRET_TOKEN = "pradeep2026";
+const SECRET_TOKEN = "pradeep2026"; // Change this! Match it in the dashboard.
 
 function doGet(e)  { return respond(handle(e.parameter, null)); }
 function doPost(e) {
@@ -1019,7 +1017,7 @@ function renderDashboard(data){
   const totalAch=SALES_TEAMS.reduce((s,t)=>s+t.tlAchieved+t.members.reduce((a,m)=>a+m.achieved,0),0);
   document.getElementById('salesBadge').textContent=fmt(totalAch);
   setTimeout(()=>{
-    document.getElementById('b-sales').style.width=Math.round(sales/maxV*100)+'%';
+    document.getElementById('b-sales').style.width=(sales!==null?Math.round(sales/maxV*100):0)+'%';
     document.getElementById('b-expense').style.width=Math.round(exp/maxV*100)+'%';
     document.getElementById('b-collection').style.width=Math.round(coll/maxV*100)+'%';
     document.getElementById('b-dropout').style.width=drop?Math.round(drop/maxV*100)+'%':'15%';
