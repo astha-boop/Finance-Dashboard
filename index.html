@@ -699,34 +699,6 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
         </div>
       </div>
 
-      <!-- P&L SHEET -->
-      <div class="card" style="margin-bottom:14px;border-left:4px solid var(--green)">
-        <div class="card-head">
-          <div><div class="card-title">📈 P&L Sheet</div><div class="card-sub">Profit & Loss — feeds Monthly Report and Reporting sections</div></div>
-          <span id="gs2Status" style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--red-l);color:var(--red)">Not Connected</span>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-          <div>
-            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Web App URL</label>
-            <input type="text" id="gs2Url" placeholder="https://script.google.com/macros/s/…/exec"
-              style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 11px;font-size:11.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)"
-              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          </div>
-          <div>
-            <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">Secret Token</label>
-            <input type="password" id="gs2Token" placeholder="e.g. pradeep2026"
-              style="width:100%;border:1.5px solid var(--border);border-radius:8px;padding:8px 11px;font-size:11.5px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)"
-              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-          </div>
-        </div>
-        <div style="display:flex;gap:8px">
-          <button class="btn-export" onclick="gsConnect(2)" style="background:var(--green);font-size:11.5px;padding:5px 12px">💾 Save & Connect</button>
-          <button class="btn-outline" onclick="gsTestOne(2)" id="gs2TestBtn" style="display:none;font-size:11.5px;padding:5px 12px">🔍 Test</button>
-          <button class="btn-export" onclick="gsPullOne(2)" id="gs2PullBtn" style="display:none;font-size:11.5px;padding:5px 12px">⬇ Pull</button>
-          <button class="btn-outline" onclick="gsPushOne(2)" id="gs2PushBtn" style="display:none;font-size:11.5px;padding:5px 12px">⬆ Push</button>
-        </div>
-      </div>
-
       <!-- Q4 TARGET SHEET -->
       <div class="card" style="margin-bottom:14px;border-left:4px solid var(--purple)">
         <div class="card-head">
@@ -1801,7 +1773,7 @@ async function gsPullQ4Sales() {
   };
 
   try {
-    const data = await gsCall(2, {action:'pullQ4', tabs});
+    const data = await gsCall(3, {action:'pullQ4', tabs});
     if (!data.ok) throw new Error(data.error || 'Q4 Pull failed');
 
     gsLog('Q4 tabs received: ' + Object.keys(data.data).join(', '));
