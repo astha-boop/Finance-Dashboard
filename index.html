@@ -1653,6 +1653,25 @@ function gsConnect(n) {
     gsBanner('Please enter a valid Apps Script Web App URL for Sheet '+n, 'error'); return;
   }
   GS_SHEETS[n]={url,token:tok,connected:true};
+  // Save to localStorage so credentials survive page refresh
+  try {
+    localStorage.setItem('gs_creds_'+n, JSON.stringify({url,token:tok}));
+    // Also save tab names if sheet 1
+    if(n===1){
+      localStorage.setItem('gs_tabs', JSON.stringify({
+        jan: document.getElementById('gsTabJan').value.trim()||'Jan 2026',
+        feb: document.getElementById('gsTabFeb').value.trim()||'Feb 2026',
+        mar: document.getElementById('gsTabMar').value.trim()||'Mar 2026'
+      }));
+    }
+    if(n===3){
+      localStorage.setItem('gs_q4tabs', JSON.stringify({
+        jan: document.getElementById('gsQ4TabJan').value.trim()||'Jan',
+        feb: document.getElementById('gsQ4TabFeb').value.trim()||'feb(A)',
+        mar: document.getElementById('gsQ4TabMar').value.trim()||'March Sales Rev. Based'
+      }));
+    }
+  } catch(e){}
   gsSetStatus(n,true);
   gsBanner('Sheet '+n+' connected! Click Test to verify.','success');
   gsLog('Sheet '+n+' connected.');
@@ -1845,10 +1864,52 @@ function gsCopyScript() {
 }
 
 // ── INIT ──
-(()=>{
+(async ()=>{
   renderDashboard(DB[curMon]);
   populateCatFilter(DB[curMon]);
   renderMonthlyReport();
+
+  // Restore saved credentials from localStorage
+  let anyRestored = false;
+  for(let n=1;n<=3;n++){
+    try {
+      const saved = localStorage.getItem('gs_creds_'+n);
+      if(saved){
+        const {url, token} = JSON.parse(saved);
+        document.getElementById('gs'+n+'Url').value = url;
+        document.getElementById('gs'+n+'Token').value = token;
+        GS_SHEETS[n] = {url, token, connected:true};
+        gsSetStatus(n, true);
+        anyRestored = true;
+        gsLog('Sheet '+n+' restored from saved credentials.');
+      }
+    } catch(e){}
+  }
+
+  // Restore saved tab names
+  try {
+    const tabs = JSON.parse(localStorage.getItem('gs_tabs')||'{}');
+    if(tabs.jan) document.getElementById('gsTabJan').value = tabs.jan;
+    if(tabs.feb) document.getElementById('gsTabFeb').value = tabs.feb;
+    if(tabs.mar) document.getElementById('gsTabMar').value = tabs.mar;
+  } catch(e){}
+  try {
+    const q4tabs = JSON.parse(localStorage.getItem('gs_q4tabs')||'{}');
+    if(q4tabs.jan) document.getElementById('gsQ4TabJan').value = q4tabs.jan;
+    if(q4tabs.feb) document.getElementById('gsQ4TabFeb').value = q4tabs.feb;
+    if(q4tabs.mar) document.getElementById('gsQ4TabMar').value = q4tabs.mar;
+  } catch(e){}
+
+  // If sheet 1 was restored, auto-pull expense data
+  if(GS_SHEETS[1].connected){
+    gsBanner('Credentials restored — pulling data from sheets…','loading');
+    await gsPull();
+  }
+
+  // If sheet 3 was restored, auto-pull Q4 sales
+  if(GS_SHEETS[3].connected){
+    await gsPullQ4Sales();
+  }
 })();
 </script>
 </body>
