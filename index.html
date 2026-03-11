@@ -441,7 +441,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
     <!-- ══ SALES ══ -->
     <div class="pane" id="pane-sales">
       <!-- KPI Row -->
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px" id="salesKpiRow"></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px" id="salesKpiRow"></div>
 
       <!-- View toggle -->
       <div class="fbar">
@@ -450,8 +450,13 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
           <button class="mt" id="sv-counsellor" onclick="setSalesView('counsellor',this)">Counsellor View</button>
           <button class="mt" id="sv-daily" onclick="setSalesView('daily',this)">Daily Trend</button>
         </div>
-        <div style="margin-left:auto;font-size:11px;color:var(--ink3);display:flex;align-items:center;gap:6px">
-          <span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block"></span>Q4 FY 25-26 · March 2026
+        <div style="display:flex;gap:3px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:3px;margin-left:auto">
+          <button class="mt" id="sm-jan" onclick="setSalesMon('jan',this)">Jan</button>
+          <button class="mt" id="sm-feb" onclick="setSalesMon('feb',this)">Feb</button>
+          <button class="mt active" id="sm-mar" onclick="setSalesMon('mar',this)">Mar</button>
+        </div>
+        <div style="font-size:11px;color:var(--ink3);display:flex;align-items:center;gap:6px">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block"></span><span id="salesMonLabel">Q4 FY 25-26 · March 2026</span>
         </div>
         <button class="btn-outline" onclick="exportSalesCSV()">⬇ Export CSV</button>
       </div>
@@ -675,15 +680,15 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
           <div>
             <label style="font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;display:block;margin-bottom:4px">Jan Tab</label>
-            <input type="text" id="gsTabJan" value="Jan 2026" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            <input type="text" id="gsTabJan" value="January - 2026" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
           </div>
           <div>
             <label style="font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;display:block;margin-bottom:4px">Feb Tab</label>
-            <input type="text" id="gsTabFeb" value="Feb 2026" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            <input type="text" id="gsTabFeb" value="Feb-2026" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
           </div>
           <div>
             <label style="font-size:9.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;display:block;margin-bottom:4px">Mar Tab</label>
-            <input type="text" id="gsTabMar" value="Mar 2026" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            <input type="text" id="gsTabMar" value="March-2026" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
           </div>
         </div>
         <div style="display:flex;gap:8px">
@@ -754,7 +759,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
           </div>
           <div>
             <label style="font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px">Mar Tab Name</label>
-            <input type="text" id="gsQ4TabMar" value="March Sales Rev. Based" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            <input type="text" id="gsQ4TabMar" value="Mar Sales" style="width:100%;border:1.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:12px;font-family:'JetBrains Mono',monospace;outline:none;color:var(--ink)" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
           </div>
         </div>
         <div style="display:flex;gap:8px">
@@ -790,76 +795,122 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
 
 const SECRET_TOKEN = "mytoken123"; // Change this! Match it in the dashboard.
 
-function doGet(e) {
-  return handleRequest(e);
-}
+const SECRET_TOKEN = "pradeep2026";
 
+function doGet(e)  { return respond(handle(e.parameter, null)); }
 function doPost(e) {
-  return handleRequest(e);
+  var body = {};
+  try { body = JSON.parse(e.postData.contents || "{}"); } catch(x) {}
+  return respond(handle(e.parameter, body));
 }
-
-function handleRequest(e) {
-  const params = e.parameter || {};
-  const body   = e.postData ? JSON.parse(e.postData.contents || "{}") : {};
-  const token  = params.token || body.token || "";
-  const action = params.action || body.action || "";
-
-  // Token check
-  if (SECRET_TOKEN && token !== SECRET_TOKEN) {
-    return json({ ok: false, error: "Unauthorized" });
-  }
-
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-
-  // ── PULL: send sheet data to dashboard ──
-  if (action === "pull") {
-    const tabs   = body.tabs || { jan: "Jan 2026", feb: "Feb 2026", mar: "Mar 2026" };
-    const result = {};
-    for (const [key, tabName] of Object.entries(tabs)) {
-      const sheet = ss.getSheetByName(tabName);
-      if (!sheet) { result[key] = []; continue; }
-      const rows = sheet.getDataRange().getValues();
-      result[key] = rows.slice(1).map(r => ({
-        date:   String(r[0] || ""),
-        desc:   String(r[1] || ""),
-        cat:    String(r[2] || "Uncategorized"),
-        bank:   String(r[3] || "Kotak"),
-        debit:  parseFloat(r[4]) || 0,
-        credit: parseFloat(r[5]) || 0,
-      })).filter(r => r.date || r.desc);
-    }
-    return json({ ok: true, action: "pull", data: result });
-  }
-
-  // ── PUSH: write dashboard data into sheet ──
-  if (action === "push") {
-    const tabs  = body.tabs   || { jan: "Jan 2026", feb: "Feb 2026", mar: "Mar 2026" };
-    const data  = body.data   || {};
-    const hdr   = ["Date","Description","Category","Bank","Debit","Credit"];
-    for (const [key, tabName] of Object.entries(tabs)) {
-      let sheet = ss.getSheetByName(tabName);
-      if (!sheet) sheet = ss.insertSheet(tabName); // create if missing
-      sheet.clearContents();
-      const rows = (data[key] || []).map(r => [r.date,r.desc,r.cat,r.bank,r.debit,r.credit]);
-      sheet.getRange(1, 1, 1, 6).setValues([hdr]);
-      if (rows.length) sheet.getRange(2, 1, rows.length, 6).setValues(rows);
-    }
-    return json({ ok: true, action: "push" });
-  }
-
-  // ── TEST: ping ──
-  if (action === "test") {
-    const sheets = ss.getSheets().map(s => s.getName());
-    return json({ ok: true, title: ss.getName(), sheets });
-  }
-
-  return json({ ok: false, error: "Unknown action: " + action });
-}
-
-function json(obj) {
-  return ContentService
-    .createTextOutput(JSON.stringify(obj))
+function respond(data) {
+  return ContentService.createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+function num(v) {
+  if (!v && v !== 0) return 0;
+  var s = String(v).replace(/[^0-9.\-]/g, "");
+  return parseFloat(s) || 0;
+}
+
+function handle(params, body) {
+  var p = body || params || {};
+  if (p.token !== SECRET_TOKEN) return {ok:false, error:"Unauthorized"};
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var action = p.action || "";
+
+  // ── TEST ──────────────────────────────────────────────────────────────────
+  if (action === "test") {
+    return {ok:true, title:ss.getName(),
+            sheets:ss.getSheets().map(function(s){return s.getName();})};
+  }
+
+  // ── PULL P&L SHEET ────────────────────────────────────────────────────────
+  // Col layout (0-indexed): A=0 Date | B=1 Exp desc | C=2 Rev desc
+  //   D=3 Debit | E=4 Credit | F=5 Net | G=6 Bank | H=7 Exp Cat | I=8 Rev Cat
+  // Header rows 0-2 (rows 1-3 in sheet), data from row index 3 onward
+  if (action === "pull") {
+    var tabs = p.tabs || {jan:"January - 2026", feb:"Feb-2026", mar:"March-2026"};
+    var result = {};
+    for (var key in tabs) {
+      var sheet = ss.getSheetByName(tabs[key]);
+      if (!sheet) { result[key] = []; continue; }
+      var rows = sheet.getDataRange().getValues();
+      var out = [];
+      for (var i = 3; i < rows.length; i++) {
+        var r = rows[i];
+        var date    = r[0] ? String(r[0]).trim() : "";
+        var expDesc = String(r[1]||"").trim();
+        var revDesc = String(r[2]||"").trim();
+        var debit   = num(r[3]);
+        var credit  = num(r[4]);
+        var bank    = String(r[6]||"").trim();
+        var expCat  = String(r[7]||"").trim();
+        var revCat  = String(r[8]||"").trim();
+        if (!date && !expDesc && !revDesc && debit===0 && credit===0) continue;
+        out.push({
+          date:date,
+          desc:expDesc||revDesc,
+          cat: expCat||revCat||"Other",
+          bank:bank,
+          debit:debit,
+          credit:credit
+        });
+      }
+      result[key] = out;
+    }
+    return {ok:true, action:"pull", data:result};
+  }
+
+  // ── PULL Q4 SALES SHEET ───────────────────────────────────────────────────
+  // ALL tabs (Jan/January Sales/feb(A)/February Sales/March Sales Rev. Based/Mar Sales/Activation Course-March)
+  // are LEARNER REGISTRATION sheets with this layout (0-indexed, skipping col F gap):
+  //   A=0 Timestamp | B=1 First Name | C=2 Last Name | D=3 Mobile
+  //   E=4 Alt Mobile | F=5 Email | [G=6 gap] | H=7 Total Fee
+  //   I=8 Reg Amount | J=9 Date of Registration | K=10 Counsellor
+  //   Z=25 Amount Received | AA=26 Date of Payment Received
+  // Row 0 = header, data from row 1 onward
+  if (action === "pullQ4") {
+    var tabs = p.tabs || {
+      jan:"Jan",  janSales:"January Sales",
+      feb:"feb(A)", febSales:"February Sales",
+      marRev:"March Sales Rev. Based", marSales:"Mar Sales",
+      marAct:"Activation Course- March"
+    };
+    var result = {};
+    for (var key in tabs) {
+      var sheet = ss.getSheetByName(tabs[key]);
+      if (!sheet) { result[key] = null; continue; }
+      var rows = sheet.getDataRange().getValues();
+      var totalFee=0, totalReceived=0, learners=[];
+      for (var i = 1; i < rows.length; i++) {
+        var r = rows[i];
+        // skip fully empty rows
+        var ts = String(r[0]||"").trim();
+        if (!ts) continue;
+        var fee      = num(r[7]);   // col H  – Total Fee
+        var regAmt   = num(r[8]);   // col I  – Registration Amount
+        var regDate  = String(r[9]||"").trim();  // col J
+        var counsellor = String(r[10]||"").trim(); // col K
+        var received = num(r[25]);  // col Z  – Amount Received
+        var firstName= String(r[1]||"").trim();
+        var lastName = String(r[2]||"").trim();
+        if (fee > 0 || received > 0) {
+          totalFee      += fee;
+          totalReceived += received;
+          learners.push({name:firstName+" "+lastName, fee:fee, regDate:regDate,
+                         counsellor:counsellor, received:received});
+        }
+      }
+      result[key] = {tab:tabs[key], totalFee:totalFee, totalReceived:totalReceived,
+                     count:learners.length, learners:learners};
+    }
+    return {ok:true, action:"pullQ4", data:result};
+  }
+
+  return {ok:false, error:"Unknown action: "+action};
 }</pre>
         </div>
 
@@ -917,6 +968,8 @@ const CCOLORS = ['#1a6bff','#e5394b','#f59e0b','#00a76f','#7c4dff','#e8365d','#a
 let manuals = {sales:null,expense:null,collection:null,dropout:null,outstanding:null};
 // q4Sales holds achieved revenue pulled from Q4 Target sheet per month
 let q4Sales = {jan:null, feb:null, mar:null};
+// sheetSummary holds pulled expense/collection totals per month
+let sheetSummary = {jan:null, feb:null, mar:null};
 
 // ── FORMAT ──
 function fmt(n){const a=Math.abs(n);if(a>=10000000)return'₹'+(a/10000000).toFixed(2)+'Cr';if(a>=100000)return'₹'+(a/100000).toFixed(2)+'L';if(a>=1000)return'₹'+(a/1000).toFixed(1)+'K';return'₹'+Math.round(a).toLocaleString('en-IN');}
@@ -961,11 +1014,10 @@ function renderDashboard(data){
   // SALES: Q4 sheet only. null = not connected yet → show blank
   const q4val = q4Sales[curMon];
   const sales = manuals.sales !== null ? manuals.sales : q4val;
-  // EXPENSE: all debits
-  const autoExp = data.reduce((s,r)=>s+r.debit, 0);
-  const exp = manuals.expense !== null ? manuals.expense : autoExp;
-  // COLLECTION: all bank credits (Razorpay + NBFC + COD + Learner Payments)
+  // EXPENSE = sum of all debits | COLLECTION = sum of all credits (from P&L sheet rows)
+  const autoExp     = data.reduce((s,r)=>s+r.debit,  0);
   const autoCollVal = data.reduce((s,r)=>s+r.credit, 0);
+  const exp  = manuals.expense    !== null ? manuals.expense    : autoExp;
   const coll = manuals.collection !== null ? manuals.collection : autoCollVal;
   const drop = manuals.dropout;
   // OUTSTANDING: Sales - Collection (only when sales is known)
@@ -1469,6 +1521,24 @@ const DAILY_TOTALS = {
 };
 
 let salesView = 'team';
+let curSalesMon = 'mar';
+
+// Per-month Q4 data store — populated when Q4 sheet is pulled
+// Structure: { jan: {teams:[...], hq:{...}, dailyTotals:{...}}, feb: {...}, mar: {...} }
+let q4MonthData = { jan: null, feb: null, mar: null };
+
+function setSalesMon(mon, el) {
+  curSalesMon = mon;
+  ['jan','feb','mar'].forEach(k => {
+    const b = document.getElementById('sm-'+k);
+    if(b) b.classList.remove('active');
+  });
+  if(el) el.classList.add('active');
+  const labels = {jan:'January 2026', feb:'February 2026', mar:'March 2026'};
+  const lbl = document.getElementById('salesMonLabel');
+  if(lbl) lbl.textContent = 'Q4 FY 25-26 · ' + labels[mon];
+  renderSalesTab();
+}
 
 function setSalesView(v, el){
   salesView = v;
@@ -1480,124 +1550,113 @@ function setSalesView(v, el){
 }
 
 function renderSalesTab(){
-  // KPI row
-  const totalTarget  = SALES_TEAMS.reduce((s,t)=>s+t.tlTarget+t.members.reduce((a,m)=>a+m.target,0),0) + HQ.target;
-  const totalAchieved= SALES_TEAMS.reduce((s,t)=>s+t.tlAchieved+t.members.reduce((a,m)=>a+m.achieved,0),0) + HQ.achieved;
-  const totalLeads   = SALES_TEAMS.reduce((s,t)=>s+t.tlLeads+t.members.reduce((a,m)=>a+m.leads,0),0);
-  const overallPct   = totalTarget>0?((totalAchieved/totalTarget)*100).toFixed(1):0;
-  const bestTeam     = [...SALES_TEAMS].sort((a,b)=>(b.tlAchieved+b.members.reduce((s,m)=>s+m.achieved,0))-(a.tlAchieved+a.members.reduce((s,m)=>s+m.achieved,0)))[0];
-  const bestCounsellor = SALES_TEAMS.flatMap(t=>t.members).sort((a,b)=>b.achieved-a.achieved)[0];
+  const monData  = q4MonthData[curSalesMon];
+  const monNames = {jan:'January',feb:'February',mar:'March'};
+  const noData   = '<div style="text-align:center;padding:40px;color:var(--ink3);font-size:14px">🔗 Pull Q4 Sheet for '+monNames[curSalesMon]+' data</div>';
 
-  document.getElementById('salesKpiRow').innerHTML = `
-    <div class="stat-card sc-accent"><div class="stat-top"><span class="stat-label">Total Target</span><div class="stat-icon si-blue">🎯</div></div><div class="stat-val">${fmt(totalTarget)}</div><div class="stat-sub">Q4 FY 25-26</div><div class="stat-bar"><div class="stat-fill sf-blue" style="width:100%"></div></div></div>
-    <div class="stat-card sc-green"><div class="stat-top"><span class="stat-label">Achieved</span><div class="stat-icon si-green">✅</div></div><div class="stat-val">${fmt(totalAchieved)}</div><div class="stat-sub">${full(totalAchieved)}</div><div class="stat-bar"><div class="stat-fill sf-green" style="width:${Math.min(100,overallPct)}%"></div></div></div>
-    <div class="stat-card sc-red"><div class="stat-top"><span class="stat-label">Deficit</span><div class="stat-icon si-red">📉</div></div><div class="stat-val">${fmt(totalTarget-totalAchieved)}</div><div class="stat-sub">${overallPct}% complete</div><div class="stat-bar"><div class="stat-fill sf-red" style="width:${Math.min(100,100-overallPct)}%"></div></div></div>
-    <div class="stat-card sc-amber"><div class="stat-top"><span class="stat-label">Total Leads</span><div class="stat-icon si-amber">👥</div></div><div class="stat-val">${totalLeads}</div><div class="stat-sub">Across all teams</div><div class="stat-bar"><div class="stat-fill sf-amber" style="width:60%"></div></div></div>
-    <div class="stat-card sc-purple"><div class="stat-top"><span class="stat-label">Best Counsellor</span><div class="stat-icon si-purple">🏆</div></div><div class="stat-val" style="font-size:14px">${bestCounsellor.name}</div><div class="stat-sub">${fmt(bestCounsellor.achieved)} achieved</div><div class="stat-bar"><div class="stat-fill sf-purple" style="width:80%"></div></div></div>`;
+  const kpiRow  = document.getElementById('salesKpiRow');
+  const teamGrid= document.getElementById('salesTeamGrid');
+  const cnslBody= document.getElementById('salesCounsellorBody');
+  const dailyBar= document.getElementById('salesDailyBars');
+  const monLabel= document.getElementById('salesMonLabel');
 
-  // Team grid
-  document.getElementById('salesTeamGrid').innerHTML = SALES_TEAMS.map(team=>{
-    const teamTotal = team.tlAchieved + team.members.reduce((s,m)=>s+m.achieved,0);
-    const teamTarget= team.tlTarget   + team.members.reduce((s,m)=>s+m.target,0);
-    const pct = teamTarget>0?Math.min(100,(teamTotal/teamTarget*100)):0;
-    const topM= [...team.members].sort((a,b)=>b.achieved-a.achieved)[0];
-    return`<div class="card" style="border-left:4px solid ${team.color}">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-        <div style="display:flex;align-items:center;gap:10px">
-          <div style="width:38px;height:38px;background:${team.color}15;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px">${team.icon}</div>
-          <div>
-            <div style="font-size:14px;font-weight:800;color:var(--ink)">${team.name}</div>
-            <div style="font-size:10.5px;color:var(--ink3)">TL: ${team.tl} · ${team.members.length} counsellors</div>
+  if(monLabel) monLabel.textContent = 'Q4 FY 25-26 · '+monNames[curSalesMon]+' 2026';
+
+  if (!monData) {
+    if(kpiRow)   kpiRow.innerHTML   = '<div style="grid-column:1/-1;'+noData.slice(5)};
+    if(teamGrid) teamGrid.innerHTML = noData;
+    if(cnslBody) cnslBody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--ink3);padding:20px">Connect Q4 Sheet first</td></tr>';
+    return;
+  }
+
+  const totalSales    = monData.totalSales    || 0;
+  const totalReceived = monData.totalReceived || 0;
+  const count         = monData.count         || 0;
+  const outstanding   = totalSales - totalReceived;
+  const teams         = monData.teams         || [];
+  const pct           = totalSales>0 ? Math.round(totalReceived/totalSales*100) : 0;
+
+  // ── KPI cards (4-col grid) ──────────────────────────────────────────────
+  if(kpiRow) {
+    kpiRow.style.gridTemplateColumns = 'repeat(4,1fr)';
+    kpiRow.innerHTML = `
+      <div class="stat-card sc-accent">
+        <div class="stat-top"><span class="stat-label">Total Registrations</span><div class="stat-icon si-blue">📋</div></div>
+        <div class="stat-val">${count}</div>
+        <div class="stat-sub">Learners this month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><span class="stat-label">Total Fee (Sales)</span><div class="stat-icon si-green">💰</div></div>
+        <div class="stat-val">${fmt(totalSales)}</div>
+        <div class="stat-sub">Registered revenue</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><span class="stat-label">Received</span><div class="stat-icon si-purple">✅</div></div>
+        <div class="stat-val">${fmt(totalReceived)}</div>
+        <div class="stat-sub">${pct}% of total fee</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top"><span class="stat-label">Outstanding</span><div class="stat-icon si-red">⏳</div></div>
+        <div class="stat-val">${fmt(outstanding)}</div>
+        <div class="stat-sub">Pending collection</div>
+      </div>`;
+  }
+
+  // ── Team Grid — counsellor cards ────────────────────────────────────────
+  if(teamGrid) {
+    if(!teams.length) {
+      teamGrid.innerHTML = '<div style="grid-column:1/-1">'+noData+'</div>';
+    } else {
+      teamGrid.innerHTML = teams.slice(0,10).map(t => {
+        const tpct = totalSales>0 ? Math.round(t.achieved/totalSales*100) : 0;
+        return `<div class="card" style="padding:14px 16px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <span style="font-weight:700;font-size:13px;color:var(--ink)">${t.name}</span>
+            <span style="font-size:11px;color:var(--ink3)">${t.units} learner${t.units!==1?'s':''}</span>
           </div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-size:18px;font-weight:700;font-family:'JetBrains Mono',monospace;color:${team.color}">${fmt(teamTotal)}</div>
-          <div style="font-size:10px;color:var(--ink3)">of ${fmt(teamTarget)}</div>
-        </div>
-      </div>
-      <!-- Progress bar -->
-      <div style="height:6px;background:var(--border);border-radius:6px;overflow:hidden;margin-bottom:10px">
-        <div style="width:${pct.toFixed(1)}%;height:100%;background:${team.color};border-radius:6px;transition:width 1s ease"></div>
-      </div>
-      <div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink3);margin-bottom:12px">
-        <span>${pct.toFixed(1)}% achieved</span>
-        <span>Deficit: <strong style="color:var(--red)">${fmt(teamTarget-teamTotal)}</strong></span>
-        <span>Leads: <strong style="color:var(--ink2)">${team.members.reduce((s,m)=>s+m.leads,0)+team.tlLeads}</strong></span>
-      </div>
-      <!-- Members mini table -->
-      <table style="width:100%;border-collapse:collapse">
-        <thead><tr>
-          <th style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;padding:0 0 6px;text-align:left">Counsellor</th>
-          <th style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;padding:0 0 6px;text-align:right">Target</th>
-          <th style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;padding:0 0 6px;text-align:right">Achieved</th>
-          <th style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;padding:0 0 6px;text-align:right">Conv%</th>
-        </tr></thead>
-        <tbody>
-          <tr style="border-top:1px solid var(--border)">
-            <td style="padding:5px 0;font-size:11.5px;font-weight:700;color:${team.color}">${team.tl} <span style="font-size:9px;font-weight:500;color:var(--ink3)">(TL)</span></td>
-            <td style="padding:5px 0;text-align:right;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--ink3)">${fmt(team.tlTarget)}</td>
-            <td style="padding:5px 0;text-align:right;font-size:11px;font-family:'JetBrains Mono',monospace;color:${team.tlAchieved>0?'var(--green)':'var(--ink3)'};font-weight:700">${team.tlAchieved>0?fmt(team.tlAchieved):'—'}</td>
-            <td style="padding:5px 0;text-align:right;font-size:11px;color:var(--ink3)">${team.tlTarget>0?((team.tlAchieved/team.tlTarget)*100).toFixed(1)+'%':'—'}</td>
-          </tr>
-          ${team.members.map(m=>{
-            const mp=m.target>0?((m.achieved/m.target)*100).toFixed(1):0;
-            return`<tr style="border-top:1px solid var(--border)">
-              <td style="padding:5px 0;font-size:11.5px;font-weight:600;color:var(--ink)">${m.name}</td>
-              <td style="padding:5px 0;text-align:right;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--ink3)">${fmt(m.target)}</td>
-              <td style="padding:5px 0;text-align:right;font-size:11px;font-family:'JetBrains Mono',monospace;color:${m.achieved>0?'var(--green)':'var(--ink3)'};font-weight:700">${m.achieved>0?fmt(m.achieved):'—'}</td>
-              <td style="padding:5px 0;text-align:right;font-size:11px;color:${mp>=20?'var(--green)':mp>=10?'var(--amber)':'var(--ink3)'}">${mp>0?mp+'%':'—'}</td>
-            </tr>`;
-          }).join('')}
-        </tbody>
-      </table>
-    </div>`;
-  }).join('');
+          <div style="font-size:20px;font-weight:800;color:var(--green);margin-bottom:6px">${fmt(t.achieved)}</div>
+          <div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden">
+            <div style="height:100%;background:var(--green);width:${tpct}%;border-radius:4px"></div>
+          </div>
+          <div style="font-size:11px;color:var(--ink3);margin-top:4px">${tpct}% of month total</div>
+        </div>`;
+      }).join('');
+    }
+  }
 
-  // Counsellor table
-  const allCounsellors = SALES_TEAMS.flatMap(t=>t.members.map(m=>({...m,team:t.name,teamColor:t.color})));
-  allCounsellors.sort((a,b)=>b.achieved-a.achieved);
-  document.getElementById('salesCounsellorBody').innerHTML = allCounsellors.map((m,i)=>{
-    const pct = m.target>0?Math.min(100,(m.achieved/m.target*100)):0;
-    const convPct = m.target>0?((m.achieved/m.target)*100).toFixed(1):0;
-    return`<tr>
-      <td><div style="font-weight:700;color:var(--ink);font-size:12.5px">${m.name}</div></td>
-      <td><span style="background:${m.teamColor}15;color:${m.teamColor};padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700">${m.team}</span></td>
-      <td style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px">${full(m.target)}</td>
-      <td style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:${m.achieved>0?'var(--green)':'var(--ink3)'}">${m.achieved>0?full(m.achieved):'—'}</td>
-      <td style="text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--red)">${full(m.target-m.achieved)}</td>
-      <td style="text-align:right;font-size:12px">${m.leads||'—'}</td>
-      <td style="text-align:right;font-size:12px;color:${convPct>=20?'var(--green)':convPct>=10?'var(--amber)':'var(--ink3)'}">${convPct>0?convPct+'%':'—'}</td>
-      <td style="min-width:100px">
-        <div style="height:5px;background:var(--border);border-radius:5px;overflow:hidden">
-          <div style="width:${pct}%;height:100%;background:${m.teamColor};border-radius:5px"></div>
-        </div>
-        <div style="font-size:9px;color:var(--ink3);margin-top:2px">${pct.toFixed(0)}%</div>
-      </td>
-    </tr>`;
-  }).join('');
+  // ── Counsellor table ─────────────────────────────────────────────────────
+  if(cnslBody) {
+    cnslBody.innerHTML = teams.map(t => `
+      <tr>
+        <td><b>${t.name}</b></td>
+        <td>—</td>
+        <td style="text-align:right">—</td>
+        <td style="text-align:right;color:var(--green);font-weight:600">${fmt(t.achieved)}</td>
+        <td style="text-align:right;color:var(--red)">—</td>
+        <td style="text-align:right">${t.units}</td>
+        <td style="text-align:right">${count>0?Math.round(t.units/count*100):0}%</td>
+        <td><div style="background:var(--border);border-radius:3px;height:6px;width:100px;overflow:hidden"><div style="height:100%;background:var(--green);width:${totalSales>0?Math.round(t.achieved/totalSales*100):0}%"></div></div></td>
+      </tr>`).join('');
+  }
 
-  // Daily bar chart
-  const days = Object.entries(DAILY_TOTALS).sort((a,b)=>+a[0]-+b[0]);
-  const maxD = Math.max(...days.map(([,v])=>v),1);
-  document.getElementById('salesDailyBars').innerHTML = days.map(([day,amt])=>{
-    const h = Math.max(4, Math.round(amt/maxD*140));
-    return`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:44px">
-      <div style="font-size:8.5px;color:var(--ink3);font-family:'JetBrains Mono',monospace;font-weight:600">${amt>0?fmt(amt):''}</div>
-      <div style="width:75%;height:${h}px;background:${amt>100000?'var(--accent)':amt>50000?'var(--green)':'var(--amber)'};border-radius:4px 4px 0 0;opacity:.85;transition:opacity .15s" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=.85" title="Mar ${day}: ${full(amt)}"></div>
-      <div style="font-size:9.5px;color:var(--ink2);font-weight:700">Mar ${day}</div>
-    </div>`;
-  }).join('');
-}
-
-function exportSalesCSV(){
-  let csv='Team,Counsellor,Target,Achieved,Deficit,Leads,Conv%\n';
-  SALES_TEAMS.forEach(t=>{
-    csv+=`"${t.name}","${t.tl} (TL)",${t.tlTarget},${t.tlAchieved},${t.tlTarget-t.tlAchieved},${t.tlLeads},${t.tlTarget>0?((t.tlAchieved/t.tlTarget)*100).toFixed(1)+'%':'0%'}\n`;
-    t.members.forEach(m=>{
-      csv+=`"${t.name}","${m.name}",${m.target},${m.achieved},${m.target-m.achieved},${m.leads||0},${m.target>0?((m.achieved/m.target)*100).toFixed(1)+'%':'0%'}\n`;
-    });
-  });
-  dl(csv,'Sales_Q4_FY25-26_March2026.csv','text/csv');
+  // ── Daily bars: registration count per day ───────────────────────────────
+  if(dailyBar && monData.teams) {
+    const dayCounts = {};
+    monData.teams.forEach(t => (t.learners||[]).forEach(l => {
+      if(!l.regDate) return;
+      const m = String(l.regDate).match(/(\d{1,2})[\/\-]/);
+      const d = m ? parseInt(m[1]) : 0;
+      if(d) dayCounts[d] = (dayCounts[d]||0) + 1;
+    }));
+    const days = Object.keys(dayCounts).map(Number).sort((a,b)=>a-b);
+    const max  = Math.max(...Object.values(dayCounts), 1);
+    dailyBar.innerHTML = days.map(d => `
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;min-width:20px">
+        <div style="font-size:9px;color:var(--ink3)">${dayCounts[d]}</div>
+        <div style="width:100%;background:var(--accent);border-radius:3px 3px 0 0;height:${Math.max(8,Math.round(dayCounts[d]/max*120))}px;opacity:0.85"></div>
+        <div style="font-size:9px;color:var(--ink3)">${d}</div>
+      </div>`).join('');
+  }
 }
 
 // ── DOWNLOAD ──
@@ -1659,9 +1718,9 @@ function gsConnect(n) {
     // Also save tab names if sheet 1
     if(n===1){
       localStorage.setItem('gs_tabs', JSON.stringify({
-        jan: document.getElementById('gsTabJan').value.trim()||'Jan 2026',
-        feb: document.getElementById('gsTabFeb').value.trim()||'Feb 2026',
-        mar: document.getElementById('gsTabMar').value.trim()||'Mar 2026'
+        jan: document.getElementById('gsTabJan').value.trim()||'January 2026',
+        feb: document.getElementById('gsTabFeb').value.trim()||'February 2026',
+        mar: document.getElementById('gsTabMar').value.trim()||'March 2026'
       }));
     }
     if(n===3){
@@ -1725,71 +1784,80 @@ async function gsPullOne(n) {
 async function gsPullQ4Sales() {
   gsBanner('Pulling Q4 Sales data…','loading');
   gsLog('Pulling Q4 Target Sheet…');
-  const tabJan = document.getElementById('gsQ4TabJan').value.trim() || 'Jan';
-  const tabFeb = document.getElementById('gsQ4TabFeb').value.trim() || 'feb(A)';
-  const tabMar = document.getElementById('gsQ4TabMar').value.trim() || 'March Sales Rev. Based';
-  const tabMap = {jan: tabJan, feb: tabFeb, mar: tabMar};
-  let pulled = 0;
-  for (const [key, tabName] of Object.entries(tabMap)) {
-    try {
-      const data = await gsCall(3, {action:'pull', tabs:{[key]: tabName}});
-      if (!data.ok) { gsLog(`Tab "${tabName}" failed: ${data.error}`); continue; }
-      const rows = data.data[key] || [];
-      // Mar tab is revenue-based: col A=counsellor, col B=name, col C=target, col D=achieved
-      // Jan/Feb tabs: col A=teams, col B=counsellors, col C=target, col D=registered (achieved units)
-      // For Mar (revenue): find TOTAL row, col D = achieved revenue
-      // For Jan/Feb (units): find TOTAL row, col D * ARPU ≈ revenue  OR use "Registered Revenue" row
-      // Strategy: look for row where col A or B contains 'TOTAL' and take col D as achieved revenue
-      let achieved = null;
-      // First try to find a numeric total in col D of TOTAL row
-      for (const row of rows) {
-        const a = String(row.date||'').toUpperCase();
-        const b = String(row.desc||'').toUpperCase();
-        if ((a.includes('TOTAL') || b.includes('TOTAL')) && !a.includes('REVENUE')) {
-          // col D maps to row.bank in the generic pull (cols: date,desc,cat,bank,debit,credit)
-          const val = parseFloat(String(row.bank||'').replace(/[,₹]/g,''));
-          if (!isNaN(val) && val > 0) { achieved = val; break; }
-        }
-      }
-      // Fallback: for Mar (revenue tab) sum col D (bank field) across all non-header rows
-      if (achieved === null && key === 'mar') {
-        let sum = 0;
-        rows.forEach(r => {
-          const v = parseFloat(String(r.bank||'').replace(/[,₹]/g,''));
-          if (!isNaN(v) && v > 1000) sum += v;
-        });
-        if (sum > 0) achieved = sum;
-      }
-      // For Jan/Feb use "Registered Revenue" which appears after the unit TOTAL row
-      if (achieved === null) {
-        for (const row of rows) {
-          const a = String(row.date||row.desc||'').toLowerCase();
-          if (a.includes('registered revenue') || a.includes('tr ') || a.includes('total sale')) {
-            const val = parseFloat(String(row.bank||row.debit||row.credit||'').replace(/[,₹]/g,''));
-            if (!isNaN(val) && val > 0) { achieved = val; break; }
-          }
-        }
-      }
-      // Last fallback: use the known values from PDF
-      if (achieved === null) {
-        if (key === 'jan') achieved = 15217230; // Registered Revenue from PDF
-        if (key === 'feb') achieved = 14994539; // Feb registered revenue
-        if (key === 'mar') achieved = 1551629;  // Mar achieved so far (live from sheet)
-      }
-      q4Sales[key] = achieved;
-      gsLog(`Q4 "${tabName}" → Achieved Revenue: ₹${achieved ? achieved.toLocaleString('en-IN') : 'not found'}`);
-      pulled++;
-    } catch(e){ gsLog(`Error on tab "${tabName}": ${e.message}`); }
-  }
-  if (pulled > 0) {
-    gsBanner(`Q4 Sales pulled! Jan: ${fmt(q4Sales.jan||0)} · Feb: ${fmt(q4Sales.feb||0)} · Mar: ${fmt(q4Sales.mar||0)}`,'success');
+
+  const tabJan     = document.getElementById('gsQ4TabJan')?.value.trim()  || 'Jan';
+  const tabFeb     = document.getElementById('gsQ4TabFeb')?.value.trim()  || 'feb(A)';
+  const tabMar     = document.getElementById('gsQ4TabMar')?.value.trim()  || 'Mar Sales';
+
+  // All 7 tabs — learner registration sheets
+  const tabs = {
+    jan:     tabJan,
+    janSales:'January Sales',
+    feb:     tabFeb,
+    febSales:'February Sales',
+    marRev:  'March Sales Rev. Based',
+    marSales:tabMar,
+    marAct:  'Activation Course- March',
+  };
+
+  try {
+    const data = await gsCall(2, {action:'pullQ4', tabs});
+    if (!data.ok) throw new Error(data.error || 'Q4 Pull failed');
+
+    gsLog('Q4 tabs received: ' + Object.keys(data.data).join(', '));
+
+    // Merge tabs per month
+    function merge(keys) {
+      let fee=0, received=0, count=0, learners=[];
+      keys.forEach(k => {
+        const d = data.data[k];
+        if (!d) { gsLog('Tab "'+tabs[k]+'" — not found or empty'); return; }
+        fee      += d.totalFee      || 0;
+        received += d.totalReceived || 0;
+        count    += d.count         || 0;
+        learners  = learners.concat(d.learners || []);
+      });
+      return {fee, received, count, learners};
+    }
+
+    const jan = merge(['jan','janSales']);
+    const feb = merge(['feb','febSales']);
+    const mar = merge(['marRev','marSales','marAct']);
+
+    q4Sales.jan = jan.fee;
+    q4Sales.feb = feb.fee;
+    q4Sales.mar = mar.fee;
+
+    // Build per-month team data for Sales tab
+    function buildMonthData(d) {
+      const teams = {};
+      (d.learners || []).forEach(l => {
+        const cn = l.counsellor || 'Unknown';
+        if (!teams[cn]) teams[cn] = {name:cn, achieved:0, units:0, learners:[]};
+        teams[cn].achieved += l.fee || 0;
+        teams[cn].units++;
+        teams[cn].learners.push(l);
+      });
+      const teamArr = Object.values(teams).sort((a,b)=>b.achieved-a.achieved);
+      return {teams:teamArr, totalSales:d.fee, totalReceived:d.received, count:d.count};
+    }
+
+    q4MonthData.jan = buildMonthData(jan);
+    q4MonthData.feb = buildMonthData(feb);
+    q4MonthData.mar = buildMonthData(mar);
+
+    gsLog('Jan: ₹'+fmt(q4Sales.jan)+' ('+jan.count+' learners)');
+    gsLog('Feb: ₹'+fmt(q4Sales.feb)+' ('+feb.count+' learners)');
+    gsLog('Mar: ₹'+fmt(q4Sales.mar)+' ('+mar.count+' learners)');
+
+    gsBanner('Q4 Sales pulled! Jan: '+fmt(q4Sales.jan||0)+' · Feb: '+fmt(q4Sales.feb||0)+' · Mar: '+fmt(q4Sales.mar||0),'success');
     renderDashboard(DB[curMon]);
+    if(document.getElementById('pane-sales').classList.contains('active')) renderSalesTab();
+    renderMonthlyReport();
     gsLog('Dashboard updated with Q4 Sales data.');
-  } else {
-    gsBanner('Q4 pull failed — using fallback values from PDF.','info');
-    // Set known values from PDF as fallback
-    q4Sales = {jan:15217230, feb:14994539, mar:1551629};
-    renderDashboard(DB[curMon]);
+  } catch(e) {
+    gsBanner('Q4 pull failed: '+e.message,'error');
+    gsLog('Error: '+e.message);
   }
 }
 
@@ -1803,13 +1871,13 @@ async function gsTest() { await gsTestOne(1); }
 
 async function gsPull() {
   const gs=GS_SHEETS[1];
-  if(!gs.connected){gsBanner('Connect the Expense Sheet first.','error');return;}
-  gsBanner('Pulling from Expense Sheet…','loading');
+  if(!gs.connected){gsBanner('Connect the P&L Sheet first.','error');return;}
+  gsBanner('Pulling from P&L Sheet…','loading');
   gsLog('Starting Pull…');
   const tabs={
-    jan:document.getElementById('gsTabJan').value.trim()||'Jan 2026',
-    feb:document.getElementById('gsTabFeb').value.trim()||'Feb 2026',
-    mar:document.getElementById('gsTabMar').value.trim()||'Mar 2026',
+    jan:document.getElementById('gsTabJan').value.trim()||'January - 2026',
+    feb:document.getElementById('gsTabFeb').value.trim()||'Feb-2026',
+    mar:document.getElementById('gsTabMar').value.trim()||'March-2026',
   };
   try {
     const data=await gsCall(1,{action:'pull',tabs});
@@ -1817,31 +1885,43 @@ async function gsPull() {
     let total=0;
     ['jan','feb','mar'].forEach(k=>{
       const rows=(data.data[k]||[]).map(r=>{
-        r.isIn=r.credit>0&&r.debit===0; r.isOut=r.debit>0&&r.credit===0;
-        const m=String(r.date).match(/(\d{1,2})/); r.dayN=m?parseInt(m[1]):1;
-        const mo=k==='jan'?'Jan':k==='feb'?'Feb':'Mar'; r.dayKey=r.dayN+'-'+mo;
+        r.isIn  = r.credit>0 && r.debit===0;
+        r.isOut = r.debit>0  && r.credit===0;
+        // parse dayN from date string
+        const m = String(r.date).match(/(\d{1,2})[-\/]/);
+        r.dayN   = m ? parseInt(m[1]) : 1;
+        const mo = k==='jan'?'Jan':k==='feb'?'Feb':'Mar';
+        r.dayKey = r.dayN+'-'+mo;
         return r;
       });
-      if(rows.length){DB[k]=rows;total+=rows.length;}
-      gsLog(`"${tabs[k]}" — ${rows.length} rows`);
+      if(rows.length){DB[k]=rows; total+=rows.length;}
+      gsLog('"'+tabs[k]+'" — '+rows.length+' rows');
     });
-    gsBanner(`Pull complete! ${total} rows loaded. Dashboard updated.`,'success');
-    const nb=document.getElementById('noDataBanner');if(nb)nb.style.display='none';
-    document.getElementById('sTxt').textContent='Jan–Mar 2026 · Data Loaded';
-    renderDashboard(DB[curMon]); populateCatFilter(DB[curMon]); renderMonthlyReport();
-    gsLog('Dashboard refreshed.');
+    if(total>0){
+      gsBanner('Pull complete! '+total+' rows loaded.','success');
+      const nb=document.getElementById('noDataBanner');if(nb)nb.style.display='none';
+      document.getElementById('sTxt').textContent='Jan–Mar 2026 · Data Loaded';
+      // Clear sheetSummary so renderDashboard uses DB directly
+      sheetSummary={jan:null,feb:null,mar:null};
+      renderDashboard(DB[curMon]);
+      populateCatFilter(DB[curMon]);
+      renderMonthlyReport();
+      gsLog('Dashboard refreshed.');
+    } else {
+      gsBanner('Pull returned no data — check tab names.','error');
+      gsLog('Tab names tried: '+JSON.stringify(tabs));
+    }
   } catch(e){gsBanner('Pull failed: '+e.message,'error');gsLog('Error: '+e.message);}
 }
-
 async function gsPush() {
   const gs=GS_SHEETS[1];
   if(!gs.connected){gsBanner('Connect the Expense Sheet first.','error');return;}
   gsBanner('Pushing to Expense Sheet…','loading');
   gsLog('Starting Push…');
   const tabs={
-    jan:document.getElementById('gsTabJan').value.trim()||'Jan 2026',
-    feb:document.getElementById('gsTabFeb').value.trim()||'Feb 2026',
-    mar:document.getElementById('gsTabMar').value.trim()||'Mar 2026',
+    jan:document.getElementById('gsTabJan').value.trim()||'January 2026',
+    feb:document.getElementById('gsTabFeb').value.trim()||'February 2026',
+    mar:document.getElementById('gsTabMar').value.trim()||'March 2026',
   };
   const sheetData={};
   ['jan','feb','mar'].forEach(k=>{sheetData[k]=(DB[k]||[]).map(r=>({date:r.date,desc:r.desc,cat:r.cat,bank:r.bank,debit:r.debit,credit:r.credit}));});
@@ -1865,6 +1945,8 @@ function gsCopyScript() {
 
 // ── INIT ──
 (async ()=>{
+  // Pre-load March hardcoded data into q4MonthData so Sales tab works immediately
+  q4MonthData.mar = {teams:SALES_TEAMS, hq:HQ, dailyTotals:DAILY_TOTALS};
   renderDashboard(DB[curMon]);
   populateCatFilter(DB[curMon]);
   renderMonthlyReport();
@@ -1913,4 +1995,89 @@ function gsCopyScript() {
 })();
 </script>
 </body>
-</html>
+</html>async function gsQ4Pull() {
+  const gs = GS_SHEETS[2];
+  if (!gs.connected) { gsBanner('Connect the Q4 Sheet first.', 'error'); return; }
+  gsBanner('Pulling Q4 Sales data…', 'loading');
+  gsLog('Q4 Pull starting…');
+
+  // All 7 tabs in the Q4 sheet
+  const tabs = {
+    jan:      document.getElementById('gsQ4TabJan')?.value.trim()     || 'Jan',
+    janSales: 'January Sales',
+    feb:      document.getElementById('gsQ4TabFeb')?.value.trim()     || 'feb(A)',
+    febSales: 'February Sales',
+    marRev:   'March Sales Rev. Based',
+    marSales: document.getElementById('gsQ4TabMar')?.value.trim()     || 'Mar Sales',
+    marAct:   'Activation Course- March',
+  };
+
+  try {
+    const data = await gsCall(2, {action:'pullQ4', tabs});
+    if (!data.ok) throw new Error(data.error || 'Q4 Pull failed');
+
+    gsLog('Q4 raw response: ' + JSON.stringify(Object.keys(data.data)));
+
+    // ── Aggregate per month (combine relevant tabs) ──────────────────────────
+    // January  = Jan + January Sales
+    // February = feb(A) + February Sales
+    // March    = March Sales Rev. Based + Mar Sales + Activation Course- March
+
+    function mergeTabs(keys) {
+      let totalFee=0, totalReceived=0, count=0, learners=[];
+      keys.forEach(k => {
+        const d = data.data[k];
+        if (!d) return;
+        totalFee      += d.totalFee      || 0;
+        totalReceived += d.totalReceived || 0;
+        count         += d.count         || 0;
+        learners = learners.concat(d.learners || []);
+      });
+      return {totalFee, totalReceived, count, learners};
+    }
+
+    const janData = mergeTabs(['jan','janSales']);
+    const febData = mergeTabs(['feb','febSales']);
+    const marData = mergeTabs(['marRev','marSales','marAct']);
+
+    // Store in q4Sales (total fee = registered sales)
+    q4Sales.jan = janData.totalFee;
+    q4Sales.feb = febData.totalFee;
+    q4Sales.mar = marData.totalFee;
+
+    // Store learner details per month for Sales tab
+    q4MonthData.jan = buildQ4MonthData(janData);
+    q4MonthData.feb = buildQ4MonthData(febData);
+    q4MonthData.mar = buildQ4MonthData(marData);
+
+    gsLog('Jan Sales: ₹' + fmt(q4Sales.jan) + ' (' + janData.count + ' learners)');
+    gsLog('Feb Sales: ₹' + fmt(q4Sales.feb) + ' (' + febData.count + ' learners)');
+    gsLog('Mar Sales: ₹' + fmt(q4Sales.mar) + ' (' + marData.count + ' learners)');
+
+    gsBanner('Q4 Pull complete! Jan/Feb/Mar sales loaded.', 'success');
+    renderDashboard(DB[curMon]);
+    renderSalesTab();
+    renderMonthlyReport();
+  } catch(e) {
+    gsBanner('Q4 Pull failed: ' + e.message, 'error');
+    gsLog('Error: ' + e.message);
+  }
+}
+
+function buildQ4MonthData(d) {
+  // Group learners by counsellor to mimic team structure
+  const teams = {};
+  (d.learners || []).forEach(l => {
+    const name = l.counsellor || 'Unknown';
+    if (!teams[name]) teams[name] = {name, target:0, achieved:0, units:0, learners:[]};
+    teams[name].achieved += l.fee || 0;
+    teams[name].units    += 1;
+    teams[name].learners.push(l);
+  });
+  return {
+    totalSales: d.totalFee,
+    totalReceived: d.totalReceived,
+    count: d.count,
+    teams: Object.values(teams).sort((a,b) => b.achieved - a.achieved),
+  };
+}
