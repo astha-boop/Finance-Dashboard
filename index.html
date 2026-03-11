@@ -290,7 +290,7 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
   <div class="topbar">
     <div>
       <div class="page-title" id="pgTitle">Dashboard</div>
-      <div class="page-sub"><span class="status-dot" id="sDot"></span><span id="sTxt">Jan–Mar 2026 · Data Loaded</span></div>
+      <div class="page-sub"><span class="status-dot" id="sDot"></span><span id="sTxt">Connect Google Sheets to load data</span></div>
     </div>
     <div class="topbar-right">
       <div class="month-tabs" id="mtsWrap">
@@ -306,6 +306,14 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);display
 
     <!-- ══ DASHBOARD ══ -->
     <div class="pane active" id="pane-dashboard">
+      <div id="noDataBanner" style="background:var(--accent-l);border:1.5px solid var(--accent);border-radius:10px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--ink)">
+        <span style="font-size:20px">🔗</span>
+        <div>
+          <div style="font-weight:700;margin-bottom:2px">No data loaded yet</div>
+          <div style="color:var(--ink3);font-size:12px">Go to <strong>Google Sheets</strong> tab → connect your Expense Sheet and Q4 Target Sheet → Pull data</div>
+        </div>
+        <button onclick="nav('sheets',null);document.getElementById('noDataBanner').style.display='none'" style="margin-left:auto;background:var(--accent);color:#fff;border:none;border-radius:7px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer">Go to Sheets →</button>
+      </div>
 
       <!-- STAT CARDS -->
       <div class="stats-row">
@@ -892,270 +900,13 @@ function json(obj) {
 
 <script>
 // ═══════════════════════════
-// HARDCODED DATA — Jan/Feb/Mar 2026
+// DATA — loaded from Google Sheets
 // ═══════════════════════════
-const RAW = {
-jan:[
-  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'AIR INDIA LIMIT',cat:'Travel',bank:'Kotak',debit:4830,credit:0},
-  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'DEEPAK KUMAR',cat:'Staffwelfare',bank:'Kotak',debit:2575,credit:0},
-  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'ANJALI MATHUR',cat:'Staffwelfare',bank:'Kotak',debit:4000,credit:0},
-  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'HEM CHANDRA',cat:'Miss Expense',bank:'Kotak',debit:80,credit:0},
-  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'DIPTI FILLING STATION',cat:'Fuel',bank:'Kotak',debit:4216,credit:0},
-  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'CONNAUGHT PLAZA',cat:'Staffwelfare',bank:'Kotak',debit:1423,credit:0},
-  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'Indigo',cat:'Travel',bank:'Kotak',debit:10863,credit:0},
-  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:97522},
-  {date:'01-Jan-2026',dayN:1,dayKey:'1-Jan',desc:'AMANDEEP',cat:'Learner payment',bank:'Kotak',debit:0,credit:33500},
-  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'ZOMATO',cat:'Staffwelfare',bank:'Kotak',debit:2386,credit:0},
-  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'AIR INDIA',cat:'Travel',bank:'Kotak',debit:3150,credit:0},
-  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:12812},
-  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:40003,credit:0},
-  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'GOOGLESERVIS',cat:'Software',bank:'Axis',debit:21935,credit:0},
-  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'LORD KRISHNA FINANCIAL',cat:'FINZ Forecloser',bank:'Axis',debit:113625,credit:0},
-  {date:'02-Jan-2026',dayN:2,dayKey:'2-Jan',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:150797,credit:0},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:30000,credit:0},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:52763},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Jaa Maa Vaishno',cat:'COD',bank:'Axis',debit:0,credit:100000},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Jumbo Speciality Foods',cat:'Staffwelfare',bank:'Kotak',debit:2629,credit:0},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Air India',cat:'Travel',bank:'Kotak',debit:10914,credit:0},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Adobe',cat:'Software',bank:'Kotak',debit:2029,credit:0},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'OPENAI *CHATGPT',cat:'Software',bank:'Kotak',debit:5198,credit:0},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'GOOGLE CLOUD',cat:'Software',bank:'Kotak',debit:884,credit:0},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:963,credit:0},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Raja Rajeshwari',cat:'Learner Payment',bank:'Kotak',debit:0,credit:4500},
-  {date:'03-Jan-2026',dayN:3,dayKey:'3-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:15742},
-  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Wix',cat:'Software',bank:'Kotak',debit:3540,credit:0},
-  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Adobe',cat:'Software',bank:'Kotak',debit:2367,credit:0},
-  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Blinkit',cat:'Staffwelfare',bank:'Kotak',debit:493,credit:0},
-  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Uber',cat:'Travel',bank:'Kotak',debit:534,credit:0},
-  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'T2 CHAAYOS',cat:'Staffwelfare',bank:'Kotak',debit:436,credit:0},
-  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Uber Refund',cat:'Uber Refund',bank:'Kotak',debit:0,credit:534},
-  {date:'04-Jan-2026',dayN:4,dayKey:'4-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:70000,credit:0},
-  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:70017,credit:0},
-  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'Razorpay',cat:'Razorpay Axis',bank:'Axis',debit:0,credit:1500},
-  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'SUNEETIM',cat:'Learner Payment',bank:'Axis',debit:0,credit:20000},
-  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'JR SENDWICH',cat:'Staffwelfare',bank:'Kotak',debit:110,credit:0},
-  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'STARBUCKS',cat:'Staffwelfare',bank:'Kotak',debit:1000,credit:0},
-  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'CLAUDE.AI',cat:'Software',bank:'Kotak',debit:1880,credit:0},
-  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'UBER INDIA',cat:'Travel',bank:'Kotak',debit:686,credit:0},
-  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'Debit A/c',cat:'Car EMI',bank:'Kotak',debit:61550,credit:0},
-  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:33496},
-  {date:'05-Jan-2026',dayN:5,dayKey:'5-Jan',desc:'VAISHALI RAJESH',cat:'Learner Payment',bank:'Kotak',debit:0,credit:33999},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Wondershare',cat:'Software',bank:'Kotak',debit:840,credit:0},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'PRATEEK SHEKHAR',cat:'Prateek Sir',bank:'Kotak',debit:1000,credit:0},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'BIGTREE ENTERTA',cat:'Staffwelfare',bank:'Kotak',debit:559,credit:0},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'bookmyshow',cat:'Staffwelfare',bank:'Kotak',debit:2236,credit:0},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Uber',cat:'Travel',bank:'Kotak',debit:625,credit:0},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:139704},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Razorpay',cat:'Salary & Reimbursement',bank:'Axis',debit:2700000,credit:0},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:26512,credit:0},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'UBIQUITOUS TECHNOLOGIES',cat:'Software',bank:'Axis',debit:50000,credit:0},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:3},
-  {date:'06-Jan-2026',dayN:6,dayKey:'6-Jan',desc:'Facebook Refund',cat:'Facebook Refund',bank:'Axis',debit:0,credit:63454},
-  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:35123,credit:0},
-  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'Razorpay',cat:'Salary & Reimbursement',bank:'Axis',debit:200000,credit:0},
-  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:157016},
-  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'PVR INOX LIMITED',cat:'Staffwelfare',bank:'Kotak',debit:1481,credit:0},
-  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'Shopify Commerce',cat:'Software',bank:'Kotak',debit:4347,credit:0},
-  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'Uber',cat:'Travel',bank:'Kotak',debit:657,credit:0},
-  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'PG AXIS BANK VCIP',cat:'Miss Expense',bank:'Kotak',debit:80000,credit:0},
-  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'AIR INDIA',cat:'Travel',bank:'Kotak',debit:6741,credit:0},
-  {date:'07-Jan-2026',dayN:7,dayKey:'7-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:30020},
-  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:20646,credit:0},
-  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'GOOGLESERVIS',cat:'Software',bank:'Axis',debit:15000,credit:0},
-  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Jay Maa Vaishna',cat:'COD Remittance',bank:'Axis',debit:0,credit:238500},
-  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Uber',cat:'Travel',bank:'Kotak',debit:1499,credit:0},
-  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'STARBUCKS',cat:'Staffwelfare',bank:'Kotak',debit:1000,credit:0},
-  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Adobe',cat:'Software',bank:'Kotak',debit:541,credit:0},
-  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Zoho',cat:'Software',bank:'Kotak',debit:4247,credit:0},
-  {date:'08-Jan-2026',dayN:8,dayKey:'8-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:36782},
-  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:79032,credit:0},
-  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'NOPAPERFORMS',cat:'Software',bank:'Axis',debit:10000,credit:0},
-  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'25770694-RENTAL',cat:'Bank Charges',bank:'Axis',debit:589,credit:0},
-  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:35252},
-  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:1410,credit:0},
-  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'AWHO',cat:'Rent AWHO',bank:'Kotak',debit:40000,credit:0},
-  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'ETAX TIN2',cat:'TAX TDS',bank:'Kotak',debit:251947,credit:0},
-  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'Amazon India',cat:'Miss Expense',bank:'Kotak',debit:22749,credit:0},
-  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'Uber',cat:'Travel',bank:'Kotak',debit:346,credit:0},
-  {date:'09-Jan-2026',dayN:9,dayKey:'9-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:56010},
-  {date:'10-Jan-2026',dayN:10,dayKey:'10-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:59624,credit:0},
-  {date:'10-Jan-2026',dayN:10,dayKey:'10-Jan',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:311457},
-  {date:'10-Jan-2026',dayN:10,dayKey:'10-Jan',desc:'Airtel',cat:'Software',bank:'Kotak',debit:3298,credit:0},
-  // More January entries (aggregated for remaining days)
-  {date:'11-Jan-2026',dayN:11,dayKey:'11-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:45000,credit:0},
-  {date:'11-Jan-2026',dayN:11,dayKey:'11-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:78000},
-  {date:'12-Jan-2026',dayN:12,dayKey:'12-Jan',desc:'Salary Disbursement',cat:'Salary & Reimbursement',bank:'Axis',debit:180000,credit:0},
-  {date:'12-Jan-2026',dayN:12,dayKey:'12-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:65000},
-  {date:'13-Jan-2026',dayN:13,dayKey:'13-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:38500,credit:0},
-  {date:'13-Jan-2026',dayN:13,dayKey:'13-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:52000},
-  {date:'14-Jan-2026',dayN:14,dayKey:'14-Jan',desc:'Google Ads',cat:'Advertisement',bank:'Axis',debit:55000,credit:0},
-  {date:'14-Jan-2026',dayN:14,dayKey:'14-Jan',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:125000},
-  {date:'15-Jan-2026',dayN:15,dayKey:'15-Jan',desc:'Office Rent',cat:'Rent AWHO',bank:'Kotak',debit:85000,credit:0},
-  {date:'15-Jan-2026',dayN:15,dayKey:'15-Jan',desc:'Learner batch',cat:'Learner Payment',bank:'Kotak',debit:0,credit:48000},
-  {date:'16-Jan-2026',dayN:16,dayKey:'16-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:62000,credit:0},
-  {date:'16-Jan-2026',dayN:16,dayKey:'16-Jan',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:95000},
-  {date:'17-Jan-2026',dayN:17,dayKey:'17-Jan',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:1800,credit:0},
-  {date:'17-Jan-2026',dayN:17,dayKey:'17-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:41000},
-  {date:'18-Jan-2026',dayN:18,dayKey:'18-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:48000,credit:0},
-  {date:'18-Jan-2026',dayN:18,dayKey:'18-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:88000},
-  {date:'19-Jan-2026',dayN:19,dayKey:'19-Jan',desc:'Software subscriptions',cat:'Software',bank:'Kotak',debit:12000,credit:0},
-  {date:'19-Jan-2026',dayN:19,dayKey:'19-Jan',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:32000},
-  {date:'20-Jan-2026',dayN:20,dayKey:'20-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:55000,credit:0},
-  {date:'20-Jan-2026',dayN:20,dayKey:'20-Jan',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:180000},
-  {date:'21-Jan-2026',dayN:21,dayKey:'21-Jan',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:120000,credit:0},
-  {date:'21-Jan-2026',dayN:21,dayKey:'21-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:65000},
-  {date:'22-Jan-2026',dayN:22,dayKey:'22-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:40000,credit:0},
-  {date:'22-Jan-2026',dayN:22,dayKey:'22-Jan',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:145000},
-  {date:'23-Jan-2026',dayN:23,dayKey:'23-Jan',desc:'Airtel Mobile',cat:'Software',bank:'Kotak',debit:4200,credit:0},
-  {date:'23-Jan-2026',dayN:23,dayKey:'23-Jan',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:28000},
-  {date:'24-Jan-2026',dayN:24,dayKey:'24-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:58000,credit:0},
-  {date:'24-Jan-2026',dayN:24,dayKey:'24-Jan',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:112000},
-  {date:'25-Jan-2026',dayN:25,dayKey:'25-Jan',desc:'TDS Payment',cat:'TAX TDS',bank:'Kotak',debit:180000,credit:0},
-  {date:'25-Jan-2026',dayN:25,dayKey:'25-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:58000},
-  {date:'26-Jan-2026',dayN:26,dayKey:'26-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:35000,credit:0},
-  {date:'26-Jan-2026',dayN:26,dayKey:'26-Jan',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:72000},
-  {date:'27-Jan-2026',dayN:27,dayKey:'27-Jan',desc:'Office supplies',cat:'Miss Expense',bank:'Kotak',debit:8500,credit:0},
-  {date:'27-Jan-2026',dayN:27,dayKey:'27-Jan',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:44000},
-  {date:'28-Jan-2026',dayN:28,dayKey:'28-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:62000,credit:0},
-  {date:'28-Jan-2026',dayN:28,dayKey:'28-Jan',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:198000},
-  {date:'29-Jan-2026',dayN:29,dayKey:'29-Jan',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:2100,credit:0},
-  {date:'29-Jan-2026',dayN:29,dayKey:'29-Jan',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:72000},
-  {date:'30-Jan-2026',dayN:30,dayKey:'30-Jan',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:44000,credit:0},
-  {date:'30-Jan-2026',dayN:30,dayKey:'30-Jan',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:85000},
-  {date:'31-Jan-2026',dayN:31,dayKey:'31-Jan',desc:'Salary & Wages',cat:'Salary & Reimbursement',bank:'Axis',debit:350000,credit:0},
-  {date:'31-Jan-2026',dayN:31,dayKey:'31-Jan',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:55000},
-],
-feb:[
-  {date:'01-Feb-2026',dayN:1,dayKey:'1-Feb',desc:'Car EMI',cat:'Car EMI',bank:'Kotak',debit:61550,credit:0},
-  {date:'01-Feb-2026',dayN:1,dayKey:'1-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:58000,credit:0},
-  {date:'01-Feb-2026',dayN:1,dayKey:'1-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:88000},
-  {date:'02-Feb-2026',dayN:2,dayKey:'2-Feb',desc:'GOOGLESERVIS',cat:'Software',bank:'Axis',debit:22000,credit:0},
-  {date:'02-Feb-2026',dayN:2,dayKey:'2-Feb',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:95000},
-  {date:'03-Feb-2026',dayN:3,dayKey:'3-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:65000,credit:0},
-  {date:'03-Feb-2026',dayN:3,dayKey:'3-Feb',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:175000},
-  {date:'04-Feb-2026',dayN:4,dayKey:'4-Feb',desc:'Adobe',cat:'Software',bank:'Kotak',debit:4100,credit:0},
-  {date:'04-Feb-2026',dayN:4,dayKey:'4-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:42000},
-  {date:'05-Feb-2026',dayN:5,dayKey:'5-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:72000,credit:0},
-  {date:'05-Feb-2026',dayN:5,dayKey:'5-Feb',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:135000},
-  {date:'06-Feb-2026',dayN:6,dayKey:'6-Feb',desc:'Salary Disbursement',cat:'Salary & Reimbursement',bank:'Axis',debit:2700000,credit:0},
-  {date:'06-Feb-2026',dayN:6,dayKey:'6-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:110000},
-  {date:'07-Feb-2026',dayN:7,dayKey:'7-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:55000,credit:0},
-  {date:'07-Feb-2026',dayN:7,dayKey:'7-Feb',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:82000},
-  {date:'08-Feb-2026',dayN:8,dayKey:'8-Feb',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:165000,credit:0},
-  {date:'08-Feb-2026',dayN:8,dayKey:'8-Feb',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:210000},
-  {date:'09-Feb-2026',dayN:9,dayKey:'9-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:68000,credit:0},
-  {date:'09-Feb-2026',dayN:9,dayKey:'9-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:92000},
-  {date:'10-Feb-2026',dayN:10,dayKey:'10-Feb',desc:'TDS Payment',cat:'TAX TDS',bank:'Kotak',debit:195000,credit:0},
-  {date:'10-Feb-2026',dayN:10,dayKey:'10-Feb',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:165000},
-  {date:'11-Feb-2026',dayN:11,dayKey:'11-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:48000,credit:0},
-  {date:'11-Feb-2026',dayN:11,dayKey:'11-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:56000},
-  {date:'12-Feb-2026',dayN:12,dayKey:'12-Feb',desc:'AWHO Rent',cat:'Rent AWHO',bank:'Kotak',debit:40000,credit:0},
-  {date:'12-Feb-2026',dayN:12,dayKey:'12-Feb',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:220000},
-  {date:'13-Feb-2026',dayN:13,dayKey:'13-Feb',desc:'Google Ads',cat:'Advertisement',bank:'Axis',debit:58000,credit:0},
-  {date:'13-Feb-2026',dayN:13,dayKey:'13-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:78000},
-  {date:'14-Feb-2026',dayN:14,dayKey:'14-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:72000,credit:0},
-  {date:'14-Feb-2026',dayN:14,dayKey:'14-Feb',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:102000},
-  {date:'15-Feb-2026',dayN:15,dayKey:'15-Feb',desc:'Software subscriptions',cat:'Software',bank:'Kotak',debit:18500,credit:0},
-  {date:'15-Feb-2026',dayN:15,dayKey:'15-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:38000},
-  {date:'16-Feb-2026',dayN:16,dayKey:'16-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:66000,credit:0},
-  {date:'16-Feb-2026',dayN:16,dayKey:'16-Feb',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:145000},
-  {date:'17-Feb-2026',dayN:17,dayKey:'17-Feb',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:3200,credit:0},
-  {date:'17-Feb-2026',dayN:17,dayKey:'17-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:68000},
-  {date:'18-Feb-2026',dayN:18,dayKey:'18-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:52000,credit:0},
-  {date:'18-Feb-2026',dayN:18,dayKey:'18-Feb',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:188000},
-  {date:'19-Feb-2026',dayN:19,dayKey:'19-Feb',desc:'Airtel',cat:'Software',bank:'Kotak',debit:4200,credit:0},
-  {date:'19-Feb-2026',dayN:19,dayKey:'19-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:45000},
-  {date:'20-Feb-2026',dayN:20,dayKey:'20-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:78000,credit:0},
-  {date:'20-Feb-2026',dayN:20,dayKey:'20-Feb',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:230000},
-  {date:'21-Feb-2026',dayN:21,dayKey:'21-Feb',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:135000,credit:0},
-  {date:'21-Feb-2026',dayN:21,dayKey:'21-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:85000},
-  {date:'22-Feb-2026',dayN:22,dayKey:'22-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:44000,credit:0},
-  {date:'22-Feb-2026',dayN:22,dayKey:'22-Feb',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:96000},
-  {date:'23-Feb-2026',dayN:23,dayKey:'23-Feb',desc:'Travel expenses',cat:'Travel',bank:'Kotak',debit:18500,credit:0},
-  {date:'23-Feb-2026',dayN:23,dayKey:'23-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:52000},
-  {date:'24-Feb-2026',dayN:24,dayKey:'24-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:60000,credit:0},
-  {date:'24-Feb-2026',dayN:24,dayKey:'24-Feb',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:160000},
-  {date:'25-Feb-2026',dayN:25,dayKey:'25-Feb',desc:'TDS Payment',cat:'TAX TDS',bank:'Kotak',debit:175000,credit:0},
-  {date:'25-Feb-2026',dayN:25,dayKey:'25-Feb',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:72000},
-  {date:'26-Feb-2026',dayN:26,dayKey:'26-Feb',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:48000,credit:0},
-  {date:'26-Feb-2026',dayN:26,dayKey:'26-Feb',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:115000},
-  {date:'27-Feb-2026',dayN:27,dayKey:'27-Feb',desc:'Office supplies',cat:'Miss Expense',bank:'Kotak',debit:9500,credit:0},
-  {date:'27-Feb-2026',dayN:27,dayKey:'27-Feb',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:38000},
-  {date:'28-Feb-2026',dayN:28,dayKey:'28-Feb',desc:'Salary & Wages',cat:'Salary & Reimbursement',bank:'Axis',debit:380000,credit:0},
-  {date:'28-Feb-2026',dayN:28,dayKey:'28-Feb',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:195000},
-],
-mar:[
-  {date:'01-Mar-2026',dayN:1,dayKey:'1-Mar',desc:'Car EMI',cat:'Car EMI',bank:'Kotak',debit:61550,credit:0},
-  {date:'01-Mar-2026',dayN:1,dayKey:'1-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:62000,credit:0},
-  {date:'01-Mar-2026',dayN:1,dayKey:'1-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:98000},
-  {date:'02-Mar-2026',dayN:2,dayKey:'2-Mar',desc:'GOOGLESERVIS',cat:'Software',bank:'Axis',debit:24000,credit:0},
-  {date:'02-Mar-2026',dayN:2,dayKey:'2-Mar',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:105000},
-  {date:'03-Mar-2026',dayN:3,dayKey:'3-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:70000,credit:0},
-  {date:'03-Mar-2026',dayN:3,dayKey:'3-Mar',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:185000},
-  {date:'04-Mar-2026',dayN:4,dayKey:'4-Mar',desc:'Adobe',cat:'Software',bank:'Kotak',debit:4100,credit:0},
-  {date:'04-Mar-2026',dayN:4,dayKey:'4-Mar',desc:'CLAUDE.AI',cat:'Software',bank:'Kotak',debit:1880,credit:0},
-  {date:'04-Mar-2026',dayN:4,dayKey:'4-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:55000},
-  {date:'05-Mar-2026',dayN:5,dayKey:'5-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:78000,credit:0},
-  {date:'05-Mar-2026',dayN:5,dayKey:'5-Mar',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:148000},
-  {date:'06-Mar-2026',dayN:6,dayKey:'6-Mar',desc:'Salary Disbursement',cat:'Salary & Reimbursement',bank:'Axis',debit:2700000,credit:0},
-  {date:'06-Mar-2026',dayN:6,dayKey:'6-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:125000},
-  {date:'07-Mar-2026',dayN:7,dayKey:'7-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:58000,credit:0},
-  {date:'07-Mar-2026',dayN:7,dayKey:'7-Mar',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:92000},
-  {date:'08-Mar-2026',dayN:8,dayKey:'8-Mar',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:178000,credit:0},
-  {date:'08-Mar-2026',dayN:8,dayKey:'8-Mar',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:228000},
-  {date:'09-Mar-2026',dayN:9,dayKey:'9-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:72000,credit:0},
-  {date:'09-Mar-2026',dayN:9,dayKey:'9-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:105000},
-  {date:'10-Mar-2026',dayN:10,dayKey:'10-Mar',desc:'TDS Payment',cat:'TAX TDS',bank:'Kotak',debit:210000,credit:0},
-  {date:'10-Mar-2026',dayN:10,dayKey:'10-Mar',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:178000},
-  {date:'11-Mar-2026',dayN:11,dayKey:'11-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:52000,credit:0},
-  {date:'11-Mar-2026',dayN:11,dayKey:'11-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:62000},
-  {date:'12-Mar-2026',dayN:12,dayKey:'12-Mar',desc:'AWHO Rent',cat:'Rent AWHO',bank:'Kotak',debit:40000,credit:0},
-  {date:'12-Mar-2026',dayN:12,dayKey:'12-Mar',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:245000},
-  {date:'13-Mar-2026',dayN:13,dayKey:'13-Mar',desc:'Google Ads',cat:'Advertisement',bank:'Axis',debit:62000,credit:0},
-  {date:'13-Mar-2026',dayN:13,dayKey:'13-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:88000},
-  {date:'14-Mar-2026',dayN:14,dayKey:'14-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:80000,credit:0},
-  {date:'14-Mar-2026',dayN:14,dayKey:'14-Mar',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:115000},
-  {date:'15-Mar-2026',dayN:15,dayKey:'15-Mar',desc:'Software subscriptions',cat:'Software',bank:'Kotak',debit:22000,credit:0},
-  {date:'15-Mar-2026',dayN:15,dayKey:'15-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:48000},
-  {date:'16-Mar-2026',dayN:16,dayKey:'16-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:74000,credit:0},
-  {date:'16-Mar-2026',dayN:16,dayKey:'16-Mar',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:168000},
-  {date:'17-Mar-2026',dayN:17,dayKey:'17-Mar',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:3800,credit:0},
-  {date:'17-Mar-2026',dayN:17,dayKey:'17-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:78000},
-  {date:'18-Mar-2026',dayN:18,dayKey:'18-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:56000,credit:0},
-  {date:'18-Mar-2026',dayN:18,dayKey:'18-Mar',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:205000},
-  {date:'19-Mar-2026',dayN:19,dayKey:'19-Mar',desc:'Airtel',cat:'Software',bank:'Kotak',debit:4200,credit:0},
-  {date:'19-Mar-2026',dayN:19,dayKey:'19-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:58000},
-  {date:'20-Mar-2026',dayN:20,dayKey:'20-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:85000,credit:0},
-  {date:'20-Mar-2026',dayN:20,dayKey:'20-Mar',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:255000},
-  {date:'21-Mar-2026',dayN:21,dayKey:'21-Mar',desc:'Deepak Sewing',cat:'Fashion COGS',bank:'Axis',debit:148000,credit:0},
-  {date:'21-Mar-2026',dayN:21,dayKey:'21-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:95000},
-  {date:'22-Mar-2026',dayN:22,dayKey:'22-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:48000,credit:0},
-  {date:'22-Mar-2026',dayN:22,dayKey:'22-Mar',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:108000},
-  {date:'23-Mar-2026',dayN:23,dayKey:'23-Mar',desc:'Travel expenses',cat:'Travel',bank:'Kotak',debit:22000,credit:0},
-  {date:'23-Mar-2026',dayN:23,dayKey:'23-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:65000},
-  {date:'24-Mar-2026',dayN:24,dayKey:'24-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:66000,credit:0},
-  {date:'24-Mar-2026',dayN:24,dayKey:'24-Mar',desc:'COD Collection',cat:'COD',bank:'Axis',debit:0,credit:175000},
-  {date:'25-Mar-2026',dayN:25,dayKey:'25-Mar',desc:'TDS Payment',cat:'TAX TDS',bank:'Kotak',debit:188000,credit:0},
-  {date:'25-Mar-2026',dayN:25,dayKey:'25-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:82000},
-  {date:'26-Mar-2026',dayN:26,dayKey:'26-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:52000,credit:0},
-  {date:'26-Mar-2026',dayN:26,dayKey:'26-Mar',desc:'NBFC',cat:'FINZ',bank:'Axis',debit:0,credit:125000},
-  {date:'27-Mar-2026',dayN:27,dayKey:'27-Mar',desc:'Office supplies',cat:'Miss Expense',bank:'Kotak',debit:11500,credit:0},
-  {date:'27-Mar-2026',dayN:27,dayKey:'27-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:42000},
-  {date:'28-Mar-2026',dayN:28,dayKey:'28-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:70000,credit:0},
-  {date:'28-Mar-2026',dayN:28,dayKey:'28-Mar',desc:'COD Remittance',cat:'COD Remittance',bank:'Axis',debit:0,credit:210000},
-  {date:'29-Mar-2026',dayN:29,dayKey:'29-Mar',desc:'Zomato',cat:'Staffwelfare',bank:'Kotak',debit:2800,credit:0},
-  {date:'29-Mar-2026',dayN:29,dayKey:'29-Mar',desc:'Razorpay',cat:'Razorpay',bank:'Kotak',debit:0,credit:78000},
-  {date:'30-Mar-2026',dayN:30,dayKey:'30-Mar',desc:'Facebook',cat:'Advertisement',bank:'Axis',debit:55000,credit:0},
-  {date:'30-Mar-2026',dayN:30,dayKey:'30-Mar',desc:'NBFC',cat:'NORTHERN',bank:'Axis',debit:0,credit:92000},
-  {date:'31-Mar-2026',dayN:31,dayKey:'31-Mar',desc:'Salary & Wages',cat:'Salary & Reimbursement',bank:'Axis',debit:400000,credit:0},
-  {date:'31-Mar-2026',dayN:31,dayKey:'31-Mar',desc:'Learner Payment',cat:'Learner Payment',bank:'Kotak',debit:0,credit:68000},
-]
+const DB = {
+  jan: [],
+  feb: [],
+  mar: []
 };
-
-// Compute isIn/isOut
-Object.values(RAW).forEach(arr=>arr.forEach(r=>{r.isIn=r.credit>0&&r.debit===0;r.isOut=r.debit>0&&r.credit===0;}));
-
-const DB = RAW;
 let curMon = 'mar';
 let filtered = [];
 let curPage = 1;
@@ -1237,6 +988,10 @@ function renderDashboard(data){
     ? (manuals.outstanding!==null?'Manual':'—') + ' Sales − Collection · ' + full(outst)
     : (sales===null ? 'Connect Q4 Sheet first' : '—');
   document.getElementById('invBadge').textContent=data.filter(r=>r.isIn).length;
+  // Status dot: green if data loaded, grey if empty
+  const hasData = DB.jan.length>0||DB.feb.length>0||DB.mar.length>0;
+  document.getElementById('sDot').style.background = hasData ? 'var(--green)' : '#aaa';
+  if(!hasData) document.getElementById('sTxt').textContent = 'Connect Google Sheets to load data';
   const totalAch=SALES_TEAMS.reduce((s,t)=>s+t.tlAchieved+t.members.reduce((a,m)=>a+m.achieved,0),0);
   document.getElementById('salesBadge').textContent=fmt(totalAch);
   setTimeout(()=>{
@@ -2052,6 +1807,8 @@ async function gsPull() {
       gsLog(`"${tabs[k]}" — ${rows.length} rows`);
     });
     gsBanner(`Pull complete! ${total} rows loaded. Dashboard updated.`,'success');
+    const nb=document.getElementById('noDataBanner');if(nb)nb.style.display='none';
+    document.getElementById('sTxt').textContent='Jan–Mar 2026 · Data Loaded';
     renderDashboard(DB[curMon]); populateCatFilter(DB[curMon]); renderMonthlyReport();
     gsLog('Dashboard refreshed.');
   } catch(e){gsBanner('Pull failed: '+e.message,'error');gsLog('Error: '+e.message);}
