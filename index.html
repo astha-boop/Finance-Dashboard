@@ -1563,8 +1563,8 @@ function renderSalesTab(){
   if(monLabel) monLabel.textContent = 'Q4 FY 25-26 · '+monNames[curSalesMon]+' 2026';
 
   if (!monData) {
-    if(kpiRow)   kpiRow.innerHTML   = '<div style="grid-column:1/-1;'+noData.slice(5)};
-    if(teamGrid) teamGrid.innerHTML = noData;
+    if(kpiRow)   kpiRow.innerHTML   = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--ink3);font-size:14px">🔗 Pull Q4 Sheet for '+monNames[curSalesMon]+' data</div>';
+    if(teamGrid) teamGrid.innerHTML = '<div style="text-align:center;padding:40px;color:var(--ink3)">🔗 Pull Q4 Sheet for '+monNames[curSalesMon]+' data</div>';
     if(cnslBody) cnslBody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--ink3);padding:20px">Connect Q4 Sheet first</td></tr>';
     return;
   }
